@@ -7,6 +7,6 @@ sharing: true
 footer: true
 ---
 
-I am a Phd student from the Department of Industrial and Systems Engineering, National University of Singapore. 
+I am a Ph.D student from the Department of Industrial and Systems Engineering, National University of Singapore. 
 
 My research area is Operations Research.

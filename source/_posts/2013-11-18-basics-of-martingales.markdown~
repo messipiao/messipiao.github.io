@@ -1,0 +1,29 @@
+---
+layout: post
+title: "Basics of Martingales"
+date: 2013-11-18 16:16
+comments: true
+categories: Probability
+---
+
+Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. 
+
+### Martingales
+A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if 
+$$ 
+E[|Z_n|] < \infty \quad \text{for all n}
+$$
+and
+
+$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$
+
+Taking expectations of both sides gives
+
+$$E[Z_{n+1}]=E[Z_n]$$
+
+$$ E[Z_{n+1} | Z_1,Z_2,\dots,Z_n]>Z_n $$ is aaaa asldkfjasl;kj aslkdhfdsjkhgkl ajshdfkdsjhflkash 
+
+
+
+
+
