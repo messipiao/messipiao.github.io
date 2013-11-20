@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Piao's Blog]]></title>
-  <link href="http://messipiao.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Statistics | Piao's Blog]]></title>
+  <link href="http://messipiao.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
   <updated>2013-11-20T17:12:16+08:00</updated>
   <id>http://messipiao.github.io/</id>
@@ -179,138 +179,6 @@ E\mid X_n \mid < \infty %]]&gt;</script>, <script type="math/tex">\mu = EX_n</sc
 
 <script type="math/tex; mode=display">\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}} = \frac{\sigma}{S_n} \cdot \frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}} \to N(0,1)</script>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Basics of Martingales]]></title>
-    <link href="http://messipiao.github.io/blog/2013/11/18/basics-of-martingales/"/>
-    <updated>2013-11-18T16:16:00+08:00</updated>
-    <id>http://messipiao.github.io/blog/2013/11/18/basics-of-martingales</id>
-    <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
-
-<h3 id="martingales">Martingales</h3>
-<p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if 
-$$ 
-E[|Z_n|] &lt; \infty \quad \text{for all n}
-$$
-and</p>
-
-<script type="math/tex; mode=display"> E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. </script>
-
-<p>Taking expectations of both sides gives</p>
-
-<script type="math/tex; mode=display">E[Z_{n+1}]=E[Z_n]</script>
-
-<p>When </p>
-
-<script type="math/tex; mode=display"> E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]>Z_n </script>
-
-<p>it is a sub-martingale and when </p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
- E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]<Z_n  %]]&gt;</script>
-
-<p>it is a super-martingale.</p>
-
-<ul>
-  <li>Let <script type="math/tex">X,Y_1,Y_2,\dots</script> be arbitary random variables such that 
-<script type="math/tex">% &lt;![CDATA[
- E[|X|] < \infty  %]]&gt;</script>, 
-and let</li>
-</ul>
-
-<script type="math/tex; mode=display">Z_n = E[X \mid Y_1,\dots,Y_n]</script>
-
-<p>It then follows that <script type="math/tex">{Z_n,n \ge 1}</script> is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
-
-<ul>
-  <li>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</li>
-</ul>
-
-<script type="math/tex; mode=display"> Z_n = \sum_{i=1}^n {X_i - E[X_i \mid X_1,\dots,X_{i-1}]}</script>
-
-<ul>
-  <li>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead <script type="math/tex">Z_1, \dots, Z_n</script>. 
-Actually, we can prove this results. Let <script type="math/tex">Z = g(Y)</script> then</li>
-</ul>
-
-<script type="math/tex; mode=display">E(X \mid Z) = E(E(X \mid Z,Y) \mid Z) = E(E(X \mid Y) \mid Z) = E(X\mid Y)</script>
-
-<h2 id="stopping-times">Stopping Times</h2>
-
-<h3 id="definition">Definition</h3>
-
-<p>The positive interger-value, possibly infinite, random variable $N$ is said to be a random time for the process <script type="math/tex">{Z_n,n \ge 1}</script> if the event {N=n} is determined by the randon variables <script type="math/tex">Z_1,\dots,Z_n</script>. That is, knowing $Z_1,\dots,Z_n$ tells us whether or not <script type="math/tex">N=n</script>. If <script type="math/tex">% &lt;![CDATA[
-P(N < \infty) %]]&gt;</script>, then the random time $N$ is said to be a <strong>stopping time</strong>.</p>
-
-<h3 id="the-martingale-stopping-theorem">The Martingale Stopping Theorem</h3>
-
-<p>If either:</p>
-
-<ol>
-  <li><script type="math/tex">Z_{n \land N}</script> is bounde, or;</li>
-  <li><script type="math/tex">N</script> is bounded, or;</li>
-  <li><script type="math/tex">% &lt;![CDATA[
-E[N] < \infty %]]&gt;</script>, and there is an <script type="math/tex">% &lt;![CDATA[
-M<\infty %]]&gt;</script> such that</li>
-</ol>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-E[\mid Z_{n+1}-Z_n \mid \mid Z_1,\dots,Z_n] < M %]]&gt;</script>
-
-<p>then </p>
-
-<script type="math/tex; mode=display">E[Z_N] = E[Z_1]</script>
-
-<p>NOTE that boundedness is important. Take $X_0=0$ and</p>
-
-<script type="math/tex; mode=display">X_n = \xi_1+\xi_2+\cdots+\xi_n</script>
-
-<p>where $\xi_i$ are independent identically distributed random variables taking the value <script type="math/tex">\pm \dfrac{1}{2}</script>. Let <script type="math/tex">T = inf\{n:X_n=1\}</script>. Then T is a stopping time, <script type="math/tex">% &lt;![CDATA[
-P[T<\infty] = 1 %]]&gt;</script>, but T is not bounded. <script type="math/tex">X_T=1</script> with probability 1 and trivially <script type="math/tex">E[X_T]=1 \neq 0</script>.</p>
-
-<p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
-
-<h2 id="azumas-inequality">Azuma’s Inequality</h2>
-
-<p>Let <script type="math/tex">Z_n, n \ge 1</script> be a martingale with mean <script type="math/tex">\mu = E[Z_n]</script>. Let $Z_0 = \mu$ and suppose that for nonegative constants <script type="math/tex">\alpha_i,\beta_i,i\ge 1</script>,</p>
-
-<script type="math/tex; mode=display">-\alpha_i \le Z_i-Z_{i-1} \le \beta_i</script>
-
-<p>Then for any <script type="math/tex">n \ge 0, a > 0</script>:</p>
-
-<ol>
-  <li><script type="math/tex">P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-  <li><script type="math/tex">P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-</ol>
-
-<h2 id="the-martingale-convergence-theorem">The Martingale Convergence Theorem</h2>
-
-<p>If <script type="math/tex">\{Z_n,n \ge 1\}</script> is a martingale such that for some <script type="math/tex">% &lt;![CDATA[
-M< \infty %]]&gt;</script></p>
-
-<script type="math/tex; mode=display">E[\mid Z_n \mid] \le M, \text{for all n}</script>
-
-<p>then, with probability 1, <script type="math/tex">\lim_{n \rightarrow \infty} Z_n</script> exists and is finite.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://messipiao.github.io/blog/2013/10/30/hello-world/"/>
-    <updated>2013-10-30T13:10:00+08:00</updated>
-    <id>http://messipiao.github.io/blog/2013/10/30/hello-world</id>
-    <content type="html"><![CDATA[<p>Hello world, it’s Piao’s first post from his own lab.</p>
-
-<p>I want to have my own blog for a long time and I have tried some blogs in China, like 163 blog or blogbus. However, neither of them satisfied me as there are some restrictions from the websites and they are not as neat as what I thought blogs should be. Luckily, with recommendations and help from Super P, I finally have this amazing blog! I will share what I’ve learned and felt here, as a record of my study and life in NUS.</p>
-
-<p>I’ve been in NUS for 3 months. Actually, Sinapore is very much like China, no matter in food taste or language (you can just say Chinese in your normal life), so I feel like only from one city to another while less feeling of being abroad.</p>
-
-<p>What makes happy is that I met my GF here. She is beautiful and kind and I am really grateful that I can have her with me here. Another thing is that I have a place in the lab, which I have dreamed for a long time. In the lab, I can concentrate on the study like a nut! It’s a great feeling.</p>
-
-<p>Talk less and do more. I should work harder to have a bright future, for myself, my family and especially for my GF.</p>
 ]]></content>
   </entry>
   
