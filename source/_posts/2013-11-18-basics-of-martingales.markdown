@@ -85,8 +85,12 @@ $$-\alpha_i \le Z_i-Z_{i-1} \le \beta_i$$
 
 Then for any $$n \ge 0, a > 0$$:
 
-1. $$P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}$$.
-2. $$P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}$$.
+$$
+\begin{align}
+1. & P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+2. & P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+\end{align}
+$$
 
 ## The Martingale Convergence Theorem
 
