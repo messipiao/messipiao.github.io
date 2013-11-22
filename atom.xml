@@ -4,7 +4,7 @@
   <title><![CDATA[Piao's Blog]]></title>
   <link href="http://messipiao.github.io/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2013-11-20T17:12:16+08:00</updated>
+  <updated>2013-11-22T22:07:53+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,280 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Point Estimation]]></title>
+    <link href="http://messipiao.github.io/blog/2013/11/22/point-estimation/"/>
+    <updated>2013-11-22T19:31:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2013/11/22/point-estimation</id>
+    <content type="html"><![CDATA[<p>When sampling is from a population described by a pdf or pmf <script type="math/tex">f(x \vert \theta)</script>, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
+
+<h2 id="methods-of-finding-estimators">Methods of Finding Estimators</h2>
+
+<h3 id="method-of-moments">Method of Moments</h3>
+
+<p>Let <script type="math/tex">X_1,\dots,X_n</script> be a sample from a population with pdf or pmf <script type="math/tex">f(x \vert \theta_1,\dots,\theta_k)</script>. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
+
+<script type="math/tex; mode=display">m_k = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu'_k = EX^k</script>
+
+<h3 id="maximum-likelihood-estimators">Maximum Likelihood Estimators</h3>
+
+<p>The likelihood function is defined by</p>
+
+<script type="math/tex; mode=display">L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x_n) = \prod_{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)</script>
+
+<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
+
+<p>MLE has the following properties.</p>
+
+<ul>
+  <li><strong>(Invariance property of MLEs)</strong> </li>
+</ul>
+
+<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
+
+<ul>
+  <li><strong>(Asymptotic Normality)</strong> </li>
+</ul>
+
+<p>Under appropriate regularity conditions,</p>
+
+<script type="math/tex; mode=display">\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)</script>
+
+<p>In addition</p>
+
+<script type="math/tex; mode=display">\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)</script>
+
+<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
+
+<script type="math/tex; mode=display"> I(\theta) = E[\frac{\partial}{\partial \theta}logf(X;\theta)^2] = -E[\frac{\partial^2}{\partial \theta^2} logf(X;\theta)]</script>
+
+<p>Fisher information has following properties.</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)\\
+2. & I_n(\theta) = n I(\theta) \\
+\end{align}
+ %]]&gt;</script>
+
+<h3 id="the-em-algorithm">The EM Algorithm</h3>
+
+<p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
+
+<p>If <script type="math/tex">\mathbf{Y} = (Y_1,\dots,Y_N)</script> are the incomplete data, and <script type="math/tex">\mathbf{X} = (X_1,\dots,X_m)</script> are the augmented data (missing data), making <script type="math/tex">(\mathbf{Y},\mathbf{X})</script> the complete data. The densities $g(\cdot \vert \theta)$ of $\mathbf{Y}$ and $f(\cdot \vert \theta)$ of $\mathbf{Y},\mathbf{X}$ have the relationship</p>
+
+<script type="math/tex; mode=display">g(\mathbf{y} \vert \theta) = \int f(\mathbf{y},\mathbf{x} \vert \theta) dx</script>
+
+<p>If we turn these into the likelihoods, <script type="math/tex">L(\theta \vert \mathbf{y}) = g(\mathbf{y} \vert \theta)</script> is the incomplete-data likelihood and <script type="math/tex">L(\theta \vert \mathbf{y},\mathbf{x}) = f(\mathbf{y},\mathbf{x} \vert \theta)</script> is the complete-data likelihood.i</p>
+
+<p>Define</p>
+
+<script type="math/tex; mode=display">k(\mathbf{x} \vert \theta,\mathbf{y}) = \frac{f(\mathbf{y},\mathbf{x} \vert \theta)}{g(\mathbf{y} \vert \theta)} = \frac{L(\theta \vert \mathbf{y},\mathbf{x})}{L(\theta \vert \mathbf{y})}</script>
+
+<p>Then we have</p>
+
+<script type="math/tex; mode=display">\log L(\theta \vert \mathbf{y}) = \log L(\theta \vert \mathbf{y},\mathbf{x}) - \log k(\mathbf{x} \vert \theta,\mathbf{y})</script>
+
+<p>replace the right side with its expectation under $k(\mathbf{x} \vert \theta’,\mathbf{y})$, we have</p>
+
+<script type="math/tex; mode=display">\log L(\theta \vert \mathbf{y}) = E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta',\mathbf{y}] - E[\log k(\mathbf{x} \vert \theta,\mathbf{y}) \vert \theta',\mathbf{y}]</script>
+
+<p>Now we start the algorithm: From an initial value <script type="math/tex">\theta^{(0)}</script> we create a sequence <script type="math/tex">\theta^{(r)}</script> according to</p>
+
+<script type="math/tex; mode=display">\theta^{(r+1)} = \max_{\theta} E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta^{(r)},\mathbf{y}] </script>
+
+<h3 id="bayes-estimators">Bayes Estimators</h3>
+
+<p>In Bayes approach $\theta$ is considered to be a quantity whose variation can be described by a probability distribution (called the prior distribution). This is a subjective distribution, based on the experimenter’s belief, and is formulated before the data are seen (hence the name prior distribution). A sample is then taken from a population indexed by $\theta$ and the prior distribution is updated with this sample information. The updated prior is called the posterior distribution. </p>
+
+<p>If we denote the prior distribution by $\pi(\theta)$ and the sampling distribution by <script type="math/tex">f(x \vert \theta)</script>, then the posterior distribution, the conditional distribution of $\theta$ given the sample, <script type="math/tex">\mathbf{x}</script>, </p>
+
+<script type="math/tex; mode=display">\pi(\theta \vert \mathbf{x}) = f(\mathbf{x} \vert \theta) \pi(\theta)/m(\mathbf{x})</script>
+
+<p>where $m(\mathbf{x})$ is the marginal distribution of $\mathbf{X}$, that is,</p>
+
+<script type="math/tex; mode=display">m(\mathbf{x}) = \int f(\mathbf{x} \vert \theta) \pi(\theta) d \theta</script>
+
+<h2 id="methods-of-evaluating-estimators">Methods of Evaluating Estimators</h2>
+
+<h3 id="mean-squared-error">Mean Squared Error</h3>
+
+<blockquote>
+  <p>The mean square error (MSE) of an estimator W of a parameter $\theta$ is the function of $\theta$ defined by $E_{\theta}(W-\theta)^2$.</p>
+</blockquote>
+
+<p>Define</p>
+
+<script type="math/tex; mode=display">Bias_{\theta}W = E_{\theta}W-\theta</script>
+
+<p>Then</p>
+
+<script type="math/tex; mode=display">E_{\theta}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2</script>
+
+<h3 id="best-unbiased-estimators">Best Unbiased Estimators</h3>
+
+<blockquote>
+  <p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies <script type="math/tex">E_{\theta}W' = \tau(\theta)</script> for all $\theta$ and, for any other estimator W with <script type="math/tex">E_{\theta}W = \tau(\theta)</script>, we have <script type="math/tex">Var_{\theta}W' \le Var_{\theta}W</script> for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
+</blockquote>
+
+<ul>
+  <li><strong>Cramer-Rao Inequality</strong></li>
+</ul>
+
+<p>Let <script type="math/tex">X_1,\dots,X_n</script> be a sample with pdf $f(x \vert \theta)$, and let <script type="math/tex">W(\mathbf{X}) = W(X_1,\dots,X_n)</script> be <em>any estimator satisfying</em></p>
+
+<script type="math/tex; mode=display">\frac{d}{d\theta} E_{\theta}W(\mathbf{X}) = \int \frac{\partial}{\partial \theta}[W(\mathbf{x})f(x \vert \theta)] dx</script>
+
+<p>and</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+Var_{\theta}W(\mathbf{X}) < \infty %]]&gt;</script>
+
+<p>Then</p>
+
+<script type="math/tex; mode=display">Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{E_{\theta}[(\frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{I_n(\theta)}</script>
+
+<p>when <script type="math/tex">X_1,\dots,X_n</script> are <em>iid</em>, based on the property of <em>Fisher Information</em>, we have</p>
+
+<script type="math/tex; mode=display">Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nE_{\theta}[(\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nI(\theta)}</script>
+
+<p>We need to verify whether the <strong>Cramer-Rao Lower Bound</strong> is attainable.</p>
+
+<ul>
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let <script type="math/tex">L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n}</script> denote the likelihood function. If $$
+W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
+</ul>
+
+<script type="math/tex; mode=display">a(\theta)[W(\mathbf{x})-\tau(\theta)] = \frac{\partial}{\partial \theta}\log L(\theta \vert \mathbf{x})</script>
+
+<p>for some function $a(\theta)$.</p>
+
+<p>Two theorems are used to find the <strong>UMVUE</strong>.</p>
+
+<ul>
+  <li><strong>Rao-Blackwell Theorem</strong> </li>
+</ul>
+
+<p>Let W be any unbiased estimator of $\tau(\theta)$, and let T be a sufficient statistic for $\theta$. Then $E(W \vert T)$ is a UMVUE.</p>
+
+<ul>
+  <li><strong>Lehmann Scheffe Theorem</strong></li>
+</ul>
+
+<p>Suppose there exists a sufficient and complete statistic T for $\theta$. If there exisits unbiased estimator of $\tau(\theta)$, then the UMVUE takes the form of h(T), where h is a Borel function.</p>
+
+<p>It is also noted that UMVUE is <strong>unique</strong>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Data Reduction]]></title>
+    <link href="http://messipiao.github.io/blog/2013/11/22/data-reduction/"/>
+    <updated>2013-11-22T16:23:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2013/11/22/data-reduction</id>
+    <content type="html"><![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
+
+<h2 id="sufficient-statistics">Sufficient Statistics</h2>
+
+<blockquote>
+  <p>A statistic T(<strong>X</strong>) is a sufficient statistic for <script type="math/tex">\theta</script> if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+</blockquote>
+
+<p>A sufficient statistic captures all the infromation about $\theta$.</p>
+
+<blockquote>
+  <p>If <script type="math/tex">p( \mathbf{x} \vert \theta)</script> is the joint pdf or pmf of <script type="math/tex">\mathbf{X}</script> and <script type="math/tex">q(t \vert \theta)</script> is the pdf or pmf of <script type="math/tex">T(\mathbf{X})</script>, then <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration <script type="math/tex">p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)</script> is constant as a function of $\theta$.</p>
+</blockquote>
+
+<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
+
+<ul>
+  <li>Lef <script type="math/tex">f(\mathbf{x}\vert \theta)</script> denote the joint pdf or pmf of a sample <script type="math/tex">\mathbf{X}</script>. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions <script type="math/tex">g(t \vert \theta)</script> and <script type="math/tex">h(\mathbf{x})</script> such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x} \vert \theta))h(\mathbf{x})</script>
+
+<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
+
+<ul>
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a pdf or pfm <script type="math/tex">f(x \vert \mathbf{\theta})</script> that belongs to an exponential family given by</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))</script>
+
+<p>where <script type="math/tex">\mathbf{\theta} = (\theta_1,\dots,\theta_d)</script>, <script type="math/tex">d \le k</script>. Then</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))</script>
+
+<p>is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
+
+<h2 id="minimal-sufficient-statistics">Minimal Sufficient Statistics</h2>
+
+<p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
+
+<blockquote>
+  <p>A sufficient statistic <script type="math/tex">T(\mathbf{X})</script> is called a minimal sufficient statistic if, for any other sufficient statistic <script type="math/tex">T'(\mathbf{X})</script>, <script type="math/tex">T(\mathbf{X})</script> is a function of <script type="math/tex">T'(\mathbf{X})</script>.</p>
+</blockquote>
+
+<p>We have an easier way to find a minimal sufficient statistic.</p>
+
+<ul>
+  <li>Let <script type="math/tex">f(\mathbf{x}\vert \theta)</script> be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function <script type="math/tex">T(\mathbf{x})</script> such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio <script type="math/tex">f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)</script> is constant as a function of $\theta$ if and only if <script type="math/tex">T(\mathbf{x} = T(\mathbf{y}))</script>. Then <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic for $\theta$.</li>
+</ul>
+
+<h2 id="ancillary-statistics">Ancillary Statistics</h2>
+
+<blockquote>
+  <p>A stastistic <script type="math/tex">S(\mathbf{X})</script> whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
+</blockquote>
+
+<p><strong>Alone</strong>, an ancillary statistic contains no information about $\theta$.</p>
+
+<ul>
+  <li>Location family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, <script type="math/tex">% &lt;![CDATA[
+-\infty < \theta < \infty %]]&gt;</script>. <script type="math/tex">R = X_{(n)}-X_{(1)}</script> is an ancillary statistic.</li>
+  <li>Scale family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values <script type="math/tex">X_1/X_n,\dots,X_{n-1}/X_n</script> is an ancillary statistic.</li>
+</ul>
+
+<h2 id="complete-statistics">Complete Statistics</h2>
+
+<p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
+
+<blockquote>
+  <p>Let <script type="math/tex">f(t \vert \theta)</script> be a family of pdfs or pmfs for a statistic <script type="math/tex">T(\mathbf{X})</script>. The family of probability distributions is called complete if <script type="math/tex">E_{\theta}g(T) = 0</script> for all $\theta$ implies <script type="math/tex">P_{\theta}(g(T)=0) = 1</script> for all $\theta$. Equivalently, <script type="math/tex">T(\mathbf{X})</script> is called a complete statistic.</p>
+</blockquote>
+
+<p>We can get the complete statistics in the exponential family.</p>
+
+<ul>
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a pdf or pfm <script type="math/tex">f(x \vert \mathbf{\theta})</script> that belongs to an exponential family given by</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))</script>
+
+<p>where <script type="math/tex">\mathbf{\theta} = (\theta_1,\dots,\theta_d)</script>, <script type="math/tex">d \le k</script>. Then</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))</script>
+
+<p>is complete if <script type="math/tex">\{(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta\}</script> contains an open set in $R^k$.</p>
+
+<p>We use completeness to state a condition under which a minimal sufficient statistic is independent of every ancillary statistic.</p>
+
+<ul>
+  <li><strong>(Basu’s Theorem)</strong> If <script type="math/tex">T(\mathbf{X})</script> is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
+</ul>
+
+<p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
+
+<ul>
+  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Random Sample]]></title>
@@ -87,10 +361,13 @@ If</p>
 
 <p>If <script type="math/tex">X_n \to X</script> in distribution and <script type="math/tex">Y_n \to a</script>, a costant, in probability then</p>
 
-<ol>
-  <li><script type="math/tex">Y_nX_n \to aX</script> in distribution.</li>
-  <li><script type="math/tex">X_n+Y_n \to X+a</script> in distribution.</li>
-</ol>
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & Y_nX_n \to aX \text{in distribution} \\
+2. & X_n+Y_n \to X+a \text{in distribution} \\
+\end{align}
+ %]]&gt;</script>
 
 <ul>
   <li><strong>Weak Law of Large Numbers</strong></li>
@@ -141,21 +418,27 @@ E\mid X_n \mid < \infty %]]&gt;</script>, <script type="math/tex">\mu = EX_n</sc
 <p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a population with mean <script type="math/tex">\mu</script> and variance <script type="math/tex">% &lt;![CDATA[
 \sigma^2 < \infty %]]&gt;</script>. Then</p>
 
-<ol>
-  <li><script type="math/tex">E\bar{X} = \mu</script>.</li>
-  <li><script type="math/tex">Var \bar{X} = \frac{\sigma^2}{n}</script>.</li>
-  <li><script type="math/tex">ES^2 = \sigma^2</script>.</li>
-</ol>
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & E\bar{X} = \mu \\
+2. & Var \bar{X} = \frac{\sigma^2}{n} \\
+3. & ES^2 = \sigma^2 \\
+\end{align}
+ %]]&gt;</script>
 
 <h3 id="normal-case">Normal Case</h3>
 
 <p>If $X_n$ are independently and normally distributed <script type="math/tex">N(\mu,\sigma^2)</script>, then</p>
 
-<ul>
-  <li><script type="math/tex">\bar{X}_n \sim N(\mu,\sigma^2/n)</script>.</li>
-  <li><script type="math/tex">(n-1)S_n^2 / \sigma^2 \sim \chi_{n-1}^2</script>.</li>
-  <li><script type="math/tex">\bar{X}_n ~ \text{and} ~ S^2_n ~ \text{are independent}</script>.</li>
-</ul>
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & \bar{X}_n \sim N(\mu,\sigma^2/n) \\
+2. & (n-1)S_n^2 / \sigma^2 \sim \chi_{n-1}^2 \\
+3. & \bar{X}_n ~ \text{and} ~ S^2_n ~ \text{are independent} \\
+\end{align}
+ %]]&gt;</script>
 
 <h3 id="non-normal-case">Non-normal Case</h3>
 
@@ -280,10 +563,13 @@ P[T<\infty] = 1 %]]&gt;</script>, but T is not bounded. <script type="math/tex">
 
 <p>Then for any <script type="math/tex">n \ge 0, a > 0</script>:</p>
 
-<ol>
-  <li><script type="math/tex">P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-  <li><script type="math/tex">P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-</ol>
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+2. & P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+\end{align}
+ %]]&gt;</script>
 
 <h2 id="the-martingale-convergence-theorem">The Martingale Convergence Theorem</h2>
 

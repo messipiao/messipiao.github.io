@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Probability | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2013-11-20T17:12:16+08:00</updated>
+  <updated>2013-11-22T22:07:53+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -111,10 +111,13 @@ P[T<\infty] = 1 %]]&gt;</script>, but T is not bounded. <script type="math/tex">
 
 <p>Then for any <script type="math/tex">n \ge 0, a > 0</script>:</p>
 
-<ol>
-  <li><script type="math/tex">P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-  <li><script type="math/tex">P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\}</script>.</li>
-</ol>
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align}
+1. & P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+2. & P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
+\end{align}
+ %]]&gt;</script>
 
 <h2 id="the-martingale-convergence-theorem">The Martingale Convergence Theorem</h2>
 
