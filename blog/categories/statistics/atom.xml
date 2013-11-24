@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Statistics | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2013-11-23T16:05:28+08:00</updated>
+  <updated>2013-11-24T09:19:15+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -206,7 +206,7 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
   <li>Lef <script type="math/tex">f(\mathbf{x}\vert \theta)</script> denote the joint pdf or pmf of a sample <script type="math/tex">\mathbf{X}</script>. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions <script type="math/tex">g(t \vert \theta)</script> and <script type="math/tex">h(\mathbf{x})</script> such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
 </ul>
 
-<script type="math/tex; mode=display">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x} \vert \theta))h(\mathbf{x})</script>
+<script type="math/tex; mode=display">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})</script>
 
 <p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
 
