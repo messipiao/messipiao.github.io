@@ -166,6 +166,8 @@
   <li>Let <script type="math/tex">f(\mathbf{x}\vert \theta)</script> be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function <script type="math/tex">T(\mathbf{x})</script> such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio <script type="math/tex">f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)</script> is constant as a function of $\theta$ if and only if <script type="math/tex">T(\mathbf{x}) = T(\mathbf{y})</script>. Then <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic for $\theta$.</li>
 </ul>
 
+<p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
+
 <h2 id="ancillary-statistics">Ancillary Statistics</h2>
 
 <blockquote>
@@ -180,13 +182,15 @@
   <li>Scale family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values <script type="math/tex">X_1/X_n,\dots,X_{n-1}/X_n</script> is an ancillary statistic.</li>
 </ul>
 
-<h2 id="complete-statistics">Complete Statistics</h2>
-
 <p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
+
+<h2 id="complete-statistics">Complete Statistics</h2>
 
 <blockquote>
   <p>Let <script type="math/tex">f(t \vert \theta)</script> be a family of pdfs or pmfs for a statistic <script type="math/tex">T(\mathbf{X})</script>. The family of probability distributions is called complete if <script type="math/tex">E_{\theta}g(T) = 0</script> for all $\theta$ implies <script type="math/tex">P_{\theta}(g(T)=0) = 1</script> for all $\theta$. Equivalently, <script type="math/tex">T(\mathbf{X})</script> is called a complete statistic.</p>
 </blockquote>
+
+<p>Informally, a statistic $T\mathbf{X}$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
 
 <p>We can get the complete statistics in the exponential family.</p>
 
@@ -211,8 +215,40 @@
 <p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
 
 <ul>
-  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em></li>
+  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em> </li>
 </ul>
+
+<h2 id="applications-and-special-distributions">Applications and Special distributions</h2>
+
+<ul>
+  <li><strong>The Bernoulli Distribution</strong></li>
+</ul>
+
+<p>$Y=\sum X_i$ is minimal sufficient and complete for $p$.</p>
+
+<ul>
+  <li><strong>Poisson Distribution</strong></li>
+</ul>
+
+<p>$Y = \sum X_i$ is minimal sufficient and complete for $\theta$.</p>
+
+<ul>
+  <li><strong>The Uniform Distribution</strong></li>
+</ul>
+
+<ol>
+  <li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
+  <li>interval <script type="math/tex">[\theta,\theta+1]</script>, <script type="math/tex">(X_{(1)},X_{(n)})</script> is minimal sufficient for $\theta$.</li>
+</ol>
+
+<ul>
+  <li><strong>Normal Distribution</strong></li>
+</ul>
+
+<ol>
+  <li><script type="math/tex">(\sum X_i,\sum X^2_i)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>;</li>
+  <li><script type="math/tex">(\bar{X},S^2)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>.</li>
+</ol>
 
 </div>
 
@@ -281,6 +317,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/24/hypothesis-testing/">Hypothesis Testing</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/11/22/point-estimation/">Point Estimation</a>
       </li>
     
@@ -294,10 +334,6 @@
     
       <li class="post">
         <a href="/blog/2013/11/18/basics-of-martingales/">Basics of Martingales</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/30/hello-world/">Hello World</a>
       </li>
     
   </ul>

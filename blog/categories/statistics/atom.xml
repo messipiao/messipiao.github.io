@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Statistics | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2013-11-24T09:30:29+08:00</updated>
+  <updated>2013-11-24T14:02:19+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,147 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hypothesis Testing]]></title>
+    <link href="http://messipiao.github.io/blog/2013/11/24/hypothesis-testing/"/>
+    <updated>2013-11-24T10:47:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2013/11/24/hypothesis-testing</id>
+    <content type="html"><![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
+
+<blockquote>
+  <p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
+</blockquote>
+
+<h2 id="methods-of-finding-tests">Methods of Finding Tests</h2>
+
+<h3 id="likelihood-ratio-tests">Likelihood Ratio Tests</h3>
+
+<ul>
+  <li>The likelihood ratio test statistic for testing <script type="math/tex">H_0:\theta \in \Theta_0</script> versus <script type="math/tex">H_1:\theta \in \Theta_0^c</script> is </li>
+</ul>
+
+<script type="math/tex; mode=display">\lambda(\mathbf{x}) = \frac{\sup_{\Theta_0} L(\theta \vert \mathbf{x})}{\sup_{\Theta} L(\theta \vert \mathbf{x})}</script>
+
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form <script type="math/tex">\{\mathbf{x}:\lambda(\mathbf{x}) \le c\}</script> where c is any number satisfying <script type="math/tex">0 \le c \le 1</script>.</p>
+
+<ul>
+  <li>If <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ and <script type="math/tex">\lambda'(t)</script> and <script type="math/tex">\lambda(\mathbf{x})</script> are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then <script type="math/tex">\lambda'(T(\mathbf{X})) = \lambda(\mathbf{x})</script> for every $\mathbf{x}$ in the sample space.</li>
+</ul>
+
+<h3 id="bayesian-tests">Bayesian Tests</h3>
+
+<p>In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H<em>0$ and $H</em>1$ are true. Remember, <script type="math/tex">\pi(\theta \vert \mathbf{x})</script> is probability distribution for a random variable. Hence, the posterior probabilities <script type="math/tex">P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})</script> and <script type="math/tex">P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})</script> may be computed. </p>
+
+<p>One way a Bayesian hypothesis tester may choose to use the posterior distribution is to decide to accept <script type="math/tex">H_0</script> as true if <script type="math/tex">P(\theta \in \Theta_0 \vert \mathbf{X}) \ge P(\theta \in \Theta^c_0 \vert \mathbf{X})</script> and to reject <script type="math/tex">H_0</script> otherwise. Another way is to reject <script type="math/tex">H_0</script> only if <script type="math/tex">P(\theta \in \Theta_0^c \vert \mathbf{X})</script> is greater thatn some large number, 0.99 for example.</p>
+
+<h3 id="union-intersection-and-intersection-union-tests">Union-Intersection and Intersection-Union Tests</h3>
+
+<ul>
+  <li><strong>Union-Intersection method</strong></li>
+</ul>
+
+<script type="math/tex; mode=display">H_0: \theta \in \bigcap_{\gamma \in \Gamma} \Theta_{\gamma}</script>
+
+<p>Then the rejection region for the union-intersection test is</p>
+
+<script type="math/tex; mode=display">\bigcup_{\gamma \in \Gamma} \{\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}\}</script>
+
+<ul>
+  <li><strong>Intersection-Union method</strong></li>
+</ul>
+
+<script type="math/tex; mode=display">H_0: \theta \in \bigcup_{\gamma \in \Gamma} \Theta_{\gamma}</script>
+
+<p>Then the rejection region for the intersection-union test is</p>
+
+<script type="math/tex; mode=display">\bigcap_{\gamma \in \Gamma} \{\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}\}</script>
+
+<h2 id="methods-of-evaluating-tests">Methods of Evaluating Tests</h2>
+
+<h3 id="power-function">Power Function</h3>
+
+<p>A hypothesis test might make one of two types of errors, namely Type I Error and Type II Error. If <script type="math/tex">\theta \in \Theta_0</script> but the hypothesis test incorrectly decides to reject <script type="math/tex">H_0</script>, then the test has made a Type I Error. If, on the other hand, <script type="math/tex">\theta \in \Theta_0^c</script> but the test decides to accept <script type="math/tex">H_0</script>, a Type II Eroror has been made.</p>
+
+<blockquote>
+  <p>The power function of a hypothesis test with rejection region R is the function of $\theta$ defined by <strong><script type="math/tex">\beta(\theta) = P_{\theta}(\mathbf{X} \in R)</script></strong>.</p>
+</blockquote>
+
+<p>For a fixed sample size, it is usually impossible to make both types of error probabilities arbitrarily small. In searching for a good test, it is common to restrict consideration to tests that control the Type I Error probability at a specified level. Within this class of tests we then search for tests that have Type II Error probability that is as small as possible. The following two terms are useful when discussing tests that control Type I Error probabilities.</p>
+
+<ul>
+  <li>For <script type="math/tex">0 \le \alpha \le 1</script>, a test with power function <script type="math/tex">\beta(\theta)</script> is a size $\alpha$ test if <script type="math/tex">\sup_{\theta \in \Theta_0} \beta(\theta) = \alpha</script>.</li>
+  <li>For <script type="math/tex">0 \le \alpha \le 1</script>, a test with power function <script type="math/tex">\beta(\theta)</script> is a level $\alpha$ test if <script type="math/tex">\sup_{\theta \in \Theta_0} \beta(\theta) \le \alpha</script>.</li>
+</ul>
+
+<blockquote>
+  <p>A test with power function <script type="math/tex">\beta(\theta)</script> is <strong>unbiased</strong> if <script type="math/tex">\beta(\theta') \ge \beta(\theta'')</script> for every <script type="math/tex">\theta' \in \Theta_0^c</script> and <script type="math/tex">\theta'' \in \Theta_0'</script>.</p>
+</blockquote>
+
+<h3 id="most-powerful-tests">Most Powerful Tests</h3>
+
+<blockquote>
+  <p>Let C be a class of tests for testing <script type="math/tex">H_0:\theta \in \Theta_0</script> versus <script type="math/tex">H_1 : \theta \in \Theta_0^c</script>. A test in class C, with power function <script type="math/tex">\beta(\theta)</script>, is a <em>uniformly most powerful</em>(<strong>UMP</strong>) class C test if <script type="math/tex">\beta(\theta) \ge \beta'(\theta)</script> for every <script type="math/tex">\theta \in \Theta^c_0</script> and every <script type="math/tex">\beta'(\theta)</script> that is a power function of a test in class C.</p>
+</blockquote>
+
+<p>If the class C is the class of all level $\alpha$ tests, then the test described above is called a <strong>UMP level $\alpha$ test</strong>.</p>
+
+<p><strong>Neyman-Pearson Lemma</strong> describes which tests are UMP level $\alpha$ tests in the situation where the null and alternative hypotheses both consist of only one probability distribution for the sample (that is, when both <script type="math/tex">H_0</script> and <script type="math/tex">H_1</script> are simple hypotheses).</p>
+
+<ul>
+  <li><strong>Neyman-Pearson Lemma</strong></li>
+</ul>
+
+<p>Consider testing <script type="math/tex">H_0:\theta = \theta_0</script> versus <script type="math/tex">H_1:\theta = \theta_1</script>, where the pdf or pmf corresponding to $\theta_i$ is <script type="math/tex">f(\mathbf{x} \vert \theta_i)</script>, <script type="math/tex">i=0,1</script>, using a test with rejection region R that satisfies</p>
+
+<script type="math/tex; mode=display">\mathbf{x} \in R ~ if ~ f(\mathbf{x} \vert \theta_1) > kf(\mathbf{x} \vert \theta_0)</script>
+
+<p>(1) and</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\mathbf{x} \in R^c ~ if ~ f(\mathbf{x} \vert \theta_1) < kf(\mathbf{x} \vert \theta_0) %]]&gt;</script>
+
+<p>for some <script type="math/tex">k \ge 0</script>, and </p>
+
+<p>(2) </p>
+
+<script type="math/tex; mode=display">\alpha = P_{\theta_0}(\mathbf{X} \in R)</script>
+
+<p>Then</p>
+
+<ol>
+  <li><strong>(Sufficiency)</strong> Any test that satisfies (1) and (2) is a <strong>UMP level $\alpha$ test</strong>.</li>
+  <li><strong>(Necessity)</strong> If there exists a test satisfying (1) and (2) with <script type="math/tex">k > 0</script>, then every <strong>UMP level $\alpha$ test</strong> is a size $\alpha$ test (satisfies (2)) and every <strong>UMP level $\alpha$ test</strong> satisfies (1) except perhaps onon a set A satisfying <script type="math/tex">P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0</script>.</li>
+</ol>
+
+<p>Note that replace $\mathbf{x}$ by a sufficient statistic $T(\mathbf{x})$ can lead to a same conclusion(applying <strong>Factorization Theorem</strong>).</p>
+
+<p>Hypotheses, such as <script type="math/tex">H_0</script> and <script type="math/tex">H_1</script> in the <strong>Neyman-Pearson Lemma</strong>, that specify only one possible distribution for the sample $\mathbf{X}$ are called <em>simple hypotheses</em>. In most realistic problems, the hypotheses of interest specify more than one possible distribution for the sample. Such hypotheses are called <em>composite hypothese</em>. </p>
+
+<ul>
+  <li><script type="math/tex">H:\theta \ge \theta_0</script> or <script type="math/tex">% &lt;![CDATA[
+\theta < \theta_0 %]]&gt;</script> is called <em>one-sided</em> hypotheses.</li>
+  <li><script type="math/tex">H:\theta \ne \theta_0</script> is called <em>two-sided</em> hypotheses.</li>
+</ul>
+
+<p>A large class of problems that admit <strong>UMP level $\alpha$</strong> tests involve one-sided hypotheses and <strong>pdfs or pmfs</strong> with the <strong>monotone likelihood ratio property</strong>.</p>
+
+<blockquote>
+  <p>A family of pdfs or pmfs <script type="math/tex">\{g(t \vert \theta):\theta \in \Theta\}</script> for a univariate random variable T with real-valued parameter $\theta$ has a <em>monotone likelihood ratio</em> (<strong>MLR</strong>) if, for every <script type="math/tex">\theta_2 > \theta_1</script>, <script type="math/tex">g(t \vert \theta_2)/g(t \vert \theta_1)</script> is a monotone (nonincreasing or nondecreasing) function of t on <script type="math/tex">\{t:g(t \vert \theta_1)>0 or g(t \vert \theta_2)>0\}</script>. Note that c/0 is defined as $\infty$ if $c&gt;0$.</p>
+</blockquote>
+
+<ul>
+  <li>Many common families of distribution have an <em>MLR</em>. For example, the normal (known variance, unknown mean). Poisson, and binomial all have an MLR. </li>
+  <li>
+    <p>Any regular exponential family with <script type="math/tex">g(t \vert \theta) = h(t)c(\theta) e^{w(\theta)t}</script> has an <em>MLR</em> if <script type="math/tex">w(\theta)</script> is a nondecreasing function.</p>
+  </li>
+  <li><strong>Karlin-Rubin Theorem</strong></li>
+</ul>
+
+<p>Consider testing <script type="math/tex">H_0:\theta \le \theta_0</script> versus <script type="math/tex">H_1: \theta > \theta_0</script>. Suppose that T is a sufficient statistic for $\theta$ and the family of pdfs or pmfs <script type="math/tex">\{g(t \vert \theta):\theta \in \Theta\}</script> of T has an <em>MLR</em>. Then for any <script type="math/tex">t_0</script>, the test that rejects <script type="math/tex">H_0</script> if and only if <script type="math/tex">T > t_0</script> is a <strong>UMP level $\alpha$ test</strong>, where <script type="math/tex">\alpha = P_{\theta_0}(T>t_0)</script>.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Point Estimation]]></title>
@@ -236,6 +377,8 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
   <li>Let <script type="math/tex">f(\mathbf{x}\vert \theta)</script> be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function <script type="math/tex">T(\mathbf{x})</script> such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio <script type="math/tex">f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)</script> is constant as a function of $\theta$ if and only if <script type="math/tex">T(\mathbf{x}) = T(\mathbf{y})</script>. Then <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic for $\theta$.</li>
 </ul>
 
+<p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
+
 <h2 id="ancillary-statistics">Ancillary Statistics</h2>
 
 <blockquote>
@@ -250,13 +393,15 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
   <li>Scale family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values <script type="math/tex">X_1/X_n,\dots,X_{n-1}/X_n</script> is an ancillary statistic.</li>
 </ul>
 
-<h2 id="complete-statistics">Complete Statistics</h2>
-
 <p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
+
+<h2 id="complete-statistics">Complete Statistics</h2>
 
 <blockquote>
   <p>Let <script type="math/tex">f(t \vert \theta)</script> be a family of pdfs or pmfs for a statistic <script type="math/tex">T(\mathbf{X})</script>. The family of probability distributions is called complete if <script type="math/tex">E_{\theta}g(T) = 0</script> for all $\theta$ implies <script type="math/tex">P_{\theta}(g(T)=0) = 1</script> for all $\theta$. Equivalently, <script type="math/tex">T(\mathbf{X})</script> is called a complete statistic.</p>
 </blockquote>
+
+<p>Informally, a statistic $T\mathbf{X}$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
 
 <p>We can get the complete statistics in the exponential family.</p>
 
@@ -281,8 +426,40 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 <p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
 
 <ul>
-  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em></li>
+  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em> </li>
 </ul>
+
+<h2 id="applications-and-special-distributions">Applications and Special distributions</h2>
+
+<ul>
+  <li><strong>The Bernoulli Distribution</strong></li>
+</ul>
+
+<p>$Y=\sum X_i$ is minimal sufficient and complete for $p$.</p>
+
+<ul>
+  <li><strong>Poisson Distribution</strong></li>
+</ul>
+
+<p>$Y = \sum X_i$ is minimal sufficient and complete for $\theta$.</p>
+
+<ul>
+  <li><strong>The Uniform Distribution</strong></li>
+</ul>
+
+<ol>
+  <li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
+  <li>interval <script type="math/tex">[\theta,\theta+1]</script>, <script type="math/tex">(X_{(1)},X_{(n)})</script> is minimal sufficient for $\theta$.</li>
+</ol>
+
+<ul>
+  <li><strong>Normal Distribution</strong></li>
+</ul>
+
+<ol>
+  <li><script type="math/tex">(\sum X_i,\sum X^2_i)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>;</li>
+  <li><script type="math/tex">(\bar{X},S^2)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>.</li>
+</ol>
 
 ]]></content>
   </entry>
