@@ -156,7 +156,7 @@
 
 <p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
 
-<script type="math/tex; mode=display"> I(\theta) = E[\frac{\partial}{\partial \theta}logf(X;\theta)^2] = -E[\frac{\partial^2}{\partial \theta^2} logf(X;\theta)]</script>
+<script type="math/tex; mode=display"> I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]</script>
 
 <p>Fisher information has following properties.</p>
 
@@ -252,7 +252,7 @@ Var_{\theta}W(\mathbf{X}) < \infty %]]></script>
 <p>We need to verify whether the <strong>Cramer-Rao Lower Bound</strong> is attainable.</p>
 
 <ul>
-  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let <script type="math/tex">L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n}</script> denote the likelihood function. If $$
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let <script type="math/tex">L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n} f(x_i \vert \theta)</script> denote the likelihood function. If $$
 W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
 </ul>
 
