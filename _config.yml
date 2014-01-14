@@ -94,7 +94,7 @@ disqus_short_name: messipiao
 disqus_show_comment_count: 
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-45966750-1
 
 # Facebook Like
 facebook_like: false

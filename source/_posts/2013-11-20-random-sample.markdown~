@@ -63,8 +63,8 @@ If $$X_n \to X$$ in distribution and $$Y_n \to a$$, a costant, in probability th
 
 $$
 \begin{align}
-1. & Y_nX_n \to aX ~ \text{in distribution} \\
-2. & X_n+Y_n \to X+a ~ \text{in distribution} \\
+1. & Y_nX_n \to aX \text{in distribution} \\
+2. & X_n+Y_n \to X+a \text{in distribution} \\
 \end{align}
 $$
 
@@ -101,7 +101,7 @@ $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$
 
 The sample variance is the statistic defined by
 
-$$S^2 = \frac{1}{n-1} \sum_{i=1}^{n}(X_i-\bar{X})^2$$
+$$S^2 = \frac{1}{n-1} \sum_{i=1}(X_i-\bar{X})^2$$
 
 Let $$X_1,\dots,X_n$$ be a random sample from a population with mean $$\mu$$ and variance $$\sigma^2 < \infty$$. Then
 

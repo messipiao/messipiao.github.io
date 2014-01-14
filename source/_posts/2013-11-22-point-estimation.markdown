@@ -42,7 +42,7 @@ $$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$
 
 where $I(\theta)$ is called the information number or *Fisher information* of the sample.
 
-$$ I(\theta) = E[\frac{\partial}{\partial \theta}logf(X;\theta)^2] = -E[\frac{\partial^2}{\partial \theta^2} logf(X;\theta)]$$
+$$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$$
 
 Fisher information has following properties.
 
@@ -130,7 +130,7 @@ $$Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}
 
 We need to verify whether the **Cramer-Rao Lower Bound** is attainable.
 
-* Let $$X_1,\dots,X_n$$ be *iid* $f(x \vert \theta)$, which satisfies the conditions of the *Cramer-Rao Theorem*. Let $$L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n}$$ denote the likelihood function. If $$
+* Let $$X_1,\dots,X_n$$ be *iid* $f(x \vert \theta)$, which satisfies the conditions of the *Cramer-Rao Theorem*. Let $$L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n} f(x_i \vert \theta)$$ denote the likelihood function. If $$
 W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if 
 
 $$a(\theta)[W(\mathbf{x})-\tau(\theta)] = \frac{\partial}{\partial \theta}\log L(\theta \vert \mathbf{x})$$
