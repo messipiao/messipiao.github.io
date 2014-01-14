@@ -34,6 +34,8 @@ $$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))$$
 
 is a sufficient statistic for $$\theta$$.
 
+<!--more-->
+
 ## Minimal Sufficient Statistics
 
 A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.

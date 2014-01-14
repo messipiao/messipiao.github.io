@@ -24,6 +24,8 @@ $$P(X_2=x) = \sum_{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$
 
 When $N$ is larger, there is not too difference between the conditional distribution of $$X_i$$ given $$ X_1, \dots,X_{i-1} $$ and the marginal distribution. We say the random variables are *nearly independent*. 
 
+<!--more-->
+
 ## Convergence
 
 ### Types of convergence

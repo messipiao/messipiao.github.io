@@ -53,6 +53,7 @@ $$
 \end{align}
 $$
 
+<!--more-->
 
 ### The EM Algorithm
 

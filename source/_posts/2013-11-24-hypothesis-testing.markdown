@@ -22,6 +22,8 @@ A likelihood ratio test (**LRT**) is any test that has a rejection region of the
 
 * If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda'(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda'(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.
 
+<!--more-->
+
 ### Bayesian Tests
 
 In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H_0$ and $H_1$ are true. Remember, $$\pi(\theta \vert \mathbf{x})$$ is probability distribution for a random variable. Hence, the posterior probabilities $$P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})$$ and $$P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})$$ may be computed. 

@@ -27,6 +27,8 @@ $$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\be
 3. *Useful equation:* $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$
 4. *Expectation and Variance:* $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$
 
+<!--more-->
+
 ## Consider IG processes with Random Effects
 
 Consider a Wiener process $$W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$$ with the induced IG process $$Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $$\mu^{-1}$$ vary randomly across units. Assume $$\mu^{-1}$$ foolows a truncated normal distribution $$TN(w,k^{-2})$$, $$k>0$$ with PDF

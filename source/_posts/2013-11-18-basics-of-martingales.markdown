@@ -39,6 +39,8 @@ $$Z_n = E[X \mid Y_1,\dots,Y_n]$$
 
 It then follows that $${Z_n,n \ge 1}$$ is a martingale, which is called a **Doob type martingale**.
 
+<!--more-->
+
 * The parial sums of independent random variables having mean 0 is a martingale. The simplest example:
 
 $$ Z_n = \sum_{i=1}^n {X_i - E[X_i \mid X_1,\dots,X_{i-1}]}$$
