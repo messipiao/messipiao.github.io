@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Random Effect - Piao's Blog</title>
+  <title>Asymptotic Evaluations - Piao's Blog</title>
   <meta name="author" content="Chen Piao">
 
   
-  <meta name="description" content="Random effects models are often needed to account for unexplained heterogeneous situation. Two commonly used distributions estimating lifetime are as &hellip;">
+  <meta name="description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://messipiao.github.io/blog/2013/12/19/random-effect">
+  <link rel="canonical" href="http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Piao's Blog" type="application/atom+xml">
@@ -93,7 +93,7 @@
   
   <header>
     
-      <h1 class="entry-title">Random Effect</h1>
+      <h1 class="entry-title">Asymptotic Evaluations</h1>
     
     
       <p class="meta">
@@ -109,62 +109,85 @@
   
 
 
-<time datetime="2013-12-19T21:38:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2013</time>
+<time datetime="2014-01-14T20:19:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
+<div class="entry-content"><p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
 
-<p>Two commonly used distributions estimating lifetime are as follows.</p>
+<h2 id="point-estimation">Point Estimation</h2>
 
-<h3 id="inversed-guassian-distribution">Inversed Guassian distribution</h3>
+<p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
 
-<p><script type="math/tex"> X \sim IG(\mu,\lambda) </script>, where <script type="math/tex">X \in (0,\infty)</script>. <script type="math/tex">\mu</script> and <script type="math/tex">\lambda</script> are called mean and shape parameter respectively.</p>
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, if <script type="math/tex">% <![CDATA[
+lim_{n \to \infty} k_n VarT_n = \tau^2 < \infty %]]></script>, where <script type="math/tex">{k_n}</script> is a sequence of constants, then <script type="math/tex">\tau^2</script> is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+</blockquote>
 
-<ol>
-  <li><em>PDF:</em> <script type="math/tex">(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})</script></li>
-  <li><em>CDF:</em> <script type="math/tex">\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))</script></li>
-  <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\mu</script>, <script type="math/tex">V(X)=\frac{\mu^3}{\lambda}</script></li>
-</ol>
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, suppose that <script type="math/tex">k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)</script> in distribution. The parameter <script type="math/tex">\sigma^2</script> is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
 
-<h3 id="gamma-distribution">Gamma distribution</h3>
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
 
-<p><script type="math/tex">X \sim gamma(\alpha,\beta)</script>, where <script type="math/tex">X \in (0,\infty)</script>. <script type="math/tex">\alpha</script> and <script type="math/tex">\beta</script> are called shape and rate parameter respectively.</p>
+<blockquote>
+  <p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter <script type="math/tex">\tau(\theta)</script> if <script type="math/tex"> \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]</script> in distribution and <script type="math/tex">v(\theta)</script> achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
 
-<ol>
-  <li><em>PDF:</em> <script type="math/tex">\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}</script></li>
-  <li><em>Gamma function:</em> <script type="math/tex">\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx</script></li>
-  <li><em>Useful equation:</em> <script type="math/tex">\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt</script></li>
-  <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\frac{\alpha}{\beta}</script>, <script type="math/tex">V(X)=\frac{\alpha}{\beta^2}</script></li>
-</ol>
+<p>Recall that in the above definition, </p>
+
+<script type="math/tex; mode=display">v(\theta) = \dfrac{[\tau'(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}</script>
+
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
 
 <!--more-->
 
-<h2 id="consider-ig-processes-with-random-effects">Consider IG processes with Random Effects</h2>
+<h2 id="robustness">Robustness</h2>
 
-<p>Consider a Wiener process <script type="math/tex">W(x) = \mu^{-1}x+\eta^{-1/2}B(x)</script> with the induced IG process <script type="math/tex">Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))</script>. A common practice to incorporate random effects in the Wiener process is to let the drift parameter <script type="math/tex">\mu^{-1}</script> vary randomly across units. Assume <script type="math/tex">\mu^{-1}</script> foolows a truncated normal distribution <script type="math/tex">TN(w,k^{-2})</script>, <script type="math/tex">k>0</script> with PDF</p>
+<p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
 
-<script type="math/tex; mode=display">g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}</script>
+<h2 id="hypothesis-testing">Hypothesis Testing</h2>
 
-<p>the joint PDF of <script type="math/tex">\mathbf{Y}_i = [Y_i(t_{i1}),Y_i(t_{i2}),\cdots,Y_i(t_{in_i})]</script> can be computed first conditioning on the random drift parameter <script type="math/tex">\mu_i</script> and then marginalizing it</p>
+<p>We are going to introduce 3 large-sample tests here.</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
+<h3 id="asymptotic-distribution-of-the-lrt">Asymptotic distribution of the LRT</h3>
 
+<blockquote>
+  <p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a pdf or pmf <script type="math/tex">f(x \vert \theta)</script>. Under some regularity conditions, if <script type="math/tex">\theta \in \Theta_0</script>, then the distribution of the statistic <script type="math/tex">-2\log \lambda(\mathbf{X})</script> converges to a chi squared distribution as the sample size <script type="math/tex">n \to \infty</script>. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by <script type="math/tex">\theta \in \Theta_0</script> and the number of free parameters specified by <script type="math/tex">\theta \in \Theta</script>.</p>
+</blockquote>
 
-\begin{align}
-f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2 \pi y_{ij}^3}} exp\{ \frac{-\eta(y_{ij}-\mu \lambda_{ij})^2}{2y_{ij}}\} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \\
-& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} \int_{0}^{\infty} \prod_{j=1}^{n_i} exp \{\frac{-\eta (y_{ij}z-\lambda_{ij})^2}{2y_{ij}}\} \frac{1}{\sqrt{2\pi}} exp\{-\frac{k^2(z-w)^2}{2}\} dz \\
-& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp\{-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}\} \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp \{-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}\} dz \\
-& = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}_i} \prod_{j=1}^{n_i} \sqrt{\dfrac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}_i^2-k^2w^2}{2}-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}]
-\end{align}
+<h3 id="wald-test">Wald test</h3>
 
- %]]></script>
+<p>In general, a Wald test is a test based on a satistic of the form</p>
 
-<p>where <script type="math/tex">y_{ij} = Y_i(t_{ij})-Y_i(t_{i,j-1})</script> is the observed increment, <script type="math/tex">\lambda_{ij} = \Lambda(t_{ij})-\Lambda(t_{i,j-1})</script>, <script type="math/tex">\tilde{k}_i = \sqrt{\eta Y_i(t_{i,n_i})+k^2}</script> and <script type="math/tex">\tilde{w}_i = (\eta \Lambda(t_{i,n_i})+wk^2)/{\tilde{k}_i^2}</script>. </p>
+<script type="math/tex; mode=display"> Z_n = \dfrac{W_n-\theta_0}{S_n} </script>
 
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and <script type="math/tex">S_n</script> is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, <script type="math/tex">1/\sqrt{I_n(W_n)}</script> is a reasonable standard error for $W_n$. Alternatively, <script type="math/tex">1/\sqrt{\hat{I}_n(W_n)}</script>, where</p>
+
+<script type="math/tex; mode=display">\hat{I}_n(W_n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid_{\theta = W_n}</script>
+
+<p>is the observed information number, is often used. </p>
+
+<h3 id="score-test">Score test</h3>
+
+<p>The <em>score statistics</em> is defined to be</p>
+
+<script type="math/tex; mode=display"> S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) </script>
+
+<p>We can obtain the result that for all $\theta$, <script type="math/tex">E_\theta S(\theta) = 0 </script>. In particular, if we are testing <script type="math/tex">H_0: \theta=\theta_0</script> and if $H_0$ is true, then <script type="math/tex">S(\theta_0)</script> has mean 0. Then we have</p>
+
+<script type="math/tex; mode=display">Var_\theta S(\theta) = I_n(\theta)</script>
+
+<p>The test statistic for the score test is</p>
+
+<script type="math/tex; mode=display">Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}</script>
+
+<p>It follows that $Z_S$ converges to a standard normal random variable.</p>
 </div>
 
 
@@ -187,7 +210,7 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
   
 
 
-<time datetime="2013-12-19T21:38:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2013</time>
+<time datetime="2014-01-14T20:19:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
       
 
 <span class="categories">
@@ -208,10 +231,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/11/24/hypothesis-testing/" title="Previous Post: Hypothesis Testing">&laquo; Hypothesis Testing</a>
+        <a class="basic-alignment left" href="/blog/2013/12/19/random-effect/" title="Previous Post: Random Effect">&laquo; Random Effect</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/01/14/asymptotic-evaluations/" title="Next Post: Asymptotic Evaluations">Asymptotic Evaluations &raquo;</a>
       
     </p>
   </footer>
@@ -277,8 +298,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://messipiao.github.io/blog/2013/12/19/random-effect/';
-        var disqus_url = 'http://messipiao.github.io/blog/2013/12/19/random-effect/';
+        var disqus_identifier = 'http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations/';
+        var disqus_url = 'http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -9,7 +9,7 @@
   <meta name="author" content="Chen Piao">
 
   
-  <meta name="description" content="Random effects models are often needed to account for unexplained heterogeneous situation. Two commonly used distributions estimating lifetime are as &hellip;">
+  <meta name="description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +96,74 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-14T20:19:00+08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+
+<h2 id="point-estimation">Point Estimation</h2>
+
+<p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, if <script type="math/tex">% <![CDATA[
+lim_{n \to \infty} k_n VarT_n = \tau^2 < \infty %]]></script>, where <script type="math/tex">{k_n}</script> is a sequence of constants, then <script type="math/tex">\tau^2</script> is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+</blockquote>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, suppose that <script type="math/tex">k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)</script> in distribution. The parameter <script type="math/tex">\sigma^2</script> is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+
+<blockquote>
+  <p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter <script type="math/tex">\tau(\theta)</script> if <script type="math/tex"> \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]</script> in distribution and <script type="math/tex">v(\theta)</script> achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+
+<p>Recall that in the above definition, </p>
+
+<script type="math/tex; mode=display">v(\theta) = \dfrac{[\tau'(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}</script>
+
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/14/asymptotic-evaluations/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/12/19/random-effect/">Random Effect</a></h1>
     
     
@@ -144,30 +212,12 @@
   <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\frac{\alpha}{\beta}</script>, <script type="math/tex">V(X)=\frac{\alpha}{\beta^2}</script></li>
 </ol>
 
-<h2 id="consider-ig-processes-with-random-effects">Consider IG processes with Random Effects</h2>
-
-<p>Consider a Wiener process <script type="math/tex">W(x) = \mu^{-1}x+\eta^{-1/2}B(x)</script> with the induced IG process <script type="math/tex">Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))</script>. A common practice to incorporate random effects in the Wiener process is to let the drift parameter <script type="math/tex">\mu^{-1}</script> vary randomly across units. Assume <script type="math/tex">\mu^{-1}</script> foolows a truncated normal distribution <script type="math/tex">TN(w,k^{-2})</script>, <script type="math/tex">k>0</script> with PDF</p>
-
-<script type="math/tex; mode=display">g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}</script>
-
-<p>the joint PDF of <script type="math/tex">\mathbf{Y}_i = [Y_i(t_{i1}),Y_i(t_{i2}),\cdots,Y_i(t_{in_i})]</script> can be computed first conditioning on the random drift parameter <script type="math/tex">\mu_i</script> and then marginalizing it</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-
-\begin{align}
-f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2 \pi y_{ij}^3}} exp\{ \frac{-\eta(y_{ij}-\mu \lambda_{ij})^2}{2y_{ij}}\} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \\
-& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} \int_{0}^{\infty} \prod_{j=1}^{n_i} exp \{\frac{-\eta (y_{ij}z-\lambda_{ij})^2}{2y_{ij}}\} \frac{1}{\sqrt{2\pi}} exp\{-\frac{k^2(z-w)^2}{2}\} dz \\
-& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp\{-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}\} \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp \{-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}\} dz \\
-& = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}_i} \prod_{j=1}^{n_i} \sqrt{\dfrac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}_i^2-k^2w^2}{2}-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}]
-\end{align}
-
- %]]></script>
-
-<p>where <script type="math/tex">y_{ij} = Y_i(t_{ij})-Y_i(t_{i,j-1})</script> is the observed increment, <script type="math/tex">\lambda_{ij} = \Lambda(t_{ij})-\Lambda(t_{i,j-1})</script>, <script type="math/tex">\tilde{k}_i = \sqrt{\eta Y_i(t_{i,n_i})+k^2}</script> and <script type="math/tex">\tilde{w}_i = (\eta \Lambda(t_{i,n_i})+wk^2)/{\tilde{k}_i^2}</script>. </p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/19/random-effect/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -223,119 +273,12 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
   <li>If <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ and <script type="math/tex">\lambda'(t)</script> and <script type="math/tex">\lambda(\mathbf{x})</script> are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then <script type="math/tex">\lambda'(T(\mathbf{X})) = \lambda(\mathbf{x})</script> for every $\mathbf{x}$ in the sample space.</li>
 </ul>
 
-<h3 id="bayesian-tests">Bayesian Tests</h3>
-
-<p>In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H<em>0$ and $H</em>1$ are true. Remember, <script type="math/tex">\pi(\theta \vert \mathbf{x})</script> is probability distribution for a random variable. Hence, the posterior probabilities <script type="math/tex">P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})</script> and <script type="math/tex">P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})</script> may be computed. </p>
-
-<p>One way a Bayesian hypothesis tester may choose to use the posterior distribution is to decide to accept <script type="math/tex">H_0</script> as true if <script type="math/tex">P(\theta \in \Theta_0 \vert \mathbf{X}) \ge P(\theta \in \Theta^c_0 \vert \mathbf{X})</script> and to reject <script type="math/tex">H_0</script> otherwise. Another way is to reject <script type="math/tex">H_0</script> only if <script type="math/tex">P(\theta \in \Theta_0^c \vert \mathbf{X})</script> is greater thatn some large number, 0.99 for example.</p>
-
-<h3 id="union-intersection-and-intersection-union-tests">Union-Intersection and Intersection-Union Tests</h3>
-
-<ul>
-  <li><strong>Union-Intersection method</strong></li>
-</ul>
-
-<script type="math/tex; mode=display">H_0: \theta \in \bigcap_{\gamma \in \Gamma} \Theta_{\gamma}</script>
-
-<p>Then the rejection region for the union-intersection test is</p>
-
-<script type="math/tex; mode=display">\bigcup_{\gamma \in \Gamma} \{\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}\}</script>
-
-<ul>
-  <li><strong>Intersection-Union method</strong></li>
-</ul>
-
-<script type="math/tex; mode=display">H_0: \theta \in \bigcup_{\gamma \in \Gamma} \Theta_{\gamma}</script>
-
-<p>Then the rejection region for the intersection-union test is</p>
-
-<script type="math/tex; mode=display">\bigcap_{\gamma \in \Gamma} \{\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}\}</script>
-
-<h2 id="methods-of-evaluating-tests">Methods of Evaluating Tests</h2>
-
-<h3 id="power-function">Power Function</h3>
-
-<p>A hypothesis test might make one of two types of errors, namely Type I Error and Type II Error. If <script type="math/tex">\theta \in \Theta_0</script> but the hypothesis test incorrectly decides to reject <script type="math/tex">H_0</script>, then the test has made a Type I Error. If, on the other hand, <script type="math/tex">\theta \in \Theta_0^c</script> but the test decides to accept <script type="math/tex">H_0</script>, a Type II Eroror has been made.</p>
-
-<blockquote>
-  <p>The power function of a hypothesis test with rejection region R is the function of $\theta$ defined by <strong><script type="math/tex">\beta(\theta) = P_{\theta}(\mathbf{X} \in R)</script></strong>.</p>
-</blockquote>
-
-<p>For a fixed sample size, it is usually impossible to make both types of error probabilities arbitrarily small. In searching for a good test, it is common to restrict consideration to tests that control the Type I Error probability at a specified level. Within this class of tests we then search for tests that have Type II Error probability that is as small as possible. The following two terms are useful when discussing tests that control Type I Error probabilities.</p>
-
-<ul>
-  <li>For <script type="math/tex">0 \le \alpha \le 1</script>, a test with power function <script type="math/tex">\beta(\theta)</script> is a size $\alpha$ test if <script type="math/tex">\sup_{\theta \in \Theta_0} \beta(\theta) = \alpha</script>.</li>
-  <li>For <script type="math/tex">0 \le \alpha \le 1</script>, a test with power function <script type="math/tex">\beta(\theta)</script> is a level $\alpha$ test if <script type="math/tex">\sup_{\theta \in \Theta_0} \beta(\theta) \le \alpha</script>.</li>
-</ul>
-
-<blockquote>
-  <p>A test with power function <script type="math/tex">\beta(\theta)</script> is <strong>unbiased</strong> if <script type="math/tex">\beta(\theta') \ge \beta(\theta'')</script> for every <script type="math/tex">\theta' \in \Theta_0^c</script> and <script type="math/tex">\theta'' \in \Theta_0</script>.</p>
-</blockquote>
-
-<h3 id="most-powerful-tests">Most Powerful Tests</h3>
-
-<blockquote>
-  <p>Let C be a class of tests for testing <script type="math/tex">H_0:\theta \in \Theta_0</script> versus <script type="math/tex">H_1 : \theta \in \Theta_0^c</script>. A test in class C, with power function <script type="math/tex">\beta(\theta)</script>, is a <em>uniformly most powerful</em>(<strong>UMP</strong>) class C test if <script type="math/tex">\beta(\theta) \ge \beta'(\theta)</script> for every <script type="math/tex">\theta \in \Theta^c_0</script> and every <script type="math/tex">\beta'(\theta)</script> that is a power function of a test in class C.</p>
-</blockquote>
-
-<p>If the class C is the class of all level $\alpha$ tests, then the test described above is called a <strong>UMP level $\alpha$ test</strong>.</p>
-
-<p><strong>Neyman-Pearson Lemma</strong> describes which tests are UMP level $\alpha$ tests in the situation where the null and alternative hypotheses both consist of only one probability distribution for the sample (that is, when both <script type="math/tex">H_0</script> and <script type="math/tex">H_1</script> are simple hypotheses).</p>
-
-<ul>
-  <li><strong>Neyman-Pearson Lemma</strong></li>
-</ul>
-
-<p>Consider testing <script type="math/tex">H_0:\theta = \theta_0</script> versus <script type="math/tex">H_1:\theta = \theta_1</script>, where the pdf or pmf corresponding to $\theta_i$ is <script type="math/tex">f(\mathbf{x} \vert \theta_i)</script>, <script type="math/tex">i=0,1</script>, using a test with rejection region R that satisfies</p>
-
-<script type="math/tex; mode=display">\mathbf{x} \in R ~ if ~ f(\mathbf{x} \vert \theta_1) > kf(\mathbf{x} \vert \theta_0)</script>
-
-<p>(1) and</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{x} \in R^c ~ if ~ f(\mathbf{x} \vert \theta_1) < kf(\mathbf{x} \vert \theta_0) %]]></script>
-
-<p>for some <script type="math/tex">k \ge 0</script>, and </p>
-
-<p>(2) </p>
-
-<script type="math/tex; mode=display">\alpha = P_{\theta_0}(\mathbf{X} \in R)</script>
-
-<p>Then</p>
-
-<ol>
-  <li><strong>(Sufficiency)</strong> Any test that satisfies (1) and (2) is a <strong>UMP level $\alpha$ test</strong>.</li>
-  <li><strong>(Necessity)</strong> If there exists a test satisfying (1) and (2) with <script type="math/tex">k > 0</script>, then every <strong>UMP level $\alpha$ test</strong> is a size $\alpha$ test (satisfies (2)) and every <strong>UMP level $\alpha$ test</strong> satisfies (1) except perhaps onon a set A satisfying <script type="math/tex">P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0</script>.</li>
-</ol>
-
-<p>Note that replace $\mathbf{x}$ by a sufficient statistic $T(\mathbf{x})$ can lead to a same conclusion(applying <strong>Factorization Theorem</strong>).</p>
-
-<p>Hypotheses, such as <script type="math/tex">H_0</script> and <script type="math/tex">H_1</script> in the <strong>Neyman-Pearson Lemma</strong>, that specify only one possible distribution for the sample $\mathbf{X}$ are called <em>simple hypotheses</em>. In most realistic problems, the hypotheses of interest specify more than one possible distribution for the sample. Such hypotheses are called <em>composite hypothese</em>. </p>
-
-<ul>
-  <li><script type="math/tex">H:\theta \ge \theta_0</script> or <script type="math/tex">% <![CDATA[
-\theta < \theta_0 %]]></script> is called <em>one-sided</em> hypotheses.</li>
-  <li><script type="math/tex">H:\theta \ne \theta_0</script> is called <em>two-sided</em> hypotheses.</li>
-</ul>
-
-<p>A large class of problems that admit <strong>UMP level $\alpha$</strong> tests involve one-sided hypotheses and <strong>pdfs or pmfs</strong> with the <strong>monotone likelihood ratio property</strong>.</p>
-
-<blockquote>
-  <p>A family of pdfs or pmfs <script type="math/tex">\{g(t \vert \theta):\theta \in \Theta\}</script> for a univariate random variable T with real-valued parameter $\theta$ has a <em>monotone likelihood ratio</em> (<strong>MLR</strong>) if, for every <script type="math/tex">\theta_2 > \theta_1</script>, <script type="math/tex">g(t \vert \theta_2)/g(t \vert \theta_1)</script> is a monotone (nonincreasing or nondecreasing) function of t on <script type="math/tex">\{t:g(t \vert \theta_1)>0 ~or~ g(t \vert \theta_2)>0\}</script>. Note that c/0 is defined as $\infty$ if $c&gt;0$.</p>
-</blockquote>
-
-<ul>
-  <li>Many common families of distribution have an <em>MLR</em>. For example, the normal (known variance, unknown mean). Poisson, and binomial all have an MLR. </li>
-  <li>
-    <p>Any regular exponential family with <script type="math/tex">g(t \vert \theta) = h(t)c(\theta) e^{w(\theta)t}</script> has an <em>MLR</em> if <script type="math/tex">w(\theta)</script> is a nondecreasing function.</p>
-  </li>
-  <li><strong>Karlin-Rubin Theorem</strong></li>
-</ul>
-
-<p>Consider testing <script type="math/tex">H_0:\theta \le \theta_0</script> versus <script type="math/tex">H_1: \theta > \theta_0</script>. Suppose that T is a sufficient statistic for $\theta$ and the family of pdfs or pmfs <script type="math/tex">\{g(t \vert \theta):\theta \in \Theta\}</script> of T has an <em>MLR</em>. Then for any <script type="math/tex">t_0</script>, the test that rejects <script type="math/tex">H_0</script> if and only if <script type="math/tex">T > t_0</script> is a <strong>UMP level $\alpha$ test</strong>, where <script type="math/tex">\alpha = P_{\theta_0}(T>t_0)</script>.</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/24/hypothesis-testing/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -421,116 +364,12 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
 \end{align}
  %]]></script>
 
-<h3 id="the-em-algorithm">The EM Algorithm</h3>
-
-<p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
-
-<p>If <script type="math/tex">\mathbf{Y} = (Y_1,\dots,Y_N)</script> are the incomplete data, and <script type="math/tex">\mathbf{X} = (X_1,\dots,X_m)</script> are the augmented data (missing data), making <script type="math/tex">(\mathbf{Y},\mathbf{X})</script> the complete data. The densities $g(\cdot \vert \theta)$ of $\mathbf{Y}$ and $f(\cdot \vert \theta)$ of $\mathbf{Y},\mathbf{X}$ have the relationship</p>
-
-<script type="math/tex; mode=display">g(\mathbf{y} \vert \theta) = \int f(\mathbf{y},\mathbf{x} \vert \theta) dx</script>
-
-<p>If we turn these into the likelihoods, <script type="math/tex">L(\theta \vert \mathbf{y}) = g(\mathbf{y} \vert \theta)</script> is the incomplete-data likelihood and <script type="math/tex">L(\theta \vert \mathbf{y},\mathbf{x}) = f(\mathbf{y},\mathbf{x} \vert \theta)</script> is the complete-data likelihood.i</p>
-
-<p>Define</p>
-
-<script type="math/tex; mode=display">k(\mathbf{x} \vert \theta,\mathbf{y}) = \frac{f(\mathbf{y},\mathbf{x} \vert \theta)}{g(\mathbf{y} \vert \theta)} = \frac{L(\theta \vert \mathbf{y},\mathbf{x})}{L(\theta \vert \mathbf{y})}</script>
-
-<p>Then we have</p>
-
-<script type="math/tex; mode=display">\log L(\theta \vert \mathbf{y}) = \log L(\theta \vert \mathbf{y},\mathbf{x}) - \log k(\mathbf{x} \vert \theta,\mathbf{y})</script>
-
-<p>replace the right side with its expectation under $k(\mathbf{x} \vert \theta’,\mathbf{y})$, we have</p>
-
-<script type="math/tex; mode=display">\log L(\theta \vert \mathbf{y}) = E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta',\mathbf{y}] - E[\log k(\mathbf{x} \vert \theta,\mathbf{y}) \vert \theta',\mathbf{y}]</script>
-
-<p>Now we start the algorithm: From an initial value <script type="math/tex">\theta^{(0)}</script> we create a sequence <script type="math/tex">\theta^{(r)}</script> according to</p>
-
-<script type="math/tex; mode=display">\theta^{(r+1)} = \max_{\theta} E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta^{(r)},\mathbf{y}] </script>
-
-<h3 id="bayes-estimators">Bayes Estimators</h3>
-
-<p>In Bayes approach $\theta$ is considered to be a quantity whose variation can be described by a probability distribution (called the prior distribution). This is a subjective distribution, based on the experimenter’s belief, and is formulated before the data are seen (hence the name prior distribution). A sample is then taken from a population indexed by $\theta$ and the prior distribution is updated with this sample information. The updated prior is called the posterior distribution. </p>
-
-<p>If we denote the prior distribution by $\pi(\theta)$ and the sampling distribution by <script type="math/tex">f(x \vert \theta)</script>, then the posterior distribution, the conditional distribution of $\theta$ given the sample, <script type="math/tex">\mathbf{x}</script>, </p>
-
-<script type="math/tex; mode=display">\pi(\theta \vert \mathbf{x}) = f(\mathbf{x} \vert \theta) \pi(\theta)/m(\mathbf{x})</script>
-
-<p>where $m(\mathbf{x})$ is the marginal distribution of $\mathbf{X}$, that is,</p>
-
-<script type="math/tex; mode=display">m(\mathbf{x}) = \int f(\mathbf{x} \vert \theta) \pi(\theta) d \theta</script>
-
-<h2 id="methods-of-evaluating-estimators">Methods of Evaluating Estimators</h2>
-
-<h3 id="mean-squared-error">Mean Squared Error</h3>
-
-<blockquote>
-  <p>The mean square error (MSE) of an estimator W of a parameter $\theta$ is the function of $\theta$ defined by $E_{\theta}(W-\theta)^2$.</p>
-</blockquote>
-
-<p>Define</p>
-
-<script type="math/tex; mode=display">Bias_{\theta}W = E_{\theta}W-\theta</script>
-
-<p>Then</p>
-
-<script type="math/tex; mode=display">E_{\theta}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2</script>
-
-<h3 id="best-unbiased-estimators">Best Unbiased Estimators</h3>
-
-<blockquote>
-  <p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies <script type="math/tex">E_{\theta}W' = \tau(\theta)</script> for all $\theta$ and, for any other estimator W with <script type="math/tex">E_{\theta}W = \tau(\theta)</script>, we have <script type="math/tex">Var_{\theta}W' \le Var_{\theta}W</script> for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
-</blockquote>
-
-<ul>
-  <li><strong>Cramer-Rao Inequality</strong></li>
-</ul>
-
-<p>Let <script type="math/tex">X_1,\dots,X_n</script> be a sample with pdf $f(x \vert \theta)$, and let <script type="math/tex">W(\mathbf{X}) = W(X_1,\dots,X_n)</script> be <em>any estimator satisfying</em></p>
-
-<script type="math/tex; mode=display">\frac{d}{d\theta} E_{\theta}W(\mathbf{X}) = \int \frac{\partial}{\partial \theta}[W(\mathbf{x})f(x \vert \theta)] dx</script>
-
-<p>and</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-Var_{\theta}W(\mathbf{X}) < \infty %]]></script>
-
-<p>Then</p>
-
-<script type="math/tex; mode=display">Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{E_{\theta}[(\frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{I_n(\theta)}</script>
-
-<p>when <script type="math/tex">X_1,\dots,X_n</script> are <em>iid</em>, based on the property of <em>Fisher Information</em>, we have</p>
-
-<script type="math/tex; mode=display">Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nE_{\theta}[(\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nI(\theta)}</script>
-
-<p>We need to verify whether the <strong>Cramer-Rao Lower Bound</strong> is attainable.</p>
-
-<ul>
-  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let <script type="math/tex">L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n} f(x_i \vert \theta)</script> denote the likelihood function. If $$
-W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
-</ul>
-
-<script type="math/tex; mode=display">a(\theta)[W(\mathbf{x})-\tau(\theta)] = \frac{\partial}{\partial \theta}\log L(\theta \vert \mathbf{x})</script>
-
-<p>for some function $a(\theta)$.</p>
-
-<p>Two theorems are used to find the <strong>UMVUE</strong>.</p>
-
-<ul>
-  <li><strong>Rao-Blackwell Theorem</strong> </li>
-</ul>
-
-<p>Let W be any unbiased estimator of $\tau(\theta)$, and let T be a sufficient statistic for $\theta$. Then $E(W \vert T)$ is a UMVUE.</p>
-
-<ul>
-  <li><strong>Lehmann Scheffe Theorem</strong></li>
-</ul>
-
-<p>Suppose there exists a sufficient and complete statistic T for $\theta$. If there exisits unbiased estimator of $\tau(\theta)$, then the UMVUE takes the form of h(T), where h is a Borel function.</p>
-
-<p>It is also noted that UMVUE is <strong>unique</strong>.</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/22/point-estimation/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -600,106 +439,12 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 
 <p>is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
 
-<h2 id="minimal-sufficient-statistics">Minimal Sufficient Statistics</h2>
-
-<p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
-
-<blockquote>
-  <p>A sufficient statistic <script type="math/tex">T(\mathbf{X})</script> is called a minimal sufficient statistic if, for any other sufficient statistic <script type="math/tex">T'(\mathbf{X})</script>, <script type="math/tex">T(\mathbf{X})</script> is a function of <script type="math/tex">T'(\mathbf{X})</script>.</p>
-</blockquote>
-
-<p>We have an easier way to find a minimal sufficient statistic.</p>
-
-<ul>
-  <li>Let <script type="math/tex">f(\mathbf{x}\vert \theta)</script> be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function <script type="math/tex">T(\mathbf{x})</script> such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio <script type="math/tex">f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)</script> is constant as a function of $\theta$ if and only if <script type="math/tex">T(\mathbf{x}) = T(\mathbf{y})</script>. Then <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic for $\theta$.</li>
-</ul>
-
-<p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
-
-<h2 id="ancillary-statistics">Ancillary Statistics</h2>
-
-<blockquote>
-  <p>A stastistic <script type="math/tex">S(\mathbf{X})</script> whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
-</blockquote>
-
-<p><strong>Alone</strong>, an ancillary statistic contains no information about $\theta$.</p>
-
-<ul>
-  <li>Location family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, <script type="math/tex">% <![CDATA[
--\infty < \theta < \infty %]]></script>. <script type="math/tex">R = X_{(n)}-X_{(1)}</script> is an ancillary statistic.</li>
-  <li>Scale family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values <script type="math/tex">X_1/X_n,\dots,X_{n-1}/X_n</script> is an ancillary statistic.</li>
-</ul>
-
-<p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
-
-<h2 id="complete-statistics">Complete Statistics</h2>
-
-<blockquote>
-  <p>Let <script type="math/tex">f(t \vert \theta)</script> be a family of pdfs or pmfs for a statistic <script type="math/tex">T(\mathbf{X})</script>. The family of probability distributions is called complete if <script type="math/tex">E_{\theta}g(T) = 0</script> for all $\theta$ implies <script type="math/tex">P_{\theta}(g(T)=0) = 1</script> for all $\theta$. Equivalently, <script type="math/tex">T(\mathbf{X})</script> is called a complete statistic.</p>
-</blockquote>
-
-<p>Informally, a statistic $T(\mathbf{X})$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
-
-<p>We can get the complete statistics in the exponential family.</p>
-
-<ul>
-  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a pdf or pfm <script type="math/tex">f(x \vert \mathbf{\theta})</script> that belongs to an exponential family given by</li>
-</ul>
-
-<script type="math/tex; mode=display">f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))</script>
-
-<p>where <script type="math/tex">\mathbf{\theta} = (\theta_1,\dots,\theta_d)</script>, <script type="math/tex">d \le k</script>. Then</p>
-
-<script type="math/tex; mode=display">T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))</script>
-
-<p>is complete if <script type="math/tex">\{(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta\}</script> contains an open set in $R^k$.</p>
-
-<p>We use completeness to state a condition under which a minimal sufficient statistic is independent of every ancillary statistic.</p>
-
-<ul>
-  <li><strong>(Basu’s Theorem)</strong> If <script type="math/tex">T(\mathbf{X})</script> is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
-</ul>
-
-<p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
-
-<ul>
-  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em> </li>
-</ul>
-
-<h2 id="applications-and-special-distributions">Applications and Special distributions</h2>
-
-<ul>
-  <li><strong>The Bernoulli Distribution</strong></li>
-</ul>
-
-<p>$Y=\sum X_i$ is minimal sufficient and complete for $p$.</p>
-
-<ul>
-  <li><strong>Poisson Distribution</strong></li>
-</ul>
-
-<p>$Y = \sum X_i$ is minimal sufficient and complete for $\theta$.</p>
-
-<ul>
-  <li><strong>The Uniform Distribution</strong></li>
-</ul>
-
-<ol>
-  <li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
-  <li>interval <script type="math/tex">[\theta,\theta+1]</script>, <script type="math/tex">(X_{(1)},X_{(n)})</script> is minimal sufficient for $\theta$.</li>
-</ol>
-
-<ul>
-  <li><strong>Normal Distribution</strong></li>
-</ul>
-
-<ol>
-  <li><script type="math/tex">(\sum X_i,\sum X^2_i)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>;</li>
-  <li><script type="math/tex">(\bar{X},S^2)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>.</li>
-</ol>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/22/data-reduction/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -753,158 +498,12 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 
 <p>When $N$ is larger, there is not too difference between the conditional distribution of <script type="math/tex">X_i</script> given <script type="math/tex"> X_1, \dots,X_{i-1} </script> and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
 
-<h2 id="convergence">Convergence</h2>
-
-<h3 id="types-of-convergence">Types of convergence</h3>
-
-<ul>
-  <li><strong>Convergence in Probability</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\dots</script>, converges in probability to a random variable $X$ if, for every <script type="math/tex">\epsilon > 0</script>,</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\lim_{n \to \infty} P(\mid X_n-X \mid \ge \epsilon (\text{or} ~~ < \epsilon)) = 0 (\text{or} ~~ 1) %]]></script>
-
-<ul>
-  <li><strong>Convergence in almost sure</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\dots</script>, converges in probability to a random variable $X$ if, for every <script type="math/tex">\epsilon > 0</script>,</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-P(\lim_{n \to \infty} \mid X_n-X \mid < \epsilon ) = 1 %]]></script>
-
-<p>The above definition is much stronger than that of convergence in probability.</p>
-
-<ul>
-  <li><strong>Convergence in Distribution</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\cdots</script> , converge in distribution to a random variable $X$
-If</p>
-
-<script type="math/tex; mode=display">\lim_{n \to \infty} F_{X_n}(x) = F_X(x)</script>
-
-<p>at all points x there <script type="math/tex">F_X(x)</script> is continuous.</p>
-
-<h3 id="related-theorem-or-method">Related Theorem or Method</h3>
-
-<ul>
-  <li><strong>Continuous mapping Theorem</strong></li>
-</ul>
-
-<p>If $X_n$ converges in probability or almost sure or distribution to a random variable $X$, and <script type="math/tex">g(x)</script> is a continuous function, then <script type="math/tex">g(X_n)</script> converges in corresponding form to <script type="math/tex">g(X)</script>.</p>
-
-<ul>
-  <li><strong>Slutsky’s Theorem</strong></li>
-</ul>
-
-<p>If <script type="math/tex">X_n \to X</script> in distribution and <script type="math/tex">Y_n \to a</script>, a costant, in probability then</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-\begin{align}
-1. & Y_nX_n \to aX ~ \text{in distribution} \\
-2. & X_n+Y_n \to X+a ~ \text{in distribution} \\
-\end{align}
- %]]></script>
-
-<ul>
-  <li><strong>Weak Law of Large Numbers</strong></li>
-</ul>
-
-<p>If $X_n$ are i.i.d distributed with <script type="math/tex">% <![CDATA[
-E\mid X_n \mid < \infty %]]></script>, <script type="math/tex">\mu = EX_n</script>,then</p>
-
-<script type="math/tex; mode=display">\bar{X} \to \mu \quad \text{in probability}</script>
-
-<ul>
-  <li><strong>Strong Law of Large Numbers</strong></li>
-</ul>
-
-<p>If $X_n$ are i.i.d distributed with <script type="math/tex">% <![CDATA[
-E\mid X_n \mid < \infty %]]></script>, <script type="math/tex">\mu = EX_n</script>,then</p>
-
-<script type="math/tex; mode=display">\bar{X} \to \mu \quad \text{in almost sure}</script>
-
-<ul>
-  <li><strong>Central Limit Theorem</strong></li>
-</ul>
-
-<p>If <script type="math/tex">X_n, n=1,2,\dots,</script> are i.i.d, and <script type="math/tex">\mu = EX_n</script>, <script type="math/tex">\sigma^2 = var(X_n)</script>, and <script type="math/tex">% <![CDATA[
-0 < \sigma^2 < \infty %]]></script>, then</p>
-
-<script type="math/tex; mode=display">\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma} \sim N(0,1)</script>
-
-<ul>
-  <li><strong>Delta Method</strong></li>
-</ul>
-
-<p>Let $Y_n$ be a sequence of random variables that satisfies <script type="math/tex">\sqrt{n}(Y_n-\theta) \sim N(0,\sigma^2)</script>
-. For a given function $g$ and a specific value of $\theta$, suppose that <script type="math/tex">g'(\theta)</script> exists and is not 0. Then</p>
-
-<script type="math/tex; mode=display">\sqrt{n} [g(Y_n)-g(\theta)] \sim N(0,\sigma^2[g'(\theta)]^2)</script>
-
-<h2 id="sample-mean-and-sample-variance">Sample mean and Sample variance</h2>
-
-<p>The sample mean is the arithmetic average of the values in a random sample. It is usually denoted by</p>
-
-<script type="math/tex; mode=display">\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i</script>
-
-<p>The sample variance is the statistic defined by</p>
-
-<script type="math/tex; mode=display">S^2 = \frac{1}{n-1} \sum_{i=1}^{n}(X_i-\bar{X})^2</script>
-
-<p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a population with mean <script type="math/tex">\mu</script> and variance <script type="math/tex">% <![CDATA[
-\sigma^2 < \infty %]]></script>. Then</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-\begin{align}
-1. & E\bar{X} = \mu \\
-2. & Var \bar{X} = \frac{\sigma^2}{n} \\
-3. & ES^2 = \sigma^2 \\
-\end{align}
- %]]></script>
-
-<h3 id="normal-case">Normal Case</h3>
-
-<p>If $X_n$ are independently and normally distributed <script type="math/tex">N(\mu,\sigma^2)</script>, then</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-\begin{align}
-1. & \bar{X}_n \sim N(\mu,\sigma^2/n) \\
-2. & (n-1)S_n^2 / \sigma^2 \sim \chi_{n-1}^2 \\
-3. & \bar{X}_n ~ \text{and} ~ S^2_n ~ \text{are independent} \\
-\end{align}
- %]]></script>
-
-<h3 id="non-normal-case">Non-normal Case</h3>
-
-<p>When $X_i$ are not normal, the statistic is still commonly used because</p>
-
-<ul>
-  <li>Central Limit Theorem</li>
-</ul>
-
-<script type="math/tex; mode=display">\bar{X}_n \sim N(\mu,\sigma^2/n)</script>
-
-<ul>
-  <li>Law of Large Numbers</li>
-</ul>
-
-<script type="math/tex; mode=display">S_n^2 \to \sigma^2</script>
-
-<ul>
-  <li>Slusky’s Theorem</li>
-</ul>
-
-<script type="math/tex; mode=display">\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}} = \frac{\sigma}{S_n} \cdot \frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}} \to N(0,1)</script>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/20/random-sample/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -975,81 +574,12 @@ and let</li>
 
 <p>It then follows that <script type="math/tex">{Z_n,n \ge 1}</script> is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
 
-<ul>
-  <li>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</li>
-</ul>
-
-<script type="math/tex; mode=display"> Z_n = \sum_{i=1}^n {X_i - E[X_i \mid X_1,\dots,X_{i-1}]}</script>
-
-<ul>
-  <li>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead <script type="math/tex">Z_1, \dots, Z_n</script>. 
-Actually, we can prove this results. Let <script type="math/tex">Z = g(Y)</script> then</li>
-</ul>
-
-<script type="math/tex; mode=display">E(X \mid Z) = E(E(X \mid Z,Y) \mid Z) = E(E(X \mid Y) \mid Z) = E(X\mid Y)</script>
-
-<h2 id="stopping-times">Stopping Times</h2>
-
-<h3 id="definition">Definition</h3>
-
-<p>The positive interger-value, possibly infinite, random variable $N$ is said to be a random time for the process <script type="math/tex">{Z_n,n \ge 1}</script> if the event {N=n} is determined by the randon variables <script type="math/tex">Z_1,\dots,Z_n</script>. That is, knowing $Z_1,\dots,Z_n$ tells us whether or not <script type="math/tex">N=n</script>. If <script type="math/tex">% <![CDATA[
-P(N < \infty) %]]></script>, then the random time $N$ is said to be a <strong>stopping time</strong>.</p>
-
-<h3 id="the-martingale-stopping-theorem">The Martingale Stopping Theorem</h3>
-
-<p>If either:</p>
-
-<ol>
-  <li><script type="math/tex">Z_{n \land N}</script> is bounde, or;</li>
-  <li><script type="math/tex">N</script> is bounded, or;</li>
-  <li><script type="math/tex">% <![CDATA[
-E[N] < \infty %]]></script>, and there is an <script type="math/tex">% <![CDATA[
-M<\infty %]]></script> such that</li>
-</ol>
-
-<script type="math/tex; mode=display">% <![CDATA[
-E[\mid Z_{n+1}-Z_n \mid \mid Z_1,\dots,Z_n] < M %]]></script>
-
-<p>then </p>
-
-<script type="math/tex; mode=display">E[Z_N] = E[Z_1]</script>
-
-<p>NOTE that boundedness is important. Take $X_0=0$ and</p>
-
-<script type="math/tex; mode=display">X_n = \xi_1+\xi_2+\cdots+\xi_n</script>
-
-<p>where $\xi_i$ are independent identically distributed random variables taking the value <script type="math/tex">\pm \dfrac{1}{2}</script>. Let <script type="math/tex">T = inf\{n:X_n=1\}</script>. Then T is a stopping time, <script type="math/tex">% <![CDATA[
-P[T<\infty] = 1 %]]></script>, but T is not bounded. <script type="math/tex">X_T=1</script> with probability 1 and trivially <script type="math/tex">E[X_T]=1 \neq 0</script>.</p>
-
-<p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
-
-<h2 id="azumas-inequality">Azuma’s Inequality</h2>
-
-<p>Let <script type="math/tex">Z_n, n \ge 1</script> be a martingale with mean <script type="math/tex">\mu = E[Z_n]</script>. Let $Z_0 = \mu$ and suppose that for nonegative constants <script type="math/tex">\alpha_i,\beta_i,i\ge 1</script>,</p>
-
-<script type="math/tex; mode=display">-\alpha_i \le Z_i-Z_{i-1} \le \beta_i</script>
-
-<p>Then for any <script type="math/tex">n \ge 0, a > 0</script>:</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-\begin{align}
-1. & P\{Z_n-\mu \ge a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
-2. & P\{Z_n-\mu \le -a\} \le exp\{-2a^2/\sum{(\alpha_i+\beta_i)^2}\} \\
-\end{align}
- %]]></script>
-
-<h2 id="the-martingale-convergence-theorem">The Martingale Convergence Theorem</h2>
-
-<p>If <script type="math/tex">\{Z_n,n \ge 1\}</script> is a martingale such that for some <script type="math/tex">% <![CDATA[
-M< \infty %]]></script></p>
-
-<script type="math/tex; mode=display">E[\mid Z_n \mid] \le M, \text{for all n}</script>
-
-<p>then, with probability 1, <script type="math/tex">\lim_{n \rightarrow \infty} Z_n</script> exists and is finite.</p>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/18/basics-of-martingales/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -1112,6 +642,10 @@ M< \infty %]]></script></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/19/random-effect/">Random Effect</a>
       </li>
     
@@ -1125,10 +659,6 @@ M< \infty %]]></script></p>
     
       <li class="post">
         <a href="/blog/2013/11/22/data-reduction/">Data Reduction</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/20/random-sample/">Random Sample</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Statistics | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2014-01-14T20:17:10+08:00</updated>
+  <updated>2014-01-14T21:38:57+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Asymptotic Evaluations]]></title>
+    <link href="http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations/"/>
+    <updated>2014-01-14T20:19:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations</id>
+    <content type="html"><![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+
+<h2 id="point-estimation">Point Estimation</h2>
+
+<p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, if <script type="math/tex">% &lt;![CDATA[
+lim_{n \to \infty} k_n VarT_n = \tau^2 < \infty %]]&gt;</script>, where <script type="math/tex">{k_n}</script> is a sequence of constants, then <script type="math/tex">\tau^2</script> is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+</blockquote>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, suppose that <script type="math/tex">k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)</script> in distribution. The parameter <script type="math/tex">\sigma^2</script> is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+
+<blockquote>
+  <p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter <script type="math/tex">\tau(\theta)</script> if <script type="math/tex"> \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]</script> in distribution and <script type="math/tex">v(\theta)</script> achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+
+<p>Recall that in the above definition, </p>
+
+<script type="math/tex; mode=display">v(\theta) = \dfrac{[\tau'(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}</script>
+
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+
+<!--more-->
+
+<h2 id="robustness">Robustness</h2>
+
+<p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
+
+<h2 id="hypothesis-testing">Hypothesis Testing</h2>
+
+<p>We are going to introduce 3 large-sample tests here.</p>
+
+<h3 id="asymptotic-distribution-of-the-lrt">Asymptotic distribution of the LRT</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a pdf or pmf <script type="math/tex">f(x \vert \theta)</script>. Under some regularity conditions, if <script type="math/tex">\theta \in \Theta_0</script>, then the distribution of the statistic <script type="math/tex">-2\log \lambda(\mathbf{X})</script> converges to a chi squared distribution as the sample size <script type="math/tex">n \to \infty</script>. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by <script type="math/tex">\theta \in \Theta_0</script> and the number of free parameters specified by <script type="math/tex">\theta \in \Theta</script>.</p>
+</blockquote>
+
+<h3 id="wald-test">Wald test</h3>
+
+<p>In general, a Wald test is a test based on a satistic of the form</p>
+
+<script type="math/tex; mode=display"> Z_n = \dfrac{W_n-\theta_0}{S_n} </script>
+
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and <script type="math/tex">S_n</script> is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, <script type="math/tex">1/\sqrt{I_n(W_n)}</script> is a reasonable standard error for $W_n$. Alternatively, <script type="math/tex">1/\sqrt{\hat{I}_n(W_n)}</script>, where</p>
+
+<script type="math/tex; mode=display">\hat{I}_n(W_n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid_{\theta = W_n}</script>
+
+<p>is the observed information number, is often used. </p>
+
+<h3 id="score-test">Score test</h3>
+
+<p>The <em>score statistics</em> is defined to be</p>
+
+<script type="math/tex; mode=display"> S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) </script>
+
+<p>We can obtain the result that for all $\theta$, <script type="math/tex">E_\theta S(\theta) = 0 </script>. In particular, if we are testing <script type="math/tex">H_0: \theta=\theta_0</script> and if $H_0$ is true, then <script type="math/tex">S(\theta_0)</script> has mean 0. Then we have</p>
+
+<script type="math/tex; mode=display">Var_\theta S(\theta) = I_n(\theta)</script>
+
+<p>The test statistic for the score test is</p>
+
+<script type="math/tex; mode=display">Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}</script>
+
+<p>It follows that $Z_S$ converges to a standard normal random variable.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Random Effect]]></title>
@@ -42,6 +122,8 @@
   <li><em>Useful equation:</em> <script type="math/tex">\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt</script></li>
   <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\frac{\alpha}{\beta}</script>, <script type="math/tex">V(X)=\frac{\alpha}{\beta^2}</script></li>
 </ol>
+
+<!--more-->
 
 <h2 id="consider-ig-processes-with-random-effects">Consider IG processes with Random Effects</h2>
 
@@ -94,6 +176,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
 <ul>
   <li>If <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ and <script type="math/tex">\lambda'(t)</script> and <script type="math/tex">\lambda(\mathbf{x})</script> are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then <script type="math/tex">\lambda'(T(\mathbf{X})) = \lambda(\mathbf{x})</script> for every $\mathbf{x}$ in the sample space.</li>
 </ul>
+
+<!--more-->
 
 <h3 id="bayesian-tests">Bayesian Tests</h3>
 
@@ -266,6 +350,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
 \end{align}
  %]]&gt;</script>
 
+<!--more-->
+
 <h3 id="the-em-algorithm">The EM Algorithm</h3>
 
 <p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
@@ -418,6 +504,8 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 
 <p>is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
 
+<!--more-->
+
 <h2 id="minimal-sufficient-statistics">Minimal Sufficient Statistics</h2>
 
 <p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
@@ -515,184 +603,6 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
   <li><script type="math/tex">(\sum X_i,\sum X^2_i)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>;</li>
   <li><script type="math/tex">(\bar{X},S^2)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>.</li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Random Sample]]></title>
-    <link href="http://messipiao.github.io/blog/2013/11/20/random-sample/"/>
-    <updated>2013-11-20T15:03:00+08:00</updated>
-    <id>http://messipiao.github.io/blog/2013/11/20/random-sample</id>
-    <content type="html"><![CDATA[<h2 id="basic-concepts-of-random-samples">Basic Concepts of Random Samples</h2>
-
-<blockquote>
-  <p>The random variables <script type="math/tex">X_1,\dots,X_n</script> are called a random sample of size n from the population <script type="math/tex">f(x)</script> if <script type="math/tex">X_1,\dots,X_n</script> are mutually independent random variables and the marginal pdf or pmf of each <script type="math/tex">X_i</script> is the same function <script type="math/tex">f(x)</script>. Alternatively, <script type="math/tex">X_1,\dots,X_n</script> are called independent and identically distributed random variables with pdf or pmf <script type="math/tex">f(x)</script>. This is commonly abbreviated to iid random variables. </p>
-</blockquote>
-
-<p>The joint pdf of pmf of <script type="math/tex">X_1,\dots,X_n</script> is given by </p>
-
-<script type="math/tex; mode=display">f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x_n) = \prod_{i=1}^{n}f(x_i)</script>
-
-<p>Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable <script type="math/tex">X_1,\dots,X_n</script> are independent as the process of choosing any <script type="math/tex">X_i</script> keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of <script type="math/tex">X_i</script>, where <script type="math/tex">j > i</script>. For example, considering <script type="math/tex">X_1</script> and <script type="math/tex">X_2</script>, we have</p>
-
-<script type="math/tex; mode=display">P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1</script>
-
-<p>It is noted that <script type="math/tex">X_i</script> has the same marginal distribution.</p>
-
-<script type="math/tex; mode=display">P(X_2=x) = \sum_{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}</script>
-
-<p>When $N$ is larger, there is not too difference between the conditional distribution of <script type="math/tex">X_i</script> given <script type="math/tex"> X_1, \dots,X_{i-1} </script> and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
-
-<h2 id="convergence">Convergence</h2>
-
-<h3 id="types-of-convergence">Types of convergence</h3>
-
-<ul>
-  <li><strong>Convergence in Probability</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\dots</script>, converges in probability to a random variable $X$ if, for every <script type="math/tex">\epsilon > 0</script>,</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-\lim_{n \to \infty} P(\mid X_n-X \mid \ge \epsilon (\text{or} ~~ < \epsilon)) = 0 (\text{or} ~~ 1) %]]&gt;</script>
-
-<ul>
-  <li><strong>Convergence in almost sure</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\dots</script>, converges in probability to a random variable $X$ if, for every <script type="math/tex">\epsilon > 0</script>,</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-P(\lim_{n \to \infty} \mid X_n-X \mid < \epsilon ) = 1 %]]&gt;</script>
-
-<p>The above definition is much stronger than that of convergence in probability.</p>
-
-<ul>
-  <li><strong>Convergence in Distribution</strong></li>
-</ul>
-
-<p>A sequence of random variables, <script type="math/tex">X_1,X_2,\cdots</script> , converge in distribution to a random variable $X$
-If</p>
-
-<script type="math/tex; mode=display">\lim_{n \to \infty} F_{X_n}(x) = F_X(x)</script>
-
-<p>at all points x there <script type="math/tex">F_X(x)</script> is continuous.</p>
-
-<h3 id="related-theorem-or-method">Related Theorem or Method</h3>
-
-<ul>
-  <li><strong>Continuous mapping Theorem</strong></li>
-</ul>
-
-<p>If $X_n$ converges in probability or almost sure or distribution to a random variable $X$, and <script type="math/tex">g(x)</script> is a continuous function, then <script type="math/tex">g(X_n)</script> converges in corresponding form to <script type="math/tex">g(X)</script>.</p>
-
-<ul>
-  <li><strong>Slutsky’s Theorem</strong></li>
-</ul>
-
-<p>If <script type="math/tex">X_n \to X</script> in distribution and <script type="math/tex">Y_n \to a</script>, a costant, in probability then</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-\begin{align}
-1. & Y_nX_n \to aX ~ \text{in distribution} \\
-2. & X_n+Y_n \to X+a ~ \text{in distribution} \\
-\end{align}
- %]]&gt;</script>
-
-<ul>
-  <li><strong>Weak Law of Large Numbers</strong></li>
-</ul>
-
-<p>If $X_n$ are i.i.d distributed with <script type="math/tex">% &lt;![CDATA[
-E\mid X_n \mid < \infty %]]&gt;</script>, <script type="math/tex">\mu = EX_n</script>,then</p>
-
-<script type="math/tex; mode=display">\bar{X} \to \mu \quad \text{in probability}</script>
-
-<ul>
-  <li><strong>Strong Law of Large Numbers</strong></li>
-</ul>
-
-<p>If $X_n$ are i.i.d distributed with <script type="math/tex">% &lt;![CDATA[
-E\mid X_n \mid < \infty %]]&gt;</script>, <script type="math/tex">\mu = EX_n</script>,then</p>
-
-<script type="math/tex; mode=display">\bar{X} \to \mu \quad \text{in almost sure}</script>
-
-<ul>
-  <li><strong>Central Limit Theorem</strong></li>
-</ul>
-
-<p>If <script type="math/tex">X_n, n=1,2,\dots,</script> are i.i.d, and <script type="math/tex">\mu = EX_n</script>, <script type="math/tex">\sigma^2 = var(X_n)</script>, and <script type="math/tex">% &lt;![CDATA[
-0 < \sigma^2 < \infty %]]&gt;</script>, then</p>
-
-<script type="math/tex; mode=display">\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma} \sim N(0,1)</script>
-
-<ul>
-  <li><strong>Delta Method</strong></li>
-</ul>
-
-<p>Let $Y_n$ be a sequence of random variables that satisfies <script type="math/tex">\sqrt{n}(Y_n-\theta) \sim N(0,\sigma^2)</script>
-. For a given function $g$ and a specific value of $\theta$, suppose that <script type="math/tex">g'(\theta)</script> exists and is not 0. Then</p>
-
-<script type="math/tex; mode=display">\sqrt{n} [g(Y_n)-g(\theta)] \sim N(0,\sigma^2[g'(\theta)]^2)</script>
-
-<h2 id="sample-mean-and-sample-variance">Sample mean and Sample variance</h2>
-
-<p>The sample mean is the arithmetic average of the values in a random sample. It is usually denoted by</p>
-
-<script type="math/tex; mode=display">\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i</script>
-
-<p>The sample variance is the statistic defined by</p>
-
-<script type="math/tex; mode=display">S^2 = \frac{1}{n-1} \sum_{i=1}^{n}(X_i-\bar{X})^2</script>
-
-<p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a population with mean <script type="math/tex">\mu</script> and variance <script type="math/tex">% &lt;![CDATA[
-\sigma^2 < \infty %]]&gt;</script>. Then</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-\begin{align}
-1. & E\bar{X} = \mu \\
-2. & Var \bar{X} = \frac{\sigma^2}{n} \\
-3. & ES^2 = \sigma^2 \\
-\end{align}
- %]]&gt;</script>
-
-<h3 id="normal-case">Normal Case</h3>
-
-<p>If $X_n$ are independently and normally distributed <script type="math/tex">N(\mu,\sigma^2)</script>, then</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-\begin{align}
-1. & \bar{X}_n \sim N(\mu,\sigma^2/n) \\
-2. & (n-1)S_n^2 / \sigma^2 \sim \chi_{n-1}^2 \\
-3. & \bar{X}_n ~ \text{and} ~ S^2_n ~ \text{are independent} \\
-\end{align}
- %]]&gt;</script>
-
-<h3 id="non-normal-case">Non-normal Case</h3>
-
-<p>When $X_i$ are not normal, the statistic is still commonly used because</p>
-
-<ul>
-  <li>Central Limit Theorem</li>
-</ul>
-
-<script type="math/tex; mode=display">\bar{X}_n \sim N(\mu,\sigma^2/n)</script>
-
-<ul>
-  <li>Law of Large Numbers</li>
-</ul>
-
-<script type="math/tex; mode=display">S_n^2 \to \sigma^2</script>
-
-<ul>
-  <li>Slusky’s Theorem</li>
-</ul>
-
-<script type="math/tex; mode=display">\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}} = \frac{\sigma}{S_n} \cdot \frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}} \to N(0,1)</script>
 
 ]]></content>
   </entry>

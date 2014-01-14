@@ -4,7 +4,7 @@
   <title><![CDATA[Piao's Blog]]></title>
   <link href="http://messipiao.github.io/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2014-01-14T20:17:10+08:00</updated>
+  <updated>2014-01-14T21:38:57+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Asymptotic Evaluations]]></title>
+    <link href="http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations/"/>
+    <updated>2014-01-14T20:19:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2014/01/14/asymptotic-evaluations</id>
+    <content type="html"><![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+
+<h2 id="point-estimation">Point Estimation</h2>
+
+<p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, if <script type="math/tex">% &lt;![CDATA[
+lim_{n \to \infty} k_n VarT_n = \tau^2 < \infty %]]&gt;</script>, where <script type="math/tex">{k_n}</script> is a sequence of constants, then <script type="math/tex">\tau^2</script> is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+</blockquote>
+
+<blockquote>
+  <p>For an estimator <script type="math/tex">T_n</script>, suppose that <script type="math/tex">k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)</script> in distribution. The parameter <script type="math/tex">\sigma^2</script> is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+
+<blockquote>
+  <p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter <script type="math/tex">\tau(\theta)</script> if <script type="math/tex"> \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]</script> in distribution and <script type="math/tex">v(\theta)</script> achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+
+<p>Recall that in the above definition, </p>
+
+<script type="math/tex; mode=display">v(\theta) = \dfrac{[\tau'(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}</script>
+
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+
+<!--more-->
+
+<h2 id="robustness">Robustness</h2>
+
+<p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
+
+<h2 id="hypothesis-testing">Hypothesis Testing</h2>
+
+<p>We are going to introduce 3 large-sample tests here.</p>
+
+<h3 id="asymptotic-distribution-of-the-lrt">Asymptotic distribution of the LRT</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">X_1,\dots,X_n</script> be a random sample from a pdf or pmf <script type="math/tex">f(x \vert \theta)</script>. Under some regularity conditions, if <script type="math/tex">\theta \in \Theta_0</script>, then the distribution of the statistic <script type="math/tex">-2\log \lambda(\mathbf{X})</script> converges to a chi squared distribution as the sample size <script type="math/tex">n \to \infty</script>. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by <script type="math/tex">\theta \in \Theta_0</script> and the number of free parameters specified by <script type="math/tex">\theta \in \Theta</script>.</p>
+</blockquote>
+
+<h3 id="wald-test">Wald test</h3>
+
+<p>In general, a Wald test is a test based on a satistic of the form</p>
+
+<script type="math/tex; mode=display"> Z_n = \dfrac{W_n-\theta_0}{S_n} </script>
+
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and <script type="math/tex">S_n</script> is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, <script type="math/tex">1/\sqrt{I_n(W_n)}</script> is a reasonable standard error for $W_n$. Alternatively, <script type="math/tex">1/\sqrt{\hat{I}_n(W_n)}</script>, where</p>
+
+<script type="math/tex; mode=display">\hat{I}_n(W_n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid_{\theta = W_n}</script>
+
+<p>is the observed information number, is often used. </p>
+
+<h3 id="score-test">Score test</h3>
+
+<p>The <em>score statistics</em> is defined to be</p>
+
+<script type="math/tex; mode=display"> S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) </script>
+
+<p>We can obtain the result that for all $\theta$, <script type="math/tex">E_\theta S(\theta) = 0 </script>. In particular, if we are testing <script type="math/tex">H_0: \theta=\theta_0</script> and if $H_0$ is true, then <script type="math/tex">S(\theta_0)</script> has mean 0. Then we have</p>
+
+<script type="math/tex; mode=display">Var_\theta S(\theta) = I_n(\theta)</script>
+
+<p>The test statistic for the score test is</p>
+
+<script type="math/tex; mode=display">Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}</script>
+
+<p>It follows that $Z_S$ converges to a standard normal random variable.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Random Effect]]></title>
@@ -42,6 +122,8 @@
   <li><em>Useful equation:</em> <script type="math/tex">\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt</script></li>
   <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\frac{\alpha}{\beta}</script>, <script type="math/tex">V(X)=\frac{\alpha}{\beta^2}</script></li>
 </ol>
+
+<!--more-->
 
 <h2 id="consider-ig-processes-with-random-effects">Consider IG processes with Random Effects</h2>
 
@@ -94,6 +176,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
 <ul>
   <li>If <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ and <script type="math/tex">\lambda'(t)</script> and <script type="math/tex">\lambda(\mathbf{x})</script> are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then <script type="math/tex">\lambda'(T(\mathbf{X})) = \lambda(\mathbf{x})</script> for every $\mathbf{x}$ in the sample space.</li>
 </ul>
+
+<!--more-->
 
 <h3 id="bayesian-tests">Bayesian Tests</h3>
 
@@ -266,6 +350,8 @@ f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda
 \end{align}
  %]]&gt;</script>
 
+<!--more-->
+
 <h3 id="the-em-algorithm">The EM Algorithm</h3>
 
 <p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
@@ -418,6 +504,8 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 
 <p>is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
 
+<!--more-->
+
 <h2 id="minimal-sufficient-statistics">Minimal Sufficient Statistics</h2>
 
 <p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
@@ -543,6 +631,8 @@ W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, t
 <script type="math/tex; mode=display">P(X_2=x) = \sum_{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}</script>
 
 <p>When $N$ is larger, there is not too difference between the conditional distribution of <script type="math/tex">X_i</script> given <script type="math/tex"> X_1, \dots,X_{i-1} </script> and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
+
+<!--more-->
 
 <h2 id="convergence">Convergence</h2>
 
@@ -738,6 +828,8 @@ and let</li>
 <script type="math/tex; mode=display">Z_n = E[X \mid Y_1,\dots,Y_n]</script>
 
 <p>It then follows that <script type="math/tex">{Z_n,n \ge 1}</script> is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
+
+<!--more-->
 
 <ul>
   <li>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</li>

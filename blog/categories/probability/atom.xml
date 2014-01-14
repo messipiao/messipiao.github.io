@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Probability | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2014-01-14T20:17:10+08:00</updated>
+  <updated>2014-01-14T21:38:57+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -54,6 +54,8 @@ and let</li>
 <script type="math/tex; mode=display">Z_n = E[X \mid Y_1,\dots,Y_n]</script>
 
 <p>It then follows that <script type="math/tex">{Z_n,n \ge 1}</script> is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
+
+<!--more-->
 
 <ul>
   <li>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</li>
