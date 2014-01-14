@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Statistics | Piao's Blog]]></title>
   <link href="http://messipiao.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2013-11-25T11:02:00+08:00</updated>
+  <updated>2014-01-14T20:09:47+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Random Effect]]></title>
+    <link href="http://messipiao.github.io/blog/2013/12/19/random-effect/"/>
+    <updated>2013-12-19T21:38:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2013/12/19/random-effect</id>
+    <content type="html"><![CDATA[<p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
+
+<p>Two commonly used distributions estimating lifetime are as follows.</p>
+
+<h3 id="inversed-guassian-distribution">Inversed Guassian distribution</h3>
+
+<p><script type="math/tex"> X \sim IG(\mu,\lambda) </script>, where <script type="math/tex">X \in (0,\infty)</script>. <script type="math/tex">\mu</script> and <script type="math/tex">\lambda</script> are called mean and shape parameter respectively.</p>
+
+<ol>
+  <li><em>PDF:</em> <script type="math/tex">(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})</script></li>
+  <li><em>CDF:</em> <script type="math/tex">\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))</script></li>
+  <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\mu</script>, <script type="math/tex">V(X)=\frac{\mu^3}{\lambda}</script></li>
+</ol>
+
+<h3 id="gamma-distribution">Gamma distribution</h3>
+
+<p><script type="math/tex">X \sim gamma(\alpha,\beta)</script>, where <script type="math/tex">X \in (0,\infty)</script>. <script type="math/tex">\alpha</script> and <script type="math/tex">\beta</script> are called shape and rate parameter respectively.</p>
+
+<ol>
+  <li><em>PDF:</em> <script type="math/tex">\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}</script></li>
+  <li><em>Gamma function:</em> <script type="math/tex">\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx</script></li>
+  <li><em>Useful equation:</em> <script type="math/tex">\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt</script></li>
+  <li><em>Expectation and Variance:</em> <script type="math/tex">E(X)=\frac{\alpha}{\beta}</script>, <script type="math/tex">V(X)=\frac{\alpha}{\beta^2}</script></li>
+</ol>
+
+<h2 id="consider-ig-processes-with-random-effects">Consider IG processes with Random Effects</h2>
+
+<p>Consider a Wiener process <script type="math/tex">W(x) = \mu^{-1}x+\eta^{-1/2}B(x)</script> with the induced IG process <script type="math/tex">Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))</script>. A common practice to incorporate random effects in the Wiener process is to let the drift parameter <script type="math/tex">\mu^{-1}</script> vary randomly across units. Assume <script type="math/tex">\mu^{-1}</script> foolows a truncated normal distribution <script type="math/tex">TN(w,k^{-2})</script>, <script type="math/tex">k>0</script> with PDF</p>
+
+<script type="math/tex; mode=display">g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}</script>
+
+<p>the joint PDF of <script type="math/tex">\mathbf{Y}_i = [Y_i(t_{i1}),Y_i(t_{i2}),\cdots,Y_i(t_{in_i})]</script> can be computed first conditioning on the random drift parameter <script type="math/tex">\mu_i</script> and then marginalizing it</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+
+\begin{align}
+f(\mathbf{Y}_i) & = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2 \pi y_{ij}^3}} exp\{ \frac{-\eta(y_{ij}-\mu \lambda_{ij})^2}{2y_{ij}}\} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \\
+& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} \int_{0}^{\infty} \prod_{j=1}^{n_i} exp \{\frac{-\eta (y_{ij}z-\lambda_{ij})^2}{2y_{ij}}\} \frac{1}{\sqrt{2\pi}} exp\{-\frac{k^2(z-w)^2}{2}\} dz \\
+& = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp\{-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}\} \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp \{-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}\} dz \\
+& = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}_i} \prod_{j=1}^{n_i} \sqrt{\dfrac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}_i^2-k^2w^2}{2}-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}]
+\end{align}
+
+ %]]&gt;</script>
+
+<p>where <script type="math/tex">y_{ij} = Y_i(t_{ij})-Y_i(t_{i,j-1})</script> is the observed increment, <script type="math/tex">\lambda_{ij} = \Lambda(t_{ij})-\Lambda(t_{i,j-1})</script>, <script type="math/tex">\tilde{k}_i = \sqrt{\eta Y_i(t_{i,n_i})+k^2}</script> and <script type="math/tex">\tilde{w}_i = (\eta \Lambda(t_{i,n_i})+wk^2)/{\tilde{k}_i^2}</script>. </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hypothesis Testing]]></title>
