@@ -9,7 +9,7 @@
   <meta name="author" content="Chen Piao">
 
   
-  <meta name="description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes &hellip;">
+  <meta name="description" content="This post will talk about complete and convergence, including uniform convergence and poitwise convergence. These two concepts are very important in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +90,81 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/03/complete-and-convergence/">Complete and Convergence</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-03T16:55:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+
+<h2 id="complete">Complete</h2>
+
+<blockquote>
+  <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for <script type="math/tex">L_ \infty</script> fail to complete. </p>
+
+<h2 id="convergence">Convergence</h2>
+
+<p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+
+<blockquote>
+  <p>Define a sequence of functions <script type="math/tex">\{f_t; t\in T\}</script> on the set <script type="math/tex">E \subset X</script> over the base <script type="math/tex">B</script>. Introduce the quantity <script type="math/tex">\Delta_t(x) = \mid f(x)-f_t(x) \mid </script> and <script type="math/tex">\Delta_t = \sup_{x\in E} \Delta_t(x)</script>. Then</p>
+</blockquote>
+
+<script type="math/tex; mode=display">(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),</script>
+
+<script type="math/tex; mode=display">(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).</script>
+
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+
+<h3 id="continuity-and-passage-to-the-limit">Continuity and passage to the limit</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> depending on the parameter $t$; let <script type="math/tex">B</script> be a base in <script type="math/tex">T</script>. If <script type="math/tex">f_t \Rightarrow f</script> on <script type="math/tex">X</script> over the base <script type="math/tex">B</script> and the function <script type="math/tex">f_t</script> are continuos at <script type="math/tex">x_0 \in X</script>, then the function <script type="math/tex">f:X \to C</script> is also continuos at that point.</p>
+</blockquote>
+
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+
+<blockquote>
+  <p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/09/03/complete-and-convergence/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -642,6 +717,10 @@ and let</li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/03/complete-and-convergence/">Complete and Convergence</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a>
       </li>
     
@@ -655,10 +734,6 @@ and let</li>
     
       <li class="post">
         <a href="/blog/2013/11/22/point-estimation/">Point Estimation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/22/data-reduction/">Data Reduction</a>
       </li>
     
   </ul>

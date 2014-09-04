@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Complete and Convergence - Piao's Blog</title>
+  <meta name="author" content="Chen Piao">
+
+  
+  <meta name="description" content="This post will talk about complete and convergence, including uniform convergence and poitwise convergence. These two concepts are very important in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://messipiao.github.io/blog/2014/09/03/complete-and-convergence">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Piao's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45966750-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45966750-1', 'messipiao.github.io');
+  ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Piao's Blog</a></h1>
+  
+    <h2>Show your smile.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:messipiao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Complete and Convergence</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-03T16:55:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+
+<h2 id="complete">Complete</h2>
+
+<blockquote>
+  <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for <script type="math/tex">L_ \infty</script> fail to complete. </p>
+
+<h2 id="convergence">Convergence</h2>
+
+<p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+
+<blockquote>
+  <p>Define a sequence of functions <script type="math/tex">\{f_t; t\in T\}</script> on the set <script type="math/tex">E \subset X</script> over the base <script type="math/tex">B</script>. Introduce the quantity <script type="math/tex">\Delta_t(x) = \mid f(x)-f_t(x) \mid </script> and <script type="math/tex">\Delta_t = \sup_{x\in E} \Delta_t(x)</script>. Then</p>
+</blockquote>
+
+<script type="math/tex; mode=display">(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),</script>
+
+<script type="math/tex; mode=display">(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).</script>
+
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+
+<h3 id="continuity-and-passage-to-the-limit">Continuity and passage to the limit</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> depending on the parameter $t$; let <script type="math/tex">B</script> be a base in <script type="math/tex">T</script>. If <script type="math/tex">f_t \Rightarrow f</script> on <script type="math/tex">X</script> over the base <script type="math/tex">B</script> and the function <script type="math/tex">f_t</script> are continuos at <script type="math/tex">x_0 \in X</script>, then the function <script type="math/tex">f:X \to C</script> is also continuos at that point.</p>
+</blockquote>
+
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+
+<blockquote>
+  <p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>
+
+<!--more-->
+
+<h3 id="integration-and-passage-to-the-limit">Integration and passage to the limit</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> defined on a closed interval <script type="math/tex">a \le x \le b</script> and depending on the parameter <script type="math/tex">t \in T</script>, and let $B$ be a base in $T$. If the functions of the family are integrable on <script type="math/tex">[a,b]</script> and <script type="math/tex">f_t \Rightarrow f</script> on <script type="math/tex">[a,b]</script> over the base <script type="math/tex">B</script>, then the limit function <script type="math/tex">f:[a,b] \to C</script>is also integrable on <script type="math/tex">[a,b]</script> and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">\int_a^b f(x) dx = \lim_{B} \int_a^b f_t(x) dx.</script>
+
+<p>A useful corollary following by is</p>
+
+<blockquote>
+  <p>If the series <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> consisting of integrable functions on a closed interval <script type="math/tex">[a,b] \subset R</script> converges uniformly on that closed interval, then its sum is also integrable on <script type="math/tex">[a,b]</script> and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">\int_a^b (\sum_{n=1}^{\infty} f_n(x))dx = \sum_{n=1}^{\infty} \int_a^b f_n(x) dx.</script>
+
+<h3 id="differentiation-and-passage-to-the-limit">Differentiation and passage to the limit</h3>
+
+<p>The condition of interchanging between differentiation and limit is more strict. In general, if the original function converges uniformly, the limit function need not be differentiable; even if it is differentiable, the derivative of the limit function need not be equal to the limit of derivatives.</p>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter <script type="math/tex">t \in T</script>; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives <script type="math/tex">\{f'_t; t\in T\}</script> converges uniformly on $X$ to function $\psi:X\to C$, and the original family <script type="math/tex">\{f_t;t\in T\}</script> converges at even on point <script type="math/tex">x_0 \in X</script>, then it converges uniformly on the entire set $X$ to a differentiable function <script type="math/tex">f:X\to C</script>, and <script type="math/tex">f '=\psi</script>.  </p>
+</blockquote>
+
+<p>A corollary following by is</p>
+
+<blockquote>
+  <p>If the series <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> of functions <script type="math/tex">f_t: X \to C</script> that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point <script type="math/tex">x \in X</script> and the series <script type="math/tex">\sum_{n=1}^\infty f'_n(x)</script> converges uniformly on $X$, then <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">(\sum_{n=1}^\infty f_n(x))'=  \sum_{n=1}^\infty f'_n(x).</script>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Piao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-03T16:55:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/analysis/'>Analysis</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/14/asymptotic-evaluations/" title="Previous Post: Asymptotic Evaluations">&laquo; Asymptotic Evaluations</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/03/complete-and-convergence/">Complete and Convergence</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/19/random-effect/">Random Effect</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/24/hypothesis-testing/">Hypothesis Testing</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/22/point-estimation/">Point Estimation</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Chen Piao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'messipiao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://messipiao.github.io/blog/2014/09/03/complete-and-convergence/';
+        var disqus_url = 'http://messipiao.github.io/blog/2014/09/03/complete-and-convergence/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+

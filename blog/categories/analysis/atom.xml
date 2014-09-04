@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Analysis | Piao's Blog]]></title>
+  <link href="http://messipiao.github.io/blog/categories/analysis/atom.xml" rel="self"/>
+  <link href="http://messipiao.github.io/"/>
+  <updated>2014-09-04T13:48:22+08:00</updated>
+  <id>http://messipiao.github.io/</id>
+  <author>
+    <name><![CDATA[Chen Piao]]></name>
+    <email><![CDATA[messipiao@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Complete and Convergence]]></title>
+    <link href="http://messipiao.github.io/blog/2014/09/03/complete-and-convergence/"/>
+    <updated>2014-09-03T16:55:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2014/09/03/complete-and-convergence</id>
+    <content type="html"><![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+
+<h2 id="complete">Complete</h2>
+
+<blockquote>
+  <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for <script type="math/tex">L_ \infty</script> fail to complete. </p>
+
+<h2 id="convergence">Convergence</h2>
+
+<p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+
+<blockquote>
+  <p>Define a sequence of functions <script type="math/tex">\{f_t; t\in T\}</script> on the set <script type="math/tex">E \subset X</script> over the base <script type="math/tex">B</script>. Introduce the quantity <script type="math/tex">\Delta_t(x) = \mid f(x)-f_t(x) \mid </script> and <script type="math/tex">\Delta_t = \sup_{x\in E} \Delta_t(x)</script>. Then</p>
+</blockquote>
+
+<script type="math/tex; mode=display">(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),</script>
+
+<script type="math/tex; mode=display">(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).</script>
+
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+
+<h3 id="continuity-and-passage-to-the-limit">Continuity and passage to the limit</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> depending on the parameter $t$; let <script type="math/tex">B</script> be a base in <script type="math/tex">T</script>. If <script type="math/tex">f_t \Rightarrow f</script> on <script type="math/tex">X</script> over the base <script type="math/tex">B</script> and the function <script type="math/tex">f_t</script> are continuos at <script type="math/tex">x_0 \in X</script>, then the function <script type="math/tex">f:X \to C</script> is also continuos at that point.</p>
+</blockquote>
+
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+
+<blockquote>
+  <p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>
+
+<!--more-->
+
+<h3 id="integration-and-passage-to-the-limit">Integration and passage to the limit</h3>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> defined on a closed interval <script type="math/tex">a \le x \le b</script> and depending on the parameter <script type="math/tex">t \in T</script>, and let $B$ be a base in $T$. If the functions of the family are integrable on <script type="math/tex">[a,b]</script> and <script type="math/tex">f_t \Rightarrow f</script> on <script type="math/tex">[a,b]</script> over the base <script type="math/tex">B</script>, then the limit function <script type="math/tex">f:[a,b] \to C</script>is also integrable on <script type="math/tex">[a,b]</script> and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">\int_a^b f(x) dx = \lim_{B} \int_a^b f_t(x) dx.</script>
+
+<p>A useful corollary following by is</p>
+
+<blockquote>
+  <p>If the series <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> consisting of integrable functions on a closed interval <script type="math/tex">[a,b] \subset R</script> converges uniformly on that closed interval, then its sum is also integrable on <script type="math/tex">[a,b]</script> and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">\int_a^b (\sum_{n=1}^{\infty} f_n(x))dx = \sum_{n=1}^{\infty} \int_a^b f_n(x) dx.</script>
+
+<h3 id="differentiation-and-passage-to-the-limit">Differentiation and passage to the limit</h3>
+
+<p>The condition of interchanging between differentiation and limit is more strict. In general, if the original function converges uniformly, the limit function need not be differentiable; even if it is differentiable, the derivative of the limit function need not be equal to the limit of derivatives.</p>
+
+<blockquote>
+  <p>Let <script type="math/tex">\{ f_t; t \in T\}</script> be a family of functions <script type="math/tex">f_t: X \to C</script> defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter <script type="math/tex">t \in T</script>; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives <script type="math/tex">\{f'_t; t\in T\}</script> converges uniformly on $X$ to function $\psi:X\to C$, and the original family <script type="math/tex">\{f_t;t\in T\}</script> converges at even on point <script type="math/tex">x_0 \in X</script>, then it converges uniformly on the entire set $X$ to a differentiable function <script type="math/tex">f:X\to C</script>, and <script type="math/tex">f '=\psi</script>.  </p>
+</blockquote>
+
+<p>A corollary following by is</p>
+
+<blockquote>
+  <p>If the series <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> of functions <script type="math/tex">f_t: X \to C</script> that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point <script type="math/tex">x \in X</script> and the series <script type="math/tex">\sum_{n=1}^\infty f'_n(x)</script> converges uniformly on $X$, then <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> <script type="math/tex">\sum_{n=1}^\infty f_n(x)</script> also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
+</blockquote>
+
+<script type="math/tex; mode=display">(\sum_{n=1}^\infty f_n(x))'=  \sum_{n=1}^\infty f'_n(x).</script>
+]]></content>
+  </entry>
+  
+</feed>
