@@ -4,7 +4,7 @@
   <title><![CDATA[Piao's Blog]]></title>
   <link href="http://messipiao.github.io/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2014-09-04T13:48:22+08:00</updated>
+  <updated>2014-09-15T10:53:10+08:00</updated>
   <id>http://messipiao.github.io/</id>
   <author>
     <name><![CDATA[Chen Piao]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tips of giving a seminar presentaion]]></title>
+    <link href="http://messipiao.github.io/blog/2014/09/15/tips-of-giving-a-seminar-presentaion/"/>
+    <updated>2014-09-15T10:37:00+08:00</updated>
+    <id>http://messipiao.github.io/blog/2014/09/15/tips-of-giving-a-seminar-presentaion</id>
+    <content type="html"><![CDATA[<p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapter talking about giving presentations and the author lists some ideas which may help to make a good presentation. My supervivor used to tell me such similar ideas and I record here for my future check and the readers’ information.</p>
+
+<ol>
+  <li>Your seminar is a performance. It needs to be carefully planned and throughly rehearsed. You should especially pay attention to the time.</li>
+  <li>Present yourself confidently. Act as though you are enjoying your research and your results are exciting to you.</li>
+  <li>Respect your audience. They are spending an hour to hear you. They want to understand what you have to say, even if your specialty is not theirs. They do not want to be “snowed”, nor do they want to be treated as experts in a field where they really are not. Remeber never overestimate your audience. In this point, you should tell them a good story instead of listing your techniques too much.</li>
+  <li>Do not waste your time with filler. Make sure each slide pushes your story forward. If your talk is a bit too short, no one will object. An except is too use large fonts so that people in the back can see your slides clearly.</li>
+</ol>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Complete and Convergence]]></title>

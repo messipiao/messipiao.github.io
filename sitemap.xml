@@ -37,8 +37,14 @@
         <lastmod>2014-09-04T13:47:59+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://messipiao.github.io/blog/2014/09/15/tips-of-giving-a-seminar-presentaion/
+        </loc>
+        <lastmod>2014-09-15T10:52:31+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://messipiao.github.io/blog/archives/</loc>
-        <lastmod>2014-09-04T13:47:59+08:00</lastmod>
+        <lastmod>2014-09-15T10:52:31+08:00</lastmod>
     </url>
     <url>
         <loc>http://messipiao.github.io/about/</loc>
@@ -50,6 +56,6 @@
     </url>
     <url>
         <loc>http://messipiao.github.io/</loc>
-        <lastmod>2014-09-04T13:47:59+08:00</lastmod>
+        <lastmod>2014-09-15T10:52:31+08:00</lastmod>
     </url>
 </urlset>
