@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://messipiao.github.io/sitemap.xml 

@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Data Reduction - Piao's Blog</title>
+  <meta name="author" content="Chen Piao">
+
+  
+  <meta name="description" content="Any statistic, T(X), defines a form of data reduction or data summay. Sufficient Statistics A statistic T(X) is a sufficient statistic for if the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://messipiao.github.io/blog/2013/11/22/data-reduction">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Piao's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45966750-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45966750-1', 'messipiao.github.io');
+  ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Piao's Blog</a></h1>
+  
+    <h2>Show your smile.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:messipiao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Data Reduction</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-22T16:23:00+08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
+
+<h2 id="sufficient-statistics">Sufficient Statistics</h2>
+
+<blockquote>
+  <p>A statistic T(<strong>X</strong>) is a sufficient statistic for <script type="math/tex">\theta</script> if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+</blockquote>
+
+<p>A sufficient statistic captures all the infromation about $\theta$.</p>
+
+<blockquote>
+  <p>If <script type="math/tex">p( \mathbf{x} \vert \theta)</script> is the joint pdf or pmf of <script type="math/tex">\mathbf{X}</script> and <script type="math/tex">q(t \vert \theta)</script> is the pdf or pmf of <script type="math/tex">T(\mathbf{X})</script>, then <script type="math/tex">T(\mathbf{X})</script> is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration <script type="math/tex">p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)</script> is constant as a function of $\theta$.</p>
+</blockquote>
+
+<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
+
+<ul>
+  <li>Lef <script type="math/tex">f(\mathbf{x}\vert \theta)</script> denote the joint pdf or pmf of a sample <script type="math/tex">\mathbf{X}</script>. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions <script type="math/tex">g(t \vert \theta)</script> and <script type="math/tex">h(\mathbf{x})</script> such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})</script>
+
+<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
+
+<ul>
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a pdf or pfm <script type="math/tex">f(x \vert \mathbf{\theta})</script> that belongs to an exponential family given by</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))</script>
+
+<p>where <script type="math/tex">\mathbf{\theta} = (\theta_1,\dots,\theta_d)</script>, <script type="math/tex">d \le k</script>. Then</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))</script>
+
+<p>is a sufficient statistic for <script type="math/tex">\theta</script>.</p>
+
+<!--more-->
+
+<h2 id="minimal-sufficient-statistics">Minimal Sufficient Statistics</h2>
+
+<p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
+
+<blockquote>
+  <p>A sufficient statistic <script type="math/tex">T(\mathbf{X})</script> is called a minimal sufficient statistic if, for any other sufficient statistic <script type="math/tex">T'(\mathbf{X})</script>, <script type="math/tex">T(\mathbf{X})</script> is a function of <script type="math/tex">T'(\mathbf{X})</script>.</p>
+</blockquote>
+
+<p>We have an easier way to find a minimal sufficient statistic.</p>
+
+<ul>
+  <li>Let <script type="math/tex">f(\mathbf{x}\vert \theta)</script> be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function <script type="math/tex">T(\mathbf{x})</script> such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio <script type="math/tex">f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)</script> is constant as a function of $\theta$ if and only if <script type="math/tex">T(\mathbf{x}) = T(\mathbf{y})</script>. Then <script type="math/tex">T(\mathbf{X})</script> is a minimal sufficient statistic for $\theta$.</li>
+</ul>
+
+<p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
+
+<h2 id="ancillary-statistics">Ancillary Statistics</h2>
+
+<blockquote>
+  <p>A stastistic <script type="math/tex">S(\mathbf{X})</script> whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
+</blockquote>
+
+<p><strong>Alone</strong>, an ancillary statistic contains no information about $\theta$.</p>
+
+<ul>
+  <li>Location family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, <script type="math/tex">% <![CDATA[
+-\infty < \theta < \infty %]]></script>. <script type="math/tex">R = X_{(n)}-X_{(1)}</script> is an ancillary statistic.</li>
+  <li>Scale family ancillary statistic: Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values <script type="math/tex">X_1/X_n,\dots,X_{n-1}/X_n</script> is an ancillary statistic.</li>
+</ul>
+
+<p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
+
+<h2 id="complete-statistics">Complete Statistics</h2>
+
+<blockquote>
+  <p>Let <script type="math/tex">f(t \vert \theta)</script> be a family of pdfs or pmfs for a statistic <script type="math/tex">T(\mathbf{X})</script>. The family of probability distributions is called complete if <script type="math/tex">E_{\theta}g(T) = 0</script> for all $\theta$ implies <script type="math/tex">P_{\theta}(g(T)=0) = 1</script> for all $\theta$. Equivalently, <script type="math/tex">T(\mathbf{X})</script> is called a complete statistic.</p>
+</blockquote>
+
+<p>Informally, a statistic $T(\mathbf{X})$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
+
+<p>We can get the complete statistics in the exponential family.</p>
+
+<ul>
+  <li>Let <script type="math/tex">X_1,\dots,X_n</script> be <em>iid</em> observations from a pdf or pfm <script type="math/tex">f(x \vert \mathbf{\theta})</script> that belongs to an exponential family given by</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))</script>
+
+<p>where <script type="math/tex">\mathbf{\theta} = (\theta_1,\dots,\theta_d)</script>, <script type="math/tex">d \le k</script>. Then</p>
+
+<script type="math/tex; mode=display">T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))</script>
+
+<p>is complete if <script type="math/tex">\{(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta\}</script> contains an open set in $R^k$.</p>
+
+<p>We use completeness to state a condition under which a minimal sufficient statistic is independent of every ancillary statistic.</p>
+
+<ul>
+  <li><strong>(Basu’s Theorem)</strong> If <script type="math/tex">T(\mathbf{X})</script> is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
+</ul>
+
+<p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
+
+<ul>
+  <li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em> </li>
+</ul>
+
+<h2 id="applications-and-special-distributions">Applications and Special distributions</h2>
+
+<ul>
+  <li><strong>The Bernoulli Distribution</strong></li>
+</ul>
+
+<p>$Y=\sum X_i$ is minimal sufficient and complete for $p$.</p>
+
+<ul>
+  <li><strong>Poisson Distribution</strong></li>
+</ul>
+
+<p>$Y = \sum X_i$ is minimal sufficient and complete for $\theta$.</p>
+
+<ul>
+  <li><strong>The Uniform Distribution</strong></li>
+</ul>
+
+<ol>
+  <li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
+  <li>interval <script type="math/tex">[\theta,\theta+1]</script>, <script type="math/tex">(X_{(1)},X_{(n)})</script> is minimal sufficient for $\theta$.</li>
+</ol>
+
+<ul>
+  <li><strong>Normal Distribution</strong></li>
+</ul>
+
+<ol>
+  <li><script type="math/tex">(\sum X_i,\sum X^2_i)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>;</li>
+  <li><script type="math/tex">(\bar{X},S^2)</script> is sufficient for <script type="math/tex">(\mu,\sigma^2)</script>.</li>
+</ol>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chen Piao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-22T16:23:00+08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/statistics/'>Statistics</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/20/random-sample/" title="Previous Post: Random Sample">&laquo; Random Sample</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/11/22/point-estimation/" title="Next Post: Point Estimation">Point Estimation &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/15/tips-of-giving-a-seminar-presentaion/">Tips of Giving a Seminar Presentaion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/03/complete-and-convergence/">Complete and Convergence</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/19/random-effect/">Random Effect</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/24/hypothesis-testing/">Hypothesis Testing</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Chen Piao -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'messipiao';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://messipiao.github.io/blog/2013/11/22/data-reduction/';
+        var disqus_url = 'http://messipiao.github.io/blog/2013/11/22/data-reduction/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
