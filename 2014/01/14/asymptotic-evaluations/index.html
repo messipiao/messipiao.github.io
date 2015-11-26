@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Asymptotic Evaluations | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.
+Point EstimationThe property of consiste">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asymptotic Evaluations">
+<meta property="og:url" content="http://messipiao.github.io/2014/01/14/asymptotic-evaluations/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.
+Point EstimationThe property of consiste">
+<meta property="og:updated_time" content="2014-12-29T05:14:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Asymptotic Evaluations">
+<meta name="twitter:description" content="All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.
+Point EstimationThe property of consiste">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://messipiao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-asymptotic-evaluations" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/14/asymptotic-evaluations/" class="article-date">
+  <time datetime="2014-01-14T12:19:00.000Z" itemprop="datePublished">2014-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Statistics/">Statistics</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Asymptotic Evaluations
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+<h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+<blockquote>
+<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+<blockquote>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+<p>Recall that in the above definition, </p>
+<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+<a id="more"></a>
+<h2 id="Robustness">Robustness</h2><p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
+<h2 id="Hypothesis_Testing">Hypothesis Testing</h2><p>We are going to introduce 3 large-sample tests here.</p>
+<h3 id="Asymptotic_distribution_of_the_LRT">Asymptotic distribution of the LRT</h3><blockquote>
+<p>Let $$X_1,\dots,X_n$$ be a random sample from a pdf or pmf $$f(x \vert \theta)$$. Under some regularity conditions, if $$\theta \in \Theta_0$$, then the distribution of the statistic $$-2\log \lambda(\mathbf{X})$$ converges to a chi squared distribution as the sample size $$n \to \infty$$. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by $$\theta \in \Theta_0$$ and the number of free parameters specified by $$\theta \in \Theta$$.</p>
+</blockquote>
+<h3 id="Wald_test">Wald test</h3><p>In general, a Wald test is a test based on a satistic of the form</p>
+<p>$$ Z_n = \dfrac{W_n-\theta_0}{S_n} $$ </p>
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and $$S_n$$ is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, $$1/\sqrt{I_n(W_n)}$$ is a reasonable standard error for $W_n$. Alternatively, $$1/\sqrt{\hat{I}_n(W_n)}$$, where</p>
+<p>$$\hat{I}_n(W<em>n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid</em>{\theta = W_n}$$</p>
+<p>is the observed information number, is often used. </p>
+<h3 id="Score_test">Score test</h3><p>The <em>score statistics</em> is defined to be</p>
+<p>$$ S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) $$</p>
+<p>We can obtain the result that for all $\theta$, $$E_\theta S(\theta) = 0 $$. In particular, if we are testing $$H_0: \theta=\theta_0$$ and if $H_0$ is true, then $$S(\theta_0)$$ has mean 0. Then we have</p>
+<p>$$Var_\theta S(\theta) = I_n(\theta)$$</p>
+<p>The test statistic for the score test is</p>
+<p>$$Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}$$</p>
+<p>It follows that $Z_S$ converges to a standard normal random variable.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://messipiao.github.io/2014/01/14/asymptotic-evaluations/" data-id="cihg6p6ou000dttjxpzvt0ycg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/09/03/complete-and-convergence/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Complete and Convergence
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/19/random-effect/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Random Effect</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Analysis/">Analysis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Probability/">Probability</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Research/">Research</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Statistics/">Statistics</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/11/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/07/ipython-parallel-computing/">IPython parallel Computing</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/15/tips-of-giving-a-seminar-presentaion/">Tips of giving a seminar presentaion</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/03/complete-and-convergence/">Complete and Convergence</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/14/asymptotic-evaluations/">Asymptotic Evaluations</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
