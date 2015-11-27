@@ -15,7 +15,7 @@ Views provide the fundamental ways of accessing the clients. There are two types
 <meta property="og:description" content="Basic concepts
 Clent is a lightweight handle on all the engines of a cluster.
 Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balan">
-<meta property="og:updated_time" content="2015-11-27T03:58:01.000Z">
+<meta property="og:updated_time" content="2015-11-27T11:05:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPython parallel Computing">
 <meta name="twitter:description" content="Basic concepts
@@ -92,7 +92,7 @@ Views provide the fundamental ways of accessing the clients. There are two types
 						
 							<li><a href="/">home</a></li>
 				        
-							<li><a href="/categories">categories</a></li>
+							<li><a href="/tags">tags</a></li>
 				        
 							<li><a href="/archives">archives</a></li>
 				        
@@ -114,7 +114,7 @@ Views provide the fundamental ways of accessing the clients. There are two types
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/Analysis/" style="font-size: 10px;">Analysis</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Programming/" style="font-size: 10px;">Programming</a> <a href="/tags/Research/" style="font-size: 10px;">Research</a> <a href="/tags/Statistics/" style="font-size: 20px;">Statistics</a>
 					</div>
 				</section>
 				
@@ -155,7 +155,7 @@ Views provide the fundamental ways of accessing the clients. There are two types
 				
 					<li><a href="/">home</a></li>
 		        
-					<li><a href="/categories">categories</a></li>
+					<li><a href="/tags">tags</a></li>
 		        
 					<li><a href="/archives">archives</a></li>
 		        
@@ -201,11 +201,11 @@ Views provide the fundamental ways of accessing the clients. There are two types
       
       <div class="article-info article-info-post">
         
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Programming/">Programming</a>
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming/">Programming</a></li></ul>
 	</div>
 
+        
 
         <div class="clearfix"></div>
       </div>
@@ -218,6 +218,7 @@ Views provide the fundamental ways of accessing the clients. There are two types
 <li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="Direct_View">Direct View</h1><p>In a DirectView interface, we can either use Blocking (synchronous) execution, in which all results must finish computing before any results are recorded, </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">True</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_sync(some function)</span><br></pre></td></tr></table></figure>
 <p>or non-blocking (asynchronous) execution, where we receive results as they finish.</p>
@@ -235,7 +236,6 @@ Views provide the fundamental ways of accessing the clients. There are two types
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
 <p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <h1 id="Load-balanced_Views">Load-balanced Views</h1><p>A load-balanced view is a fault-tolerant way to distribute tasks among the engines. While there is no direct access to individual engines, it provides a simple and powerful interface.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lview.block = <span class="keyword">True</span></span><br><span class="line">lview.apply(some_function,par)</span><br><span class="line"><span class="comment">## We can use the map function to execute multiple inputs. We'll use block=False to make sure the results come asynchronously.</span></span><br><span class="line">lview.block = <span class="keyword">False</span></span><br><span class="line">res = lview.map(some_function,list_of_pars)</span><br><span class="line"><span class="comment">## check how many of the jobs have been completed</span></span><br><span class="line">res.progress</span><br><span class="line"><span class="comment">## get the result</span></span><br><span class="line">res.result</span><br><span class="line"><span class="comment">## another way to get the result</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> lview.map(sleep_and_return, range(<span class="number">10</span>)):</span><br><span class="line">    <span class="keyword">print</span> result</span><br></pre></td></tr></table></figure>
 <h1 id="Example:_Monte_Carlo_$\pi$">Example: Monte Carlo $\pi$</h1><ul>

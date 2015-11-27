@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Step by Step]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://messipiao.github.io/"/>
-  <updated>2015-11-27T03:58:01.000Z</updated>
+  <updated>2015-11-27T11:05:54.000Z</updated>
   <id>http://messipiao.github.io/</id>
   
   <author>
@@ -19,12 +19,13 @@
     <link href="http://messipiao.github.io/2015/01/07/ipython-parallel-computing/"/>
     <id>http://messipiao.github.io/2015/01/07/ipython-parallel-computing/</id>
     <published>2015-01-07T08:12:00.000Z</published>
-    <updated>2015-11-27T03:58:01.000Z</updated>
+    <updated>2015-11-27T11:05:54.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Basic_concepts">Basic concepts</h1><ul>
 <li>Clent is a lightweight handle on all the engines of a cluster.</li>
 <li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h1 id="Direct_View">Direct View</h1><p>In a DirectView interface, we can either use Blocking (synchronous) execution, in which all results must finish computing before any results are recorded, </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">True</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_sync(some function)</span><br></pre></td></tr></table></figure>
 <p>or non-blocking (asynchronous) execution, where we receive results as they finish.</p>
@@ -42,7 +43,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
 <p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <h1 id="Load-balanced_Views">Load-balanced Views</h1><p>A load-balanced view is a fault-tolerant way to distribute tasks among the engines. While there is no direct access to individual engines, it provides a simple and powerful interface.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lview.block = <span class="keyword">True</span></span><br><span class="line">lview.apply(some_function,par)</span><br><span class="line"><span class="comment">## We can use the map function to execute multiple inputs. We'll use block=False to make sure the results come asynchronously.</span></span><br><span class="line">lview.block = <span class="keyword">False</span></span><br><span class="line">res = lview.map(some_function,list_of_pars)</span><br><span class="line"><span class="comment">## check how many of the jobs have been completed</span></span><br><span class="line">res.progress</span><br><span class="line"><span class="comment">## get the result</span></span><br><span class="line">res.result</span><br><span class="line"><span class="comment">## another way to get the result</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> lview.map(sleep_and_return, range(<span class="number">10</span>)):</span><br><span class="line">    <span class="keyword">print</span> result</span><br></pre></td></tr></table></figure>
 <h1 id="Example:_Monte_Carlo_$\pi$">Example: Monte Carlo $\pi$</h1><ul>
@@ -60,28 +60,11 @@
 <li>Clent is a lightweight handle on all the engines of a cluster.</li>
 <li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>
-<h1 id="Direct_View">Direct View</h1><p>In a DirectView interface, we can either use Blocking (synchronous) execution, in which all results must finish computing before any results are recorded, </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">True</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_sync(some function)</span><br></pre></td></tr></table></figure>
-<p>or non-blocking (asynchronous) execution, where we receive results as they finish.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_async(some function)</span><br></pre></td></tr></table></figure>
-<p>To get the result in a blocking mode (synchronous) is quite straitforward, while things get complicated in the non-blocking (asynchronous) mode. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some_function)</span><br><span class="line"><span class="comment">## the result should be &lt;AsyncResult: some_function&gt;</span></span><br><span class="line"><span class="comment">## In order to get the result res = dview.apply(some_function)</span></span><br><span class="line">res.get()</span><br><span class="line"><span class="comment">## To check whether the excutation is over or not</span></span><br><span class="line">res.ready()</span><br></pre></td></tr></table></figure>
-<p>It is noted that when you import some modules which excepected to be used in all the engines, you should put it in the function. For example, if we want to import <em>numpy</em>, we should put <em>import numpy</em> in the function. Alternatives ways can be </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.execute(<span class="string">'import numpy'</span>)</span><br></pre></td></tr></table></figure>
-<p>and </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> dview.sync_imports():</span><br><span class="line">    <span class="keyword">import</span> numpy</span><br></pre></td></tr></table></figure>
-<p>If we use the IPython notebook, there is more convinient way by using magic function <strong>%px</strong>(parallel execute) to achieve it. </p>
-<p>We have shown above that function <strong>apply()</strong> is used to excute functions in the direct view interface. There are two other useful functions, i.e., <strong>run()</strong> and <strong>excute()</strong>. <strong>run()</strong> can be used to run scripts</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.run(<span class="string">"myscript.py"</span>)</span><br></pre></td></tr></table></figure>
-<p>and <strong>excute()</strong> can be used to execute code directly on the engine by passing strings to the engines.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
-<p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>]]>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
     
-      <category term="Programming" scheme="http://messipiao.github.io/categories/Programming/"/>
+      <category term="Programming" scheme="http://messipiao.github.io/tags/Programming/"/>
     
   </entry>
   
@@ -90,7 +73,7 @@
     <link href="http://messipiao.github.io/2014/09/15/tips-of-giving-a-seminar-presentaion/"/>
     <id>http://messipiao.github.io/2014/09/15/tips-of-giving-a-seminar-presentaion/</id>
     <published>2014-09-15T02:37:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
+    <updated>2015-11-27T11:05:16.000Z</updated>
     <content type="html"><![CDATA[<p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapter talking about giving presentations and the author lists some ideas which may help to make a good presentation. My supervivor used to tell me such similar ideas and I record here for my future check and the readers’ information.</p>
 <ol>
 <li>Your seminar is a performance. It needs to be carefully planned and throughly rehearsed. You should especially pay attention to the time.</li>
@@ -112,7 +95,7 @@
     <![CDATA[<p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapte]]>
     </summary>
     
-      <category term="Research" scheme="http://messipiao.github.io/categories/Research/"/>
+      <category term="Research" scheme="http://messipiao.github.io/tags/Research/"/>
     
   </entry>
   
@@ -121,7 +104,7 @@
     <link href="http://messipiao.github.io/2014/09/03/complete-and-convergence/"/>
     <id>http://messipiao.github.io/2014/09/03/complete-and-convergence/</id>
     <published>2014-09-03T08:55:00.000Z</published>
-    <updated>2015-11-27T03:55:38.000Z</updated>
+    <updated>2015-11-27T11:05:06.000Z</updated>
     <content type="html"><![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete\_metric\_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform\_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise\_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
 <h2 id="Complete">Complete</h2><blockquote>
 <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
@@ -184,7 +167,7 @@
     
     </summary>
     
-      <category term="Analysis" scheme="http://messipiao.github.io/categories/Analysis/"/>
+      <category term="Analysis" scheme="http://messipiao.github.io/tags/Analysis/"/>
     
   </entry>
   
@@ -193,7 +176,7 @@
     <link href="http://messipiao.github.io/2014/01/14/asymptotic-evaluations/"/>
     <id>http://messipiao.github.io/2014/01/14/asymptotic-evaluations/</id>
     <published>2014-01-14T12:19:00.000Z</published>
-    <updated>2015-11-27T03:54:48.000Z</updated>
+    <updated>2015-11-27T11:04:57.000Z</updated>
     <content type="html"><![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
 <h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
 <blockquote>
@@ -245,7 +228,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -254,7 +237,7 @@
     <link href="http://messipiao.github.io/2013/12/19/random-effect/"/>
     <id>http://messipiao.github.io/2013/12/19/random-effect/</id>
     <published>2013-12-19T13:38:00.000Z</published>
-    <updated>2015-11-27T04:07:17.000Z</updated>
+    <updated>2015-11-27T11:04:49.000Z</updated>
     <content type="html"><![CDATA[<p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
 <p>Two commonly used distributions estimating lifetime are as follows.</p>
 <h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$ X \sim IG(\mu,\lambda) $, where $X \in (0,\infty)$. $\mu$ and $\lambda$ are called mean and shape parameter respectively.</p>
@@ -296,7 +279,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -305,7 +288,7 @@
     <link href="http://messipiao.github.io/2013/11/24/hypothesis-testing/"/>
     <id>http://messipiao.github.io/2013/11/24/hypothesis-testing/</id>
     <published>2013-11-24T02:47:00.000Z</published>
-    <updated>2015-11-27T04:10:33.000Z</updated>
+    <updated>2015-11-27T11:04:37.000Z</updated>
     <content type="html"><![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
 <blockquote>
 <p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
@@ -398,7 +381,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -407,7 +390,7 @@
     <link href="http://messipiao.github.io/2013/11/22/point-estimation/"/>
     <id>http://messipiao.github.io/2013/11/22/point-estimation/</id>
     <published>2013-11-22T11:31:00.000Z</published>
-    <updated>2015-11-27T03:57:11.000Z</updated>
+    <updated>2015-11-27T11:04:26.000Z</updated>
     <content type="html"><![CDATA[<p>When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
 <h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
 <p>$m_k = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
@@ -518,7 +501,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -527,7 +510,7 @@
     <link href="http://messipiao.github.io/2013/11/22/data-reduction/"/>
     <id>http://messipiao.github.io/2013/11/22/data-reduction/</id>
     <published>2013-11-22T08:23:00.000Z</published>
-    <updated>2015-11-27T03:40:31.000Z</updated>
+    <updated>2015-11-27T11:04:15.000Z</updated>
     <content type="html"><![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
 <h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
 <p>A statistic T(<strong>X</strong>) is a sufficient statistic for $\theta$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
@@ -636,7 +619,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -645,7 +628,7 @@
     <link href="http://messipiao.github.io/2013/11/20/random-sample/"/>
     <id>http://messipiao.github.io/2013/11/20/random-sample/</id>
     <published>2013-11-20T07:03:00.000Z</published>
-    <updated>2015-11-27T03:38:21.000Z</updated>
+    <updated>2015-11-27T11:04:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
 <p>The random variables $X_1,\dots,X_n$ are called a random sample of size n from the population $f(x)$ if $X_1,\dots,X_n$ are mutually independent random variables and the marginal pdf or pmf of each $X_i$ is the same function $f(x)$. Alternatively, $X_1,\dots,X_n$ are called independent and identically distributed random variables with pdf or pmf $f(x)$. This is commonly abbreviated to iid random variables. </p>
 </blockquote>
@@ -739,7 +722,7 @@
     
     </summary>
     
-      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+      <category term="Statistics" scheme="http://messipiao.github.io/tags/Statistics/"/>
     
   </entry>
   
@@ -748,7 +731,7 @@
     <link href="http://messipiao.github.io/2013/11/18/basics-of-martingales/"/>
     <id>http://messipiao.github.io/2013/11/18/basics-of-martingales/</id>
     <published>2013-11-18T08:16:00.000Z</published>
-    <updated>2015-11-27T03:11:44.000Z</updated>
+    <updated>2015-11-27T11:06:04.000Z</updated>
     <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
 <h2 id="Martingales">Martingales</h2><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
@@ -802,7 +785,7 @@
     
     </summary>
     
-      <category term="Probability" scheme="http://messipiao.github.io/categories/Probability/"/>
+      <category term="Probability" scheme="http://messipiao.github.io/tags/Probability/"/>
     
   </entry>
   
@@ -811,7 +794,7 @@
     <link href="http://messipiao.github.io/2013/10/30/hello-world/"/>
     <id>http://messipiao.github.io/2013/10/30/hello-world/</id>
     <published>2013-10-30T05:10:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
+    <updated>2015-11-27T11:02:21.000Z</updated>
     <content type="html"><![CDATA[<p>Hello world, it’s Piao’s first post from his own lab.</p>
 <p>I want to have my own blog for a long time and I have tried some blogs in China, like 163 blog or blogbus. However, neither of them satisfied me as there are some restrictions from the websites and they are not as neat as what I thought blogs should be. Luckily, with recommendations and help from Super P, I finally have this amazing blog! I will share what I’ve learned and felt here, as a record of my study and life in NUS.</p>
 <p>I’ve been in NUS for 3 months. Actually, Sinapore is very much like China, no matter in food taste or language (you can just say Chinese in your normal life), so I feel like only from one city to another while less feeling of being abroad.</p>
@@ -823,7 +806,7 @@
 <p>I want to have my own blog for a long time and I have tried some blogs in Ch]]>
     </summary>
     
-      <category term="Life" scheme="http://messipiao.github.io/categories/Life/"/>
+      <category term="Life" scheme="http://messipiao.github.io/tags/Life/"/>
     
   </entry>
   
