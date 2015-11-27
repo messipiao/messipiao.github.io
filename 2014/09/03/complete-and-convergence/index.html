@@ -63,7 +63,7 @@ In mathimatics, a C">
 <meta property="og:description" content="This post will talk about complete and convergence, including uniform convergence and poitwise convergence. These two concepts are very important in mathimatical analysis.
 Complete
 In mathimatics, a C">
-<meta property="og:updated_time" content="2014-12-29T05:14:56.000Z">
+<meta property="og:updated_time" content="2015-11-27T03:55:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Complete and Convergence">
 <meta name="twitter:description" content="This post will talk about complete and convergence, including uniform convergence and poitwise convergence. These two concepts are very important in mathimatical analysis.
@@ -300,20 +300,20 @@ In mathimatics, a C">
       
 
       
-        <span itemprop="articleBody"><p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+        <span itemprop="articleBody"><p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete\_metric\_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform\_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise\_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
 <h2 id="Complete">Complete</h2><blockquote>
 <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
 </blockquote>
-<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for $L_ \infty$ fail to complete. </p>
 <h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
 <blockquote>
-<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
+<p>Define a sequence of functions ${f_t; t\in T}$ on the set $E \subset X$ over the base $B$. Introduce the quantity $\Delta_t(x) = \mid f(x)-f_t(x) \mid $ and $\Delta_t = \sup_{x\in E} \Delta_t(x)$. Then</p>
 </blockquote>
-<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
-<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
+<p>$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$</p>
+<p>$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$</p>
 <p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
 <h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ depending on the parameter $t$; let $B$ be a base in $T$. If $f_t \Rightarrow f$ on $X$ over the base $B$ and the function $f_t$ are continuos at $x_0 \in X$, then the function $f:X \to C$ is also continuos at that point.</p>
 </blockquote>
 <p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
 <blockquote>
@@ -321,23 +321,23 @@ In mathimatics, a C">
 </blockquote>
 <a id="more"></a>
 <h3 id="Integration_and_passage_to_the_limit">Integration and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a closed interval $$a \le x \le b$$ and depending on the parameter $$t \in T$$, and let $B$ be a base in $T$. If the functions of the family are integrable on $$[a,b]$$ and $$f_t \Rightarrow f$$ on $$[a,b]$$ over the base $$B$$, then the limit function $$f:[a,b] \to C$$is also integrable on $$[a,b]$$ and </p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ defined on a closed interval $a \le x \le b$ and depending on the parameter $t \in T$, and let $B$ be a base in $T$. If the functions of the family are integrable on $[a,b]$ and $f_t \Rightarrow f$ on $[a,b]$ over the base $B$, then the limit function $f:[a,b] \to C$is also integrable on $[a,b]$ and </p>
 </blockquote>
-<p>$$\int<em>a^b f(x) dx = \lim</em>{B} \int_a^b f_t(x) dx.$$</p>
+<p>$\int_a^b f(x) dx = \lim_{B} \int_a^b f_t(x) dx.$</p>
 <p>A useful corollary following by is</p>
 <blockquote>
-<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ consisting of integrable functions on a closed interval $$[a,b] \subset R$$ converges uniformly on that closed interval, then its sum is also integrable on $$[a,b]$$ and </p>
+<p>If the series $\sum_{n=1}^\infty f_n(x)$ consisting of integrable functions on a closed interval $[a,b] \subset R$ converges uniformly on that closed interval, then its sum is also integrable on $[a,b]$ and </p>
 </blockquote>
-<p>$$\int<em>a^b (\sum</em>{n=1}^{\infty} f<em>n(x))dx = \sum</em>{n=1}^{\infty} \int_a^b f_n(x) dx.$$</p>
+<p>$\int_a^b (\sum_{n=1}^{\infty} f_n(x))dx = \sum_{n=1}^{\infty} \int_a^b f_n(x) dx.$</p>
 <h3 id="Differentiation_and_passage_to_the_limit">Differentiation and passage to the limit</h3><p>The condition of interchanging between differentiation and limit is more strict. In general, if the original function converges uniformly, the limit function need not be differentiable; even if it is differentiable, the derivative of the limit function need not be equal to the limit of derivatives.</p>
 <blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter $$t \in T$$; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives $${f’_t; t\in T}$$ converges uniformly on $X$ to function $\psi:X\to C$, and the original family $${f_t;t\in T}$$ converges at even on point $$x_0 \in X$$, then it converges uniformly on the entire set $X$ to a differentiable function $$f:X\to C$$, and $$f ‘=\psi$$.  </p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter $t \in T$; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives ${f’_t; t\in T}$ converges uniformly on $X$ to function $\psi:X\to C$, and the original family ${f_t;t\in T}$ converges at even on point $x_0 \in X$, then it converges uniformly on the entire set $X$ to a differentiable function $f:X\to C$, and $f ‘=\psi$.  </p>
 </blockquote>
 <p>A corollary following by is</p>
 <blockquote>
-<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ of functions $$f<em>t: X \to C$$ that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point $$x \in X$$ and the series $$\sum</em>{n=1}^\infty f’<em>n(x)$$ converges uniformly on $X$, then $$\sum</em>{n=1}^\infty f<em>n(x)$$ $$\sum</em>{n=1}^\infty f_n(x)$$ also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
+<p>If the series $\sum_{n=1}^\infty f_n(x)$ of functions $f_t: X \to C$ that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point $x \in X$ and the series $\sum_{n=1}^\infty f’_n(x)$ converges uniformly on $X$, then $\sum_{n=1}^\infty f_n(x)$ $\sum_{n=1}^\infty f_n(x)$ also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
 </blockquote>
-<p>$$(\sum_{n=1}^\infty f<em>n(x))’=  \sum</em>{n=1}^\infty f’_n(x).$$ </p>
+<p>$(\sum_{n=1}^\infty f_n(x))’=  \sum_{n=1}^\infty f’_n(x).$ </p>
 </span>
       
     </div>

@@ -100,21 +100,21 @@
     <link href="http://messipiao.github.io/2014/09/03/complete-and-convergence/"/>
     <id>http://messipiao.github.io/2014/09/03/complete-and-convergence/</id>
     <published>2014-09-03T08:55:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
-    <content type="html"><![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+    <updated>2015-11-27T03:55:38.000Z</updated>
+    <content type="html"><![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete\_metric\_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform\_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise\_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
 <h2 id="Complete">Complete</h2><blockquote>
 <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
 </blockquote>
-<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for $L_ \infty$ fail to complete. </p>
 <h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
 <blockquote>
-<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
+<p>Define a sequence of functions ${f_t; t\in T}$ on the set $E \subset X$ over the base $B$. Introduce the quantity $\Delta_t(x) = \mid f(x)-f_t(x) \mid $ and $\Delta_t = \sup_{x\in E} \Delta_t(x)$. Then</p>
 </blockquote>
-<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
-<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
+<p>$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$</p>
+<p>$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$</p>
 <p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
 <h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ depending on the parameter $t$; let $B$ be a base in $T$. If $f_t \Rightarrow f$ on $X$ over the base $B$ and the function $f_t$ are continuos at $x_0 \in X$, then the function $f:X \to C$ is also continuos at that point.</p>
 </blockquote>
 <p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
 <blockquote>
@@ -122,39 +122,39 @@
 </blockquote>
 <a id="more"></a>
 <h3 id="Integration_and_passage_to_the_limit">Integration and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a closed interval $$a \le x \le b$$ and depending on the parameter $$t \in T$$, and let $B$ be a base in $T$. If the functions of the family are integrable on $$[a,b]$$ and $$f_t \Rightarrow f$$ on $$[a,b]$$ over the base $$B$$, then the limit function $$f:[a,b] \to C$$is also integrable on $$[a,b]$$ and </p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ defined on a closed interval $a \le x \le b$ and depending on the parameter $t \in T$, and let $B$ be a base in $T$. If the functions of the family are integrable on $[a,b]$ and $f_t \Rightarrow f$ on $[a,b]$ over the base $B$, then the limit function $f:[a,b] \to C$is also integrable on $[a,b]$ and </p>
 </blockquote>
-<p>$$\int<em>a^b f(x) dx = \lim</em>{B} \int_a^b f_t(x) dx.$$</p>
+<p>$\int_a^b f(x) dx = \lim_{B} \int_a^b f_t(x) dx.$</p>
 <p>A useful corollary following by is</p>
 <blockquote>
-<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ consisting of integrable functions on a closed interval $$[a,b] \subset R$$ converges uniformly on that closed interval, then its sum is also integrable on $$[a,b]$$ and </p>
+<p>If the series $\sum_{n=1}^\infty f_n(x)$ consisting of integrable functions on a closed interval $[a,b] \subset R$ converges uniformly on that closed interval, then its sum is also integrable on $[a,b]$ and </p>
 </blockquote>
-<p>$$\int<em>a^b (\sum</em>{n=1}^{\infty} f<em>n(x))dx = \sum</em>{n=1}^{\infty} \int_a^b f_n(x) dx.$$</p>
+<p>$\int_a^b (\sum_{n=1}^{\infty} f_n(x))dx = \sum_{n=1}^{\infty} \int_a^b f_n(x) dx.$</p>
 <h3 id="Differentiation_and_passage_to_the_limit">Differentiation and passage to the limit</h3><p>The condition of interchanging between differentiation and limit is more strict. In general, if the original function converges uniformly, the limit function need not be differentiable; even if it is differentiable, the derivative of the limit function need not be equal to the limit of derivatives.</p>
 <blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter $$t \in T$$; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives $${f’_t; t\in T}$$ converges uniformly on $X$ to function $\psi:X\to C$, and the original family $${f_t;t\in T}$$ converges at even on point $$x_0 \in X$$, then it converges uniformly on the entire set $X$ to a differentiable function $$f:X\to C$$, and $$f ‘=\psi$$.  </p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter $t \in T$; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives ${f’_t; t\in T}$ converges uniformly on $X$ to function $\psi:X\to C$, and the original family ${f_t;t\in T}$ converges at even on point $x_0 \in X$, then it converges uniformly on the entire set $X$ to a differentiable function $f:X\to C$, and $f ‘=\psi$.  </p>
 </blockquote>
 <p>A corollary following by is</p>
 <blockquote>
-<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ of functions $$f<em>t: X \to C$$ that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point $$x \in X$$ and the series $$\sum</em>{n=1}^\infty f’<em>n(x)$$ converges uniformly on $X$, then $$\sum</em>{n=1}^\infty f<em>n(x)$$ $$\sum</em>{n=1}^\infty f_n(x)$$ also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
+<p>If the series $\sum_{n=1}^\infty f_n(x)$ of functions $f_t: X \to C$ that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point $x \in X$ and the series $\sum_{n=1}^\infty f’_n(x)$ converges uniformly on $X$, then $\sum_{n=1}^\infty f_n(x)$ $\sum_{n=1}^\infty f_n(x)$ also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
 </blockquote>
-<p>$$(\sum_{n=1}^\infty f<em>n(x))’=  \sum</em>{n=1}^\infty f’_n(x).$$ </p>
+<p>$(\sum_{n=1}^\infty f_n(x))’=  \sum_{n=1}^\infty f’_n(x).$ </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+    <![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete\_metric\_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform\_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise\_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
 <h2 id="Complete">Complete</h2><blockquote>
 <p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
 </blockquote>
-<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for $L_ \infty$ fail to complete. </p>
 <h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
 <blockquote>
-<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
+<p>Define a sequence of functions ${f_t; t\in T}$ on the set $E \subset X$ over the base $B$. Introduce the quantity $\Delta_t(x) = \mid f(x)-f_t(x) \mid $ and $\Delta_t = \sup_{x\in E} \Delta_t(x)$. Then</p>
 </blockquote>
-<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
-<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
+<p>$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$</p>
+<p>$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$</p>
 <p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
 <h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ depending on the parameter $t$; let $B$ be a base in $T$. If $f_t \Rightarrow f$ on $X$ over the base $B$ and the function $f_t$ are continuos at $x_0 \in X$, then the function $f:X \to C$ is also continuos at that point.</p>
 </blockquote>
 <p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
 <blockquote>
@@ -172,53 +172,53 @@
     <link href="http://messipiao.github.io/2014/01/14/asymptotic-evaluations/"/>
     <id>http://messipiao.github.io/2014/01/14/asymptotic-evaluations/</id>
     <published>2014-01-14T12:19:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
+    <updated>2015-11-27T03:54:48.000Z</updated>
     <content type="html"><![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
 <h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
 <blockquote>
-<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
-<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+<p>For an estimator $T_n$, if $lim_{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$, where ${k_n}$ is a sequence of constants, then $\tau^2$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $T_n$, suppose that $k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$ in distribution. The parameter $\sigma^2$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
 </blockquote>
 <p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
 <blockquote>
-<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $\tau(\theta)$ if $ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$ in distribution and $v(\theta)$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
 </blockquote>
 <p>Recall that in the above definition, </p>
-<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
+<p>$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$</p>
 <p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
 <p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
 <a id="more"></a>
 <h2 id="Robustness">Robustness</h2><p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
 <h2 id="Hypothesis_Testing">Hypothesis Testing</h2><p>We are going to introduce 3 large-sample tests here.</p>
 <h3 id="Asymptotic_distribution_of_the_LRT">Asymptotic distribution of the LRT</h3><blockquote>
-<p>Let $$X_1,\dots,X_n$$ be a random sample from a pdf or pmf $$f(x \vert \theta)$$. Under some regularity conditions, if $$\theta \in \Theta_0$$, then the distribution of the statistic $$-2\log \lambda(\mathbf{X})$$ converges to a chi squared distribution as the sample size $$n \to \infty$$. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by $$\theta \in \Theta_0$$ and the number of free parameters specified by $$\theta \in \Theta$$.</p>
+<p>Let $X_1,\dots,X_n$ be a random sample from a pdf or pmf $f(x \vert \theta)$. Under some regularity conditions, if $\theta \in \Theta_0$, then the distribution of the statistic $-2\log \lambda(\mathbf{X})$ converges to a chi squared distribution as the sample size $n \to \infty$. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by $\theta \in \Theta_0$ and the number of free parameters specified by $\theta \in \Theta$.</p>
 </blockquote>
 <h3 id="Wald_test">Wald test</h3><p>In general, a Wald test is a test based on a satistic of the form</p>
-<p>$$ Z_n = \dfrac{W_n-\theta_0}{S_n} $$ </p>
-<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and $$S_n$$ is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, $$1/\sqrt{I_n(W_n)}$$ is a reasonable standard error for $W_n$. Alternatively, $$1/\sqrt{\hat{I}_n(W_n)}$$, where</p>
-<p>$$\hat{I}_n(W<em>n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid</em>{\theta = W_n}$$</p>
+<p>$ Z_n = \dfrac{W_n-\theta_0}{S_n} $ </p>
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and $S_n$ is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, $1/\sqrt{I_n(W_n)}$ is a reasonable standard error for $W_n$. Alternatively, $1/\sqrt{\hat{I}_n(W_n)}$, where</p>
+<p>$\hat{I}_n(W_n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid_{\theta = W_n}$</p>
 <p>is the observed information number, is often used. </p>
 <h3 id="Score_test">Score test</h3><p>The <em>score statistics</em> is defined to be</p>
-<p>$$ S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) $$</p>
-<p>We can obtain the result that for all $\theta$, $$E_\theta S(\theta) = 0 $$. In particular, if we are testing $$H_0: \theta=\theta_0$$ and if $H_0$ is true, then $$S(\theta_0)$$ has mean 0. Then we have</p>
-<p>$$Var_\theta S(\theta) = I_n(\theta)$$</p>
+<p>$ S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) $</p>
+<p>We can obtain the result that for all $\theta$, $E_\theta S(\theta) = 0 $. In particular, if we are testing $H_0: \theta=\theta_0$ and if $H_0$ is true, then $S(\theta_0)$ has mean 0. Then we have</p>
+<p>$Var_\theta S(\theta) = I_n(\theta)$</p>
 <p>The test statistic for the score test is</p>
-<p>$$Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}$$</p>
+<p>$Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}$</p>
 <p>It follows that $Z_S$ converges to a standard normal random variable.</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
 <h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
 <blockquote>
-<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
-<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+<p>For an estimator $T_n$, if $lim_{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$, where ${k_n}$ is a sequence of constants, then $\tau^2$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $T_n$, suppose that $k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$ in distribution. The parameter $\sigma^2$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
 </blockquote>
 <p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
 <blockquote>
-<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $\tau(\theta)$ if $ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$ in distribution and $v(\theta)$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
 </blockquote>
 <p>Recall that in the above definition, </p>
-<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
+<p>$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$</p>
 <p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
 <p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>]]>
     
