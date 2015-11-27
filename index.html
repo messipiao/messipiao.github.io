@@ -1228,6 +1228,118 @@
             
               
                 
+                <a class="post-title-link" href="/2013/11/20/random-sample/" itemprop="url">
+                  Random Sample
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2013-11-20T15:03:00+08:00" content="2013-11-20">
+              2013-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; In
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Statistics/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistics</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2013/11/20/random-sample/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/20/random-sample/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
+<p>The random variables $X_1,\dots,X_n$ are called a random sample of size n from the population $f(x)$ if $X_1,\dots,X_n$ are mutually independent random variables and the marginal pdf or pmf of each $X_i$ is the same function $f(x)$. Alternatively, $X_1,\dots,X_n$ are called independent and identically distributed random variables with pdf or pmf $f(x)$. This is commonly abbreviated to iid random variables. </p>
+</blockquote>
+<p>The joint pdf of pmf of $X_1,\dots,X_n$ is given by </p>
+<p>$$f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x_n) = \prod_{i=1}^{n}f(x_i)$$</p>
+<p> Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable $X_1,\dots,X_n$ are independent as the process of choosing any $X_i$ keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of $X_i$, where $j &gt; i$. For example, considering $X_1$ and $X_2$, we have</p>
+<p>$$P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1$$</p>
+<p>It is noted that $X_i$ has the same marginal distribution.</p>
+<p>$$P(X_2=x) = \sum_{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$</p>
+<p>When $N$ is larger, there is not too difference between the conditional distribution of $X_i$ given $ X<em>1, \dots,X</em>{i-1} $ and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2013/11/20/random-sample/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/11/18/basics-of-martingales/" itemprop="url">
                   Basics of Martingales
                 </a>
