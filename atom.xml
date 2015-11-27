@@ -390,7 +390,7 @@
     <link href="http://messipiao.github.io/2013/11/22/point-estimation/"/>
     <id>http://messipiao.github.io/2013/11/22/point-estimation/</id>
     <published>2013-11-22T11:31:00.000Z</published>
-    <updated>2015-11-27T03:44:20.000Z</updated>
+    <updated>2015-11-27T03:46:05.000Z</updated>
     <content type="html"><![CDATA[<p>When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
 <h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_g1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
 <p>$m_gk = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
@@ -440,7 +440,7 @@
 <p>Define</p>
 <p>$Bias_g{\theta}W = E_{\theta}W-\theta$</p>
 <p>Then</p>
-<p>$E_g{\theta}(W-\theta)^2 = Var<em>{\theta}W+(E</em>{\theta}W-\theta)^2 = Var<em>{\theta}W+(Bias</em>{\theta}W)^2$</p>
+<p>$E_g{\theta}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2$</p>
 <h3 id="Best_Unbiased_Estimators">Best Unbiased Estimators</h3><blockquote>
 <p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies $E_g{\theta}W’ = \tau(\theta)$ for all $\theta$ and, for any other estimator W with $E<em>{\theta}W = \tau(\theta)$, we have $Var</em>{\theta}W’ \le Var_{\theta}W$ for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
 </blockquote>
