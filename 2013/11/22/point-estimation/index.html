@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://messipiao.github.io/2013/11/22/point-estimation/index.html">
 <meta property="og:site_name" content="Piao's Blog">
 <meta property="og:description" content="When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a go">
-<meta property="og:updated_time" content="2015-11-27T03:47:10.000Z">
+<meta property="og:updated_time" content="2015-11-27T03:57:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Point Estimation">
 <meta name="twitter:description" content="When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a go">
@@ -295,10 +295,10 @@
 
       
         <span itemprop="articleBody"><p>When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
-<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_g1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
-<p>$m_gk = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
+<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
+<p>$m_k = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
 <h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
-<p>$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_g1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$</p>
+<p>$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x_n) = \prod_{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$</p>
 <p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
 <p>MLE has the following properties.</p>
 <ul>
@@ -309,19 +309,19 @@
 <li><strong>(Asymptotic Normality)</strong> </li>
 </ul>
 <p>Under appropriate regularity conditions,</p>
-<p>$\sqrt{I_gn(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
+<p>$\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
 <p>In addition</p>
-<p>$\sqrt{I_gn(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
+<p>$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
 <p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
 <p>$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$</p>
 <p>Fisher information has following properties.</p>
 <ol>
-<li>$ I_g{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)$</li>
-<li>$ I_gn(\theta) = n I(\theta)$ </li>
+<li>$ I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)$</li>
+<li>$ I_n(\theta) = n I(\theta) $</li>
 </ol>
 <a id="more"></a>
 <h3 id="The_EM_Algorithm">The EM Algorithm</h3><p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
-<p>If $\mathbf{Y} = (Y_g1,\dots,Y_N)$ are the incomplete data, and $\mathbf{X} = (X_1,\dots,X_m)$ are the augmented data (missing data), making $(\mathbf{Y},\mathbf{X})$ the complete data. The densities $g(\cdot \vert \theta)$ of $\mathbf{Y}$ and $f(\cdot \vert \theta)$ of $\mathbf{Y},\mathbf{X}$ have the relationship</p>
+<p>If $\mathbf{Y} = (Y_1,\dots,Y_N)$ are the incomplete data, and $\mathbf{X} = (X_1,\dots,X_m)$ are the augmented data (missing data), making $(\mathbf{Y},\mathbf{X})$ the complete data. The densities $g(\cdot \vert \theta)$ of $\mathbf{Y}$ and $f(\cdot \vert \theta)$ of $\mathbf{Y},\mathbf{X}$ have the relationship</p>
 <p>$g(\mathbf{y} \vert \theta) = \int f(\mathbf{y},\mathbf{x} \vert \theta) dx$</p>
 <p>If we turn these into the likelihoods, $L(\theta \vert \mathbf{y}) = g(\mathbf{y} \vert \theta)$ is the incomplete-data likelihood and $L(\theta \vert \mathbf{y},\mathbf{x}) = f(\mathbf{y},\mathbf{x} \vert \theta)$ is the complete-data likelihood.i</p>
 <p>Define</p>
@@ -331,36 +331,36 @@
 <p>replace the right side with its expectation under $k(\mathbf{x} \vert \theta’,\mathbf{y})$, we have</p>
 <p>$\log L(\theta \vert \mathbf{y}) = E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta’,\mathbf{y}] - E[\log k(\mathbf{x} \vert \theta,\mathbf{y}) \vert \theta’,\mathbf{y}]$</p>
 <p>Now we start the algorithm: From an initial value $\theta^{(0)}$ we create a sequence $\theta^{(r)}$ according to</p>
-<p>$\theta^{(r+1)} = \max_g{\theta} E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta^{(r)},\mathbf{y}] $</p>
+<p>$\theta^{(r+1)} = \max_{\theta} E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta^{(r)},\mathbf{y}] $</p>
 <h3 id="Bayes_Estimators">Bayes Estimators</h3><p>In Bayes approach $\theta$ is considered to be a quantity whose variation can be described by a probability distribution (called the prior distribution). This is a subjective distribution, based on the experimenter’s belief, and is formulated before the data are seen (hence the name prior distribution). A sample is then taken from a population indexed by $\theta$ and the prior distribution is updated with this sample information. The updated prior is called the posterior distribution. </p>
 <p>If we denote the prior distribution by $\pi(\theta)$ and the sampling distribution by $f(x \vert \theta)$, then the posterior distribution, the conditional distribution of $\theta$ given the sample, $\mathbf{x}$, </p>
 <p>$\pi(\theta \vert \mathbf{x}) = f(\mathbf{x} \vert \theta) \pi(\theta)/m(\mathbf{x})$</p>
 <p>where $m(\mathbf{x})$ is the marginal distribution of $\mathbf{X}$, that is,</p>
 <p>$m(\mathbf{x}) = \int f(\mathbf{x} \vert \theta) \pi(\theta) d \theta$</p>
 <h2 id="Methods_of_Evaluating_Estimators">Methods of Evaluating Estimators</h2><h3 id="Mean_Squared_Error">Mean Squared Error</h3><blockquote>
-<p>The mean square error (MSE) of an estimator W of a parameter $\theta$ is the function of $\theta$ defined by $E_g{\theta}(W-\theta)^2$.</p>
+<p>The mean square error (MSE) of an estimator W of a parameter $\theta$ is the function of $\theta$ defined by $E_{\theta}(W-\theta)^2$.</p>
 </blockquote>
 <p>Define</p>
-<p>$Bias_g{\theta}W = E_{\theta}W-\theta$</p>
+<p>$Bias_{\theta}W = E_{\theta}W-\theta$</p>
 <p>Then</p>
-<p>$E_{g{\theta}}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2$</p>
+<p>$E_{\theta}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2$</p>
 <h3 id="Best_Unbiased_Estimators">Best Unbiased Estimators</h3><blockquote>
-<p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies $E_g{\theta}W’ = \tau(\theta)$ for all $\theta$ and, for any other estimator W with $E<em>{\theta}W = \tau(\theta)$, we have $Var</em>{\theta}W’ \le Var_{\theta}W$ for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
+<p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies $E_{\theta}W’ = \tau(\theta)$ for all $\theta$ and, for any other estimator W with $E_{\theta}W = \tau(\theta)$, we have $Var_{\theta}W’ \le Var_{\theta}W$ for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
 </blockquote>
 <ul>
 <li><strong>Cramer-Rao Inequality</strong></li>
 </ul>
-<p>Let $X_g1,\dots,X_n$ be a sample with pdf $f(x \vert \theta)$, and let $W(\mathbf{X}) = W(X_1,\dots,X_n)$ be <em>any estimator satisfying</em></p>
-<p>$\frac{d}{d\theta} E_g{\theta}W(\mathbf{X}) = \int \frac{\partial}{\partial \theta}[W(\mathbf{x})f(x \vert \theta)] dx$</p>
+<p>Let $X_1,\dots,X_n$ be a sample with pdf $f(x \vert \theta)$, and let $W(\mathbf{X}) = W(X_1,\dots,X_n)$ be <em>any estimator satisfying</em></p>
+<p>$\frac{d}{d\theta} E_{\theta}W(\mathbf{X}) = \int \frac{\partial}{\partial \theta}[W(\mathbf{x})f(x \vert \theta)] dx$</p>
 <p>and</p>
-<p>$Var_g{\theta}W(\mathbf{X}) &lt; \infty$</p>
+<p>$Var_{\theta}W(\mathbf{X}) &lt; \infty$</p>
 <p>Then</p>
-<p>$Var_g{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E<em>{\theta}W(\mathbf{X}))^2}{E</em>{\theta}[(\frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{I_n(\theta)}$</p>
-<p>when $X_g1,\dots,X_n$ are <em>iid</em>, based on the property of <em>Fisher Information</em>, we have</p>
-<p>$Var_g{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E<em>{\theta}W(\mathbf{X}))^2}{nE</em>{\theta}[(\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nI(\theta)}$</p>
+<p>$Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{E_{\theta}[(\frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{I_n(\theta)}$</p>
+<p>when $X_1,\dots,X_n$ are <em>iid</em>, based on the property of <em>Fisher Information</em>, we have</p>
+<p>$Var_{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nE_{\theta}[(\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E_{\theta}W(\mathbf{X}))^2}{nI(\theta)}$</p>
 <p>We need to verify whether the <strong>Cramer-Rao Lower Bound</strong> is attainable.</p>
 <ul>
-<li>Let $X_g1,\dots,X<em>n$ be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let $L(\theta \vert \mathbf{x}) = \prod</em>{i=1}^{n} f(x_i \vert \theta)$ denote the likelihood function. If $<br>W(\mathbf{X})=W(X_g1,\dots,X_n) $ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
+<li>Let $X_1,\dots,X_n$ be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let $L(\theta \vert \mathbf{x}) = \prod_{i=1}^{n} f(x_i \vert \theta)$ denote the likelihood function. If $<br>W(\mathbf{X})=W(X_1,\dots,X_n) $ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
 </ul>
 <p>$a(\theta)[W(\mathbf{x})-\tau(\theta)] = \frac{\partial}{\partial \theta}\log L(\theta \vert \mathbf{x})$</p>
 <p>for some function $a(\theta)$.</p>

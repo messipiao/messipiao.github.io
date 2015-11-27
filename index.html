@@ -314,9 +314,7 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <h1 id="Basic_concepts">Basic concepts</h1><ul>
+          <h1 id="Basic_concepts">Basic concepts</h1><ul>
 <li>Clent is a lightweight handle on all the engines of a cluster.</li>
 <li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
 </ul>
@@ -338,20 +336,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
 <p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="Load-balanced_Views">Load-balanced Views</h1><p>A load-balanced view is a fault-tolerant way to distribute tasks among the engines. While there is no direct access to individual engines, it provides a simple and powerful interface.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lview.block = <span class="keyword">True</span></span><br><span class="line">lview.apply(some_function,par)</span><br><span class="line"><span class="comment">## We can use the map function to execute multiple inputs. We'll use block=False to make sure the results come asynchronously.</span></span><br><span class="line">lview.block = <span class="keyword">False</span></span><br><span class="line">res = lview.map(some_function,list_of_pars)</span><br><span class="line"><span class="comment">## check how many of the jobs have been completed</span></span><br><span class="line">res.progress</span><br><span class="line"><span class="comment">## get the result</span></span><br><span class="line">res.result</span><br><span class="line"><span class="comment">## another way to get the result</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> lview.map(sleep_and_return, range(<span class="number">10</span>)):</span><br><span class="line">    <span class="keyword">print</span> result</span><br></pre></td></tr></table></figure>
-<h1 id="Example:_Monte_Carlo_$\pi$">Example: Monte Carlo $\pi$</h1><ul>
-<li>Without parallel</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Parallel</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multi_mcpi</span><span class="params">(view, nsamples)</span>:</span></span><br><span class="line">    p = len(view.targets)</span><br><span class="line">    <span class="keyword">if</span> nsamples % p:</span><br><span class="line">        <span class="comment"># ensure even divisibility</span></span><br><span class="line">        nsamples += p - (nsamples%p)</span><br><span class="line">    subsamples = nsamples/p</span><br><span class="line">    ar = view.apply_async(mcpi, subsamples)</span><br><span class="line">    <span class="keyword">return</span> sum(ar)/p</span><br></pre></td></tr></table></figure>
-<p>We test the running time and found that it is almost 4 times fast with parallel computing.</p>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/07/ipython-parallel-computing/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -470,6 +459,243 @@
 
             
           </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/03/complete-and-convergence/" itemprop="url">
+                  Complete and Convergence
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2014-09-03T16:55:00+08:00" content="2014-09-03">
+              2014-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; In
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Analysis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/09/03/complete-and-convergence/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/09/03/complete-and-convergence/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete\_metric\_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform\_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise\_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+<h2 id="Complete">Complete</h2><blockquote>
+<p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+<p>One main shortcoming of Riemann integration is that all $L_p$ space except for $L_ \infty$ fail to complete. </p>
+<h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+<blockquote>
+<p>Define a sequence of functions ${f_t; t\in T}$ on the set $E \subset X$ over the base $B$. Introduce the quantity $\Delta_t(x) = \mid f(x)-f_t(x) \mid $ and $\Delta_t = \sup_{x\in E} \Delta_t(x)$. Then</p>
+</blockquote>
+<p>$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$</p>
+<p>$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$</p>
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+<h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
+<p>Let ${ f_t; t \in T}$ be a family of functions $f_t: X \to C$ depending on the parameter $t$; let $B$ be a base in $T$. If $f_t \Rightarrow f$ on $X$ over the base $B$ and the function $f_t$ are continuos at $x_0 \in X$, then the function $f:X \to C$ is also continuos at that point.</p>
+</blockquote>
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+<blockquote>
+<p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/09/03/complete-and-convergence/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/01/14/asymptotic-evaluations/" itemprop="url">
+                  Asymptotic Evaluations
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2014-01-14T20:19:00+08:00" content="2014-01-14">
+              2014-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; In
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Statistics/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistics</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/01/14/asymptotic-evaluations/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/01/14/asymptotic-evaluations/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+<h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+<blockquote>
+<p>For an estimator $T_n$, if $lim_{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$, where ${k_n}$ is a sequence of constants, then $\tau^2$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $T_n$, suppose that $k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$ in distribution. The parameter $\sigma^2$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+<blockquote>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $\tau(\theta)$ if $ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$ in distribution and $v(\theta)$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+<p>Recall that in the above definition, </p>
+<p>$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$</p>
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/01/14/asymptotic-evaluations/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -698,133 +924,6 @@
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2013/11/24/hypothesis-testing/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/22/point-estimation/" itemprop="url">
-                  Point Estimation
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-11-22T19:31:00+08:00" content="2013-11-22">
-              2013-11-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2013/11/22/point-estimation/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/22/point-estimation/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
-<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_g1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
-<p>$m_gk = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
-<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
-<p>$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_g1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$</p>
-<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
-<p>MLE has the following properties.</p>
-<ul>
-<li><strong>(Invariance property of MLEs)</strong> </li>
-</ul>
-<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
-<ul>
-<li><strong>(Asymptotic Normality)</strong> </li>
-</ul>
-<p>Under appropriate regularity conditions,</p>
-<p>$\sqrt{I_gn(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
-<p>In addition</p>
-<p>$\sqrt{I_gn(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
-<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
-<p>$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$</p>
-<p>Fisher information has following properties.</p>
-<ol>
-<li>$ I_g{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)$</li>
-<li>$ I_gn(\theta) = n I(\theta)$ </li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/22/point-estimation/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
