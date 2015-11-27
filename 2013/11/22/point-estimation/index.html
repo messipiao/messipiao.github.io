@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://messipiao.github.io/2013/11/22/point-estimation/index.html">
 <meta property="og:site_name" content="Piao's Blog">
 <meta property="og:description" content="When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a go">
-<meta property="og:updated_time" content="2015-11-27T03:46:05.000Z">
+<meta property="og:updated_time" content="2015-11-27T03:47:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Point Estimation">
 <meta name="twitter:description" content="When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a go">
@@ -343,7 +343,7 @@
 <p>Define</p>
 <p>$Bias_g{\theta}W = E_{\theta}W-\theta$</p>
 <p>Then</p>
-<p>$E_g{\theta}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2$</p>
+<p>$E_{g{\theta}}(W-\theta)^2 = Var_{\theta}W+(E_{\theta}W-\theta)^2 = Var_{\theta}W+(Bias_{\theta}W)^2$</p>
 <h3 id="Best_Unbiased_Estimators">Best Unbiased Estimators</h3><blockquote>
 <p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies $E_g{\theta}W’ = \tau(\theta)$ for all $\theta$ and, for any other estimator W with $E<em>{\theta}W = \tau(\theta)$, we have $Var</em>{\theta}W’ \le Var_{\theta}W$ for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
 </blockquote>
