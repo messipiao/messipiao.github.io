@@ -1105,8 +1105,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/11/22/data-reduction/" itemprop="url">
-                  Data Reduction
+                <a class="post-title-link" href="/2013/11/20/random-sample/" itemprop="url">
+                  Random Sample
                 </a>
               
             
@@ -1116,8 +1116,8 @@
         <div class="post-meta">
           <span class="post-time">
             Posted on
-            <time itemprop="dateCreated" datetime="2013-11-22T16:23:00+08:00" content="2013-11-22">
-              2013-11-22
+            <time itemprop="dateCreated" datetime="2013-11-20T15:03:00+08:00" content="2013-11-20">
+              2013-11-20
             </time>
           </span>
 
@@ -1142,8 +1142,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2013/11/22/data-reduction/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/22/data-reduction/" itemprop="commentsCount"></span>
+              <a href="/2013/11/20/random-sample/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/20/random-sample/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -1163,29 +1163,18 @@
 
       
         
-          <p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
-<h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
-<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+          <h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
+<p>The random variables $X_1,\dots,X_n$ are called a random sample of size n from the population $f(x)$ if $X_1,\dots,X_n$ are mutually independent random variables and the marginal pdf or pmf of each $X_i$ is the same function $f(x)$. Alternatively, $X_1,\dots,X_n$ are called independent and identically distributed random variables with pdf or pmf $f(x)$. This is commonly abbreviated to iid random variables. </p>
 </blockquote>
-<p>A sufficient statistic captures all the infromation about $\theta$.</p>
-<blockquote>
-<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
-</blockquote>
-<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
-<ul>
-<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
-</ul>
-<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
-<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
-<ul>
-<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
-</ul>
-<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
-<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
-<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
-<p>is a sufficient statistic for $$\theta$$.</p>
+<p>The joint pdf of pmf of $X_1,\dots,X_n$ is given by </p>
+<p>$$f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x_n) = \prod_{i=1}^{n}f(x_i)$$</p>
+<p> Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable $X_1,\dots,X_n$ are independent as the process of choosing any $X_i$ keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of $X_i$, where $j &gt; i$. For example, considering $X_1$ and $X_2$, we have</p>
+<p>$$P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1$$</p>
+<p>It is noted that $X_i$ has the same marginal distribution.</p>
+<p>$$P(X_2=x) = \sum_{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$</p>
+<p>When $N$ is larger, there is not too difference between the conditional distribution of $X_i$ given $ X<em>1, \dots,X</em>{i-1} $ and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/22/data-reduction/#more" rel="contents">
+            <a class="btn" href="/2013/11/20/random-sample/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

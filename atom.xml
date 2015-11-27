@@ -512,62 +512,62 @@
     <link href="http://messipiao.github.io/2013/11/22/data-reduction/"/>
     <id>http://messipiao.github.io/2013/11/22/data-reduction/</id>
     <published>2013-11-22T08:23:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
+    <updated>2015-11-27T03:40:31.000Z</updated>
     <content type="html"><![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
 <h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
-<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $\theta$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
 </blockquote>
 <p>A sufficient statistic captures all the infromation about $\theta$.</p>
 <blockquote>
-<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
+<p>If $p( \mathbf{x} \vert \theta)$ is the joint pdf or pmf of $\mathbf{X}$ and $q(t \vert \theta)$ is the pdf or pmf of $T(\mathbf{X})$, then $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$ is constant as a function of $\theta$.</p>
 </blockquote>
 <p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
 <ul>
-<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+<li>Lef $f(\mathbf{x}\vert \theta)$ denote the joint pdf or pmf of a sample $\mathbf{X}$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $g(t \vert \theta)$ and $h(\mathbf{x})$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
 </ul>
-<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
+<p>$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$</p>
 <p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
 <ul>
-<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+<li>Let $X_1,\dots,X_n$ be <em>iid</em> observations from a pdf or pfm $f(x \vert \mathbf{\theta})$ that belongs to an exponential family given by</li>
 </ul>
-<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
-<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
-<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
-<p>is a sufficient statistic for $$\theta$$.</p>
+<p>$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$</p>
+<p>where $\mathbf{\theta} = (\theta_1,\dots,\theta_d)$, $d \le k$. Then</p>
+<p>$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))$</p>
+<p>is a sufficient statistic for $\theta$.</p>
 <a id="more"></a>
 <h2 id="Minimal_Sufficient_Statistics">Minimal Sufficient Statistics</h2><p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
 <blockquote>
-<p>A sufficient statistic $$T(\mathbf{X})$$ is called a minimal sufficient statistic if, for any other sufficient statistic $$T’(\mathbf{X})$$, $$T(\mathbf{X})$$ is a function of $$T’(\mathbf{X})$$.</p>
+<p>A sufficient statistic $T(\mathbf{X})$ is called a minimal sufficient statistic if, for any other sufficient statistic $T’(\mathbf{X})$, $T(\mathbf{X})$ is a function of $T’(\mathbf{X})$.</p>
 </blockquote>
 <p>We have an easier way to find a minimal sufficient statistic.</p>
 <ul>
-<li>Let $$f(\mathbf{x}\vert \theta)$$ be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function $$T(\mathbf{x})$$ such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio $$f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)$$ is constant as a function of $\theta$ if and only if $$T(\mathbf{x}) = T(\mathbf{y})$$. Then $$T(\mathbf{X})$$ is a minimal sufficient statistic for $\theta$.</li>
+<li>Let $f(\mathbf{x}\vert \theta)$ be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function $T(\mathbf{x})$ such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio $f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)$ is constant as a function of $\theta$ if and only if $T(\mathbf{x}) = T(\mathbf{y})$. Then $T(\mathbf{X})$ is a minimal sufficient statistic for $\theta$.</li>
 </ul>
 <p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
 <h2 id="Ancillary_Statistics">Ancillary Statistics</h2><blockquote>
-<p>A stastistic $$S(\mathbf{X})$$ whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
+<p>A stastistic $S(\mathbf{X})$ whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
 </blockquote>
 <p><strong>Alone</strong>, an ancillary statistic contains no information about $\theta$.</p>
 <ul>
-<li>Location family ancillary statistic: Let $$X_1,\dots,X<em>n$$ be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, $$-\infty &lt; \theta &lt; \infty$$. $$R = X</em>{(n)}-X_{(1)}$$ is an ancillary statistic.</li>
-<li>Scale family ancillary statistic: Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values $$X_1/X<em>n,\dots,X</em>{n-1}/X_n$$ is an ancillary statistic.</li>
+<li>Location family ancillary statistic: Let $X_1,\dots,X_n$ be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, $-\infty &lt; \theta &lt; \infty$. $R = X_{(n)}-X_{(1)}$ is an ancillary statistic.</li>
+<li>Scale family ancillary statistic: Let $X_1,\dots,X_n$ be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values $X_1/X_n,\dots,X_{n-1}/X_n$ is an ancillary statistic.</li>
 </ul>
 <p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
 <h2 id="Complete_Statistics">Complete Statistics</h2><blockquote>
-<p>Let $$f(t \vert \theta)$$ be a family of pdfs or pmfs for a statistic $$T(\mathbf{X})$$. The family of probability distributions is called complete if $$E<em>{\theta}g(T) = 0$$ for all $\theta$ implies $$P</em>{\theta}(g(T)=0) = 1$$ for all $\theta$. Equivalently, $$T(\mathbf{X})$$ is called a complete statistic.</p>
+<p>Let $f(t \vert \theta)$ be a family of pdfs or pmfs for a statistic $T(\mathbf{X})$. The family of probability distributions is called complete if $E_{\theta}g(T) = 0$ for all $\theta$ implies $P_{\theta}(g(T)=0) = 1$ for all $\theta$. Equivalently, $T(\mathbf{X})$ is called a complete statistic.</p>
 </blockquote>
 <p>Informally, a statistic $T(\mathbf{X})$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
 <p>We can get the complete statistics in the exponential family.</p>
 <ul>
-<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+<li>Let $X_1,\dots,X_n$ be <em>iid</em> observations from a pdf or pfm $f(x \vert \mathbf{\theta})$ that belongs to an exponential family given by</li>
 </ul>
-<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
-<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
-<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
-<p>is complete if $${(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta}$$ contains an open set in $R^k$.</p>
+<p>$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$</p>
+<p>where $\mathbf{\theta} = (\theta_1,\dots,\theta_d)$, $d \le k$. Then</p>
+<p>$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))$</p>
+<p>is complete if ${(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta}$ contains an open set in $R^k$.</p>
 <p>We use completeness to state a condition under which a minimal sufficient statistic is independent of every ancillary statistic.</p>
 <ul>
-<li><strong>(Basu’s Theorem)</strong> If $$T(\mathbf{X})$$ is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
+<li><strong>(Basu’s Theorem)</strong> If $T(\mathbf{X})$ is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
 </ul>
 <p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
 <ul>
@@ -586,38 +586,38 @@
 </ul>
 <ol>
 <li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
-<li>interval $$[\theta,\theta+1]$$, $$(X<em>{(1)},X</em>{(n)})$$ is minimal sufficient for $\theta$.</li>
+<li>interval $[\theta,\theta+1]$, $(X_{(1)},X_{(n)})$ is minimal sufficient for $\theta$.</li>
 </ol>
 <ul>
 <li><strong>Normal Distribution</strong></li>
 </ul>
 <ol>
-<li>$$(\sum X_i,\sum X^2_i)$$ is sufficient for $$(\mu,\sigma^2)$$;</li>
-<li>$$(\bar{X},S^2)$$ is sufficient for $$(\mu,\sigma^2)$$.</li>
+<li>$(\sum X_i,\sum X^2_i)$ is sufficient for $(\mu,\sigma^2)$;</li>
+<li>$(\bar{X},S^2)$ is sufficient for $(\mu,\sigma^2)$.</li>
 </ol>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
 <h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
-<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $\theta$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
 </blockquote>
 <p>A sufficient statistic captures all the infromation about $\theta$.</p>
 <blockquote>
-<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
+<p>If $p( \mathbf{x} \vert \theta)$ is the joint pdf or pmf of $\mathbf{X}$ and $q(t \vert \theta)$ is the pdf or pmf of $T(\mathbf{X})$, then $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$ is constant as a function of $\theta$.</p>
 </blockquote>
 <p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
 <ul>
-<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+<li>Lef $f(\mathbf{x}\vert \theta)$ denote the joint pdf or pmf of a sample $\mathbf{X}$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $g(t \vert \theta)$ and $h(\mathbf{x})$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
 </ul>
-<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
+<p>$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$</p>
 <p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
 <ul>
-<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+<li>Let $X_1,\dots,X_n$ be <em>iid</em> observations from a pdf or pfm $f(x \vert \mathbf{\theta})$ that belongs to an exponential family given by</li>
 </ul>
-<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
-<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
-<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
-<p>is a sufficient statistic for $$\theta$$.</p>]]>
+<p>$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$</p>
+<p>where $\mathbf{\theta} = (\theta_1,\dots,\theta_d)$, $d \le k$. Then</p>
+<p>$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))$</p>
+<p>is a sufficient statistic for $\theta$.</p>]]>
     
     </summary>
     
