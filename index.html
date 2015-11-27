@@ -977,8 +977,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/11/22/point-estimation/" itemprop="url">
-                  Point Estimation
+                <a class="post-title-link" href="/2013/11/22/data-reduction/" itemprop="url">
+                  Data Reduction
                 </a>
               
             
@@ -988,7 +988,7 @@
         <div class="post-meta">
           <span class="post-time">
             Posted on
-            <time itemprop="dateCreated" datetime="2013-11-22T19:31:00+08:00" content="2013-11-22">
+            <time itemprop="dateCreated" datetime="2013-11-22T16:23:00+08:00" content="2013-11-22">
               2013-11-22
             </time>
           </span>
@@ -1014,8 +1014,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2013/11/22/point-estimation/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/22/point-estimation/" itemprop="commentsCount"></span>
+              <a href="/2013/11/22/data-reduction/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/22/data-reduction/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -1035,34 +1035,29 @@
 
       
         
-          <p>When sampling is from a population described by a pdf or pmf $$f(x \vert \theta)$$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
-<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $$X_1,\dots,X_n$$ be a sample from a population with pdf or pmf $$f(x \vert \theta_1,\dots,\theta_k)$$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
-<p>$$m<em>k = \frac{1}{n} \sum</em>{i=1}^{n}X_i^k = \mu’_k = EX^k$$</p>
-<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
-<p>$$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$$</p>
-<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
-<p>MLE has the following properties.</p>
+          <p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
+<h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
+<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $\theta$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+</blockquote>
+<p>A sufficient statistic captures all the infromation about $\theta$.</p>
+<blockquote>
+<p>If $p( \mathbf{x} \vert \theta)$ is the joint pdf or pmf of $\mathbf{X}$ and $q(t \vert \theta)$ is the pdf or pmf of $T(\mathbf{X})$, then $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$ is constant as a function of $\theta$.</p>
+</blockquote>
+<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
 <ul>
-<li><strong>(Invariance property of MLEs)</strong> </li>
+<li>Lef $f(\mathbf{x}\vert \theta)$ denote the joint pdf or pmf of a sample $\mathbf{X}$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $g(t \vert \theta)$ and $h(\mathbf{x})$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
 </ul>
-<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
+<p>$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$</p>
+<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
 <ul>
-<li><strong>(Asymptotic Normality)</strong> </li>
+<li>Let $X_1,\dots,X_n$ be <em>iid</em> observations from a pdf or pfm $f(x \vert \mathbf{\theta})$ that belongs to an exponential family given by</li>
 </ul>
-<p>Under appropriate regularity conditions,</p>
-<p>$$\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
-<p>In addition</p>
-<p>$$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
-<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
-<p>$$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$$</p>
-<p>Fisher information has following properties.</p>
-<p>$$<br>\begin{align}</p>
-<ol>
-<li>&amp; I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)\</li>
-<li>&amp; I_n(\theta) = n I(\theta) \<br>\end{align}<br>$$</li>
-</ol>
+<p>$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$</p>
+<p>where $\mathbf{\theta} = (\theta_1,\dots,\theta_d)$, $d \le k$. Then</p>
+<p>$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X_j),\dots,\sum_{j=1}^{n}t_k(X_j)))$</p>
+<p>is a sufficient statistic for $\theta$.</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/22/point-estimation/#more" rel="contents">
+            <a class="btn" href="/2013/11/22/data-reduction/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
