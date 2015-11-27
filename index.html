@@ -138,6 +138,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -154,6 +174,16 @@
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
             Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
+            
+            公益404
           </a>
         </li>
       
@@ -279,1027 +309,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/01/07/ipython-parallel-computing/" itemprop="url">
-                  IPython parallel Computing
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2015-01-07T16:12:00+08:00" content="2015-01-07">
-              2015-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="Basic_concepts">Basic concepts</h1><ul>
-<li>Clent is a lightweight handle on all the engines of a cluster.</li>
-<li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>
-<h1 id="Direct_View">Direct View</h1><p>In a DirectView interface, we can either use Blocking (synchronous) execution, in which all results must finish computing before any results are recorded, </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">True</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_sync(some function)</span><br></pre></td></tr></table></figure>
-<p>or non-blocking (asynchronous) execution, where we receive results as they finish.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_async(some function)</span><br></pre></td></tr></table></figure>
-<p>To get the result in a blocking mode (synchronous) is quite straitforward, while things get complicated in the non-blocking (asynchronous) mode. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some_function)</span><br><span class="line"><span class="comment">## the result should be &lt;AsyncResult: some_function&gt;</span></span><br><span class="line"><span class="comment">## In order to get the result res = dview.apply(some_function)</span></span><br><span class="line">res.get()</span><br><span class="line"><span class="comment">## To check whether the excutation is over or not</span></span><br><span class="line">res.ready()</span><br></pre></td></tr></table></figure>
-<p>It is noted that when you import some modules which excepected to be used in all the engines, you should put it in the function. For example, if we want to import <em>numpy</em>, we should put <em>import numpy</em> in the function. Alternatives ways can be </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.execute(<span class="string">'import numpy'</span>)</span><br></pre></td></tr></table></figure>
-<p>and </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> dview.sync_imports():</span><br><span class="line">    <span class="keyword">import</span> numpy</span><br></pre></td></tr></table></figure>
-<p>If we use the IPython notebook, there is more convinient way by using magic function <strong>%px</strong>(parallel execute) to achieve it. </p>
-<p>We have shown above that function <strong>apply()</strong> is used to excute functions in the direct view interface. There are two other useful functions, i.e., <strong>run()</strong> and <strong>excute()</strong>. <strong>run()</strong> can be used to run scripts</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.run(<span class="string">"myscript.py"</span>)</span><br></pre></td></tr></table></figure>
-<p>and <strong>excute()</strong> can be used to execute code directly on the engine by passing strings to the engines.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
-<p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="Load-balanced_Views">Load-balanced Views</h1><p>A load-balanced view is a fault-tolerant way to distribute tasks among the engines. While there is no direct access to individual engines, it provides a simple and powerful interface.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lview.block = <span class="keyword">True</span></span><br><span class="line">lview.apply(some_function,par)</span><br><span class="line"><span class="comment">## We can use the map function to execute multiple inputs. We'll use block=False to make sure the results come asynchronously.</span></span><br><span class="line">lview.block = <span class="keyword">False</span></span><br><span class="line">res = lview.map(some_function,list_of_pars)</span><br><span class="line"><span class="comment">## check how many of the jobs have been completed</span></span><br><span class="line">res.progress</span><br><span class="line"><span class="comment">## get the result</span></span><br><span class="line">res.result</span><br><span class="line"><span class="comment">## another way to get the result</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> lview.map(sleep_and_return, range(<span class="number">10</span>)):</span><br><span class="line">    <span class="keyword">print</span> result</span><br></pre></td></tr></table></figure>
-<h1 id="Example:_Monte_Carlo_$\pi$">Example: Monte Carlo $\pi$</h1><ul>
-<li>Without parallel</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Parallel</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multi_mcpi</span><span class="params">(view, nsamples)</span>:</span></span><br><span class="line">    p = len(view.targets)</span><br><span class="line">    <span class="keyword">if</span> nsamples % p:</span><br><span class="line">        <span class="comment"># ensure even divisibility</span></span><br><span class="line">        nsamples += p - (nsamples%p)</span><br><span class="line">    subsamples = nsamples/p</span><br><span class="line">    ar = view.apply_async(mcpi, subsamples)</span><br><span class="line">    <span class="keyword">return</span> sum(ar)/p</span><br></pre></td></tr></table></figure>
-<p>We test the running time and found that it is almost 4 times fast with parallel computing.</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/15/tips-of-giving-a-seminar-presentaion/" itemprop="url">
-                  Tips of giving a seminar presentaion
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2014-09-15T10:37:00+08:00" content="2014-09-15">
-              2014-09-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Research/" itemprop="url" rel="index">
-                    <span itemprop="name">Research</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapter talking about giving presentations and the author lists some ideas which may help to make a good presentation. My supervivor used to tell me such similar ideas and I record here for my future check and the readers’ information.</p>
-<ol>
-<li>Your seminar is a performance. It needs to be carefully planned and throughly rehearsed. You should especially pay attention to the time.</li>
-<li>Present yourself confidently. Act as though you are enjoying your research and your results are exciting to you.</li>
-<li>Respect your audience. They are spending an hour to hear you. They want to understand what you have to say, even if your specialty is not theirs. They do not want to be “snowed”, nor do they want to be treated as experts in a field where they really are not. Remeber never overestimate your audience. In this point, you should tell them a good story instead of listing your techniques too much.</li>
-<li>Do not waste your time with filler. Make sure each slide pushes your story forward. If your talk is a bit too short, no one will object. An except is too use large fonts so that people in the back can see your slides clearly.</li>
-</ol>
-<h2 id="Update_by_tips_given_by_Dr-_Ye_in_the_group_meeting-">Update by tips given by Dr. Ye in the group meeting.</h2><p>The boss is quite angry with the presentation by one of his students while he did give some useful tips.</p>
-<ol>
-<li><p>Before going to the details of your presentation, you should give the audiences a big picture of what you are to talk about. You should use a few sentences to summarize your work and always remember to highlight your contribution. In addtion, try to be confident as if you are the most experienced one in this work so that people are willing to listen to your content following up.</p>
-</li>
-<li><p>You should know everything about the content in the slides and get well prepared to every possible question raised by the audiences. Since we are majoy in engineering, always remind people that your work is applicable and valuable. </p>
-</li>
-<li><p>Same with what introduced in above-mentioned book, we are talking a self-contained story instead of listing techniques.</p>
-</li>
-</ol>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/03/complete-and-convergence/" itemprop="url">
-                  Complete and Convergence
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2014-09-03T16:55:00+08:00" content="2014-09-03">
-              2014-09-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Analysis/" itemprop="url" rel="index">
-                    <span itemprop="name">Analysis</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
-<h2 id="Complete">Complete</h2><blockquote>
-<p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
-</blockquote>
-<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
-<h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
-<blockquote>
-<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
-</blockquote>
-<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
-<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
-<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
-<h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
-<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
-</blockquote>
-<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
-<blockquote>
-<p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/09/03/complete-and-convergence/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/01/14/asymptotic-evaluations/" itemprop="url">
-                  Asymptotic Evaluations
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2014-01-14T20:19:00+08:00" content="2014-01-14">
-              2014-01-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
-<h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
-<blockquote>
-<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
-<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
-</blockquote>
-<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
-<blockquote>
-<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
-</blockquote>
-<p>Recall that in the above definition, </p>
-<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
-<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
-<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/01/14/asymptotic-evaluations/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/19/random-effect/" itemprop="url">
-                  Random Effect
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-12-19T21:38:00+08:00" content="2013-12-19">
-              2013-12-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
-<p>Two commonly used distributions estimating lifetime are as follows.</p>
-<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$$ X \sim IG(\mu,\lambda) $$, where $$X \in (0,\infty)$$. $$\mu$$ and $$\lambda$$ are called mean and shape parameter respectively.</p>
-<ol>
-<li><em>PDF:</em> $$(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$$</li>
-<li><em>CDF:</em> $$\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\mu$$, $$V(X)=\frac{\mu^3}{\lambda}$$</li>
-</ol>
-<h3 id="Gamma_distribution">Gamma distribution</h3><p>$$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\beta$$ are called shape and rate parameter respectively.</p>
-<ol>
-<li><em>PDF:</em> $$\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$$</li>
-<li><em>Gamma function:</em> $$\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$$</li>
-<li><em>Useful equation:</em> $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/19/random-effect/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/24/hypothesis-testing/" itemprop="url">
-                  Hypothesis Testing
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-11-24T10:47:00+08:00" content="2013-11-24">
-              2013-11-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
-<blockquote>
-<p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
-</blockquote>
-<h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
-<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
-</ul>
-<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
-<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
-<ul>
-<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/24/hypothesis-testing/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/22/point-estimation/" itemprop="url">
-                  Point Estimation
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-11-22T19:31:00+08:00" content="2013-11-22">
-              2013-11-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>When sampling is from a population described by a pdf or pmf $$f(x \vert \theta)$$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
-<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $$X_1,\dots,X_n$$ be a sample from a population with pdf or pmf $$f(x \vert \theta_1,\dots,\theta_k)$$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
-<p>$$m<em>k = \frac{1}{n} \sum</em>{i=1}^{n}X_i^k = \mu’_k = EX^k$$</p>
-<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
-<p>$$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$$</p>
-<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
-<p>MLE has the following properties.</p>
-<ul>
-<li><strong>(Invariance property of MLEs)</strong> </li>
-</ul>
-<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
-<ul>
-<li><strong>(Asymptotic Normality)</strong> </li>
-</ul>
-<p>Under appropriate regularity conditions,</p>
-<p>$$\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
-<p>In addition</p>
-<p>$$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
-<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
-<p>$$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$$</p>
-<p>Fisher information has following properties.</p>
-<p>$$<br>\begin{align}</p>
-<ol>
-<li>&amp; I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)\</li>
-<li>&amp; I_n(\theta) = n I(\theta) \<br>\end{align}<br>$$</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/22/point-estimation/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/22/data-reduction/" itemprop="url">
-                  Data Reduction
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-11-22T16:23:00+08:00" content="2013-11-22">
-              2013-11-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
-<h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
-<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
-</blockquote>
-<p>A sufficient statistic captures all the infromation about $\theta$.</p>
-<blockquote>
-<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
-</blockquote>
-<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
-<ul>
-<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
-</ul>
-<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
-<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
-<ul>
-<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
-</ul>
-<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
-<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
-<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
-<p>is a sufficient statistic for $$\theta$$.</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/22/data-reduction/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/20/random-sample/" itemprop="url">
-                  Random Sample
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            Posted on
-            <time itemprop="dateCreated" datetime="2013-11-20T15:03:00+08:00" content="2013-11-20">
-              2013-11-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; In
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Statistics/" itemprop="url" rel="index">
-                    <span itemprop="name">Statistics</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
-<p>The random variables $$X_1,\dots,X_n$$ are called a random sample of size n from the population $$f(x)$$ if $$X_1,\dots,X_n$$ are mutually independent random variables and the marginal pdf or pmf of each $$X_i$$ is the same function $$f(x)$$. Alternatively, $$X_1,\dots,X_n$$ are called independent and identically distributed random variables with pdf or pmf $$f(x)$$. This is commonly abbreviated to iid random variables. </p>
-</blockquote>
-<p>The joint pdf of pmf of $$X_1,\dots,X_n$$ is given by </p>
-<p>$$f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x<em>n) = \prod</em>{i=1}^{n}f(x_i)$$</p>
-<p> Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable $$X_1,\dots,X_n$$ are independent as the process of choosing any $$X_i$$ keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of $$X_i$$, where $$j &gt; i$$. For example, considering $$X_1$$ and $$X_2$$, we have</p>
-<p>$$P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1$$</p>
-<p>It is noted that $$X_i$$ has the same marginal distribution.</p>
-<p>$$P(X<em>2=x) = \sum</em>{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$</p>
-<p>When $N$ is larger, there is not too difference between the conditional distribution of $$X_i$$ given $$ X<em>1, \dots,X</em>{i-1} $$ and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/20/random-sample/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1352,10 +361,10 @@
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">categories</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -1377,6 +386,24 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/messipiao" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005051660361312" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
           
         </div>
 
@@ -1402,7 +429,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2013 - 
   <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
@@ -1464,6 +491,29 @@
 
   
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
   
