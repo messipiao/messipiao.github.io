@@ -747,7 +747,7 @@
     <link href="http://messipiao.github.io/2013/11/18/basics-of-martingales/"/>
     <id>http://messipiao.github.io/2013/11/18/basics-of-martingales/</id>
     <published>2013-11-18T08:16:00.000Z</published>
-    <updated>2015-11-27T02:32:08.000Z</updated>
+    <updated>2015-11-27T02:33:59.000Z</updated>
     <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
 <h2 id="Martingales">Martingales</h2><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
@@ -760,9 +760,7 @@
 <p>it is a super-martingale.</p>
 <p>Let $X,Y_1,Y_2,\dots$ be arbitary random variables such that $E[|X|] &lt; \infty$,<br>and let $Z_n = E[X \mid Y_1,\dots,Y_n]$. It then follows that ${Z_n,n \ge 1}$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
 <a id="more"></a>
-<p>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</p>
-<p>$$ Z<em>n = \sum</em>{i=1}^n {X_i - E[X_i \mid X<em>1,\dots,X</em>{i-1}]} $$</p>
-<p>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead $Z_1, \dots, Z_n$. Actually, we can prove this results. Let $Z = g(Y)$ then</p>
+<p>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:<br>$$ Z<em>n = \sum</em>{i=1}^n {X_i - E[X_i \mid X<em>1,\dots,X</em>{i-1}]} $$<br>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead $Z_1, \dots, Z_n$. Actually, we can prove this results. Let $Z = g(Y)$ then</p>
 <p>$$E(X \mid Z) = E(E(X \mid Z,Y) \mid Z) = E(E(X \mid Y) \mid Z) = E(X\mid Y)$$</p>
 <h2 id="Stopping_Times">Stopping Times</h2><h3 id="Definition">Definition</h3><p>The positive interger-value, possibly infinite, random variable $N$ is said to be a random time for the process ${Z_n,n \ge 1}$ if the event {N=n} is determined by the randon variables $Z_1,\dots,Z_n$. That is, knowing $Z_1,\dots,Z_n$ tells us whether or not $N=n$. If $P(N &lt; \infty)$, then the random time $N$ is said to be a <strong>stopping time</strong>.</p>
 <h3 id="The_Martingale_Stopping_Theorem">The Martingale Stopping Theorem</h3><p>If either:</p>
