@@ -863,8 +863,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/11/24/hypothesis-testing/" itemprop="url">
-                  Hypothesis Testing
+                <a class="post-title-link" href="/2013/11/22/point-estimation/" itemprop="url">
+                  Point Estimation
                 </a>
               
             
@@ -874,8 +874,8 @@
         <div class="post-meta">
           <span class="post-time">
             Posted on
-            <time itemprop="dateCreated" datetime="2013-11-24T10:47:00+08:00" content="2013-11-24">
-              2013-11-24
+            <time itemprop="dateCreated" datetime="2013-11-22T19:31:00+08:00" content="2013-11-22">
+              2013-11-22
             </time>
           </span>
 
@@ -900,8 +900,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2013/11/24/hypothesis-testing/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/24/hypothesis-testing/" itemprop="commentsCount"></span>
+              <a href="/2013/11/22/point-estimation/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/22/point-estimation/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -921,20 +921,33 @@
 
       
         
-          <p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
-<blockquote>
-<p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
-</blockquote>
-<h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
-<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
-</ul>
-<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
-<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
+          <p>When sampling is from a population described by a pdf or pmf $f(x \vert \theta)$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
+<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $X_g1,\dots,X_n$ be a sample from a population with pdf or pmf $f(x \vert \theta_1,\dots,\theta_k)$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
+<p>$m_gk = \frac{1}{n} \sum_{i=1}^{n}X_i^k = \mu’_k = EX^k$</p>
+<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
+<p>$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_g1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$</p>
+<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
+<p>MLE has the following properties.</p>
 <ul>
-<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
+<li><strong>(Invariance property of MLEs)</strong> </li>
 </ul>
+<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
+<ul>
+<li><strong>(Asymptotic Normality)</strong> </li>
+</ul>
+<p>Under appropriate regularity conditions,</p>
+<p>$\sqrt{I_gn(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
+<p>In addition</p>
+<p>$\sqrt{I_gn(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$</p>
+<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
+<p>$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$</p>
+<p>Fisher information has following properties.</p>
+<ol>
+<li>$ I_g{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)$</li>
+<li>$ I_gn(\theta) = n I(\theta)$ </li>
+</ol>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/24/hypothesis-testing/#more" rel="contents">
+            <a class="btn" href="/2013/11/22/point-estimation/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

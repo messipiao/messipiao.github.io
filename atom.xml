@@ -286,84 +286,84 @@
     <link href="http://messipiao.github.io/2013/11/24/hypothesis-testing/"/>
     <id>http://messipiao.github.io/2013/11/24/hypothesis-testing/</id>
     <published>2013-11-24T02:47:00.000Z</published>
-    <updated>2014-12-29T05:14:56.000Z</updated>
+    <updated>2015-11-27T03:49:58.000Z</updated>
     <content type="html"><![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
 <blockquote>
 <p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
 </blockquote>
 <h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
-<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
+<li>The likelihood ratio test statistic for testing $H_0:\theta \in \Theta_0$ versus $H_1:\theta \in \Theta_0^c$ is </li>
 </ul>
-<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
-<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
+<p>$\lambda(\mathbf{x}) = \frac{\sup_{\Theta_0} L(\theta \vert \mathbf{x})}{\sup_{\Theta} L(\theta \vert \mathbf{x})}$</p>
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form ${\mathbf{x}:\lambda(\mathbf{x}) \le c}$ where c is any number satisfying $0 \le c \le 1$.</p>
 <ul>
-<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
+<li>If $T(\mathbf{X})$ is a sufficient statistic for $\theta$ and $\lambda’(t)$ and $\lambda(\mathbf{x})$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$ for every $\mathbf{x}$ in the sample space.</li>
 </ul>
 <a id="more"></a>
-<h3 id="Bayesian_Tests">Bayesian Tests</h3><p>In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H_0$ and $H_1$ are true. Remember, $$\pi(\theta \vert \mathbf{x})$$ is probability distribution for a random variable. Hence, the posterior probabilities $$P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})$$ and $$P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})$$ may be computed. </p>
-<p>One way a Bayesian hypothesis tester may choose to use the posterior distribution is to decide to accept $$H_0$$ as true if $$P(\theta \in \Theta_0 \vert \mathbf{X}) \ge P(\theta \in \Theta^c_0 \vert \mathbf{X})$$ and to reject $$H_0$$ otherwise. Another way is to reject $$H_0$$ only if $$P(\theta \in \Theta_0^c \vert \mathbf{X})$$ is greater thatn some large number, 0.99 for example.</p>
+<h3 id="Bayesian_Tests">Bayesian Tests</h3><p>In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H_0$ and $H_1$ are true. Remember, $\pi(\theta \vert \mathbf{x})$ is probability distribution for a random variable. Hence, the posterior probabilities $P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})$ and $P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})$ may be computed. </p>
+<p>One way a Bayesian hypothesis tester may choose to use the posterior distribution is to decide to accept $H_0$ as true if $P(\theta \in \Theta_0 \vert \mathbf{X}) \ge P(\theta \in \Theta^c_0 \vert \mathbf{X})$ and to reject $H_0$ otherwise. Another way is to reject $H_0$ only if $P(\theta \in \Theta_0^c \vert \mathbf{X})$ is greater thatn some large number, 0.99 for example.</p>
 <h3 id="Union-Intersection_and_Intersection-Union_Tests">Union-Intersection and Intersection-Union Tests</h3><ul>
 <li><strong>Union-Intersection method</strong></li>
 </ul>
-<p>$$H<em>0: \theta \in \bigcap</em>{\gamma \in \Gamma} \Theta_{\gamma}$$</p>
+<p>$H_0: \theta \in \bigcap_{\gamma \in \Gamma} \Theta_{\gamma}$</p>
 <p>Then the rejection region for the union-intersection test is</p>
-<p>$$\bigcup<em>{\gamma \in \Gamma} {\mathbf{x}:T</em>{\gamma}(\mathbf{x}) \in R_{\gamma}}$$</p>
+<p>$\bigcup_{\gamma \in \Gamma} {\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}}$</p>
 <ul>
 <li><strong>Intersection-Union method</strong></li>
 </ul>
-<p>$$H<em>0: \theta \in \bigcup</em>{\gamma \in \Gamma} \Theta_{\gamma}$$</p>
+<p>$H_0: \theta \in \bigcup_{\gamma \in \Gamma} \Theta_{\gamma}$</p>
 <p>Then the rejection region for the intersection-union test is</p>
-<p>$$\bigcap<em>{\gamma \in \Gamma} {\mathbf{x}:T</em>{\gamma}(\mathbf{x}) \in R_{\gamma}}$$</p>
-<h2 id="Methods_of_Evaluating_Tests">Methods of Evaluating Tests</h2><h3 id="Power_Function">Power Function</h3><p>A hypothesis test might make one of two types of errors, namely Type I Error and Type II Error. If $$\theta \in \Theta_0$$ but the hypothesis test incorrectly decides to reject $$H_0$$, then the test has made a Type I Error. If, on the other hand, $$\theta \in \Theta_0^c$$ but the test decides to accept $$H_0$$, a Type II Eroror has been made.</p>
+<p>$\bigcap_{\gamma \in \Gamma} {\mathbf{x}:T_{\gamma}(\mathbf{x}) \in R_{\gamma}}$</p>
+<h2 id="Methods_of_Evaluating_Tests">Methods of Evaluating Tests</h2><h3 id="Power_Function">Power Function</h3><p>A hypothesis test might make one of two types of errors, namely Type I Error and Type II Error. If $\theta \in \Theta_0$ but the hypothesis test incorrectly decides to reject $H_0$, then the test has made a Type I Error. If, on the other hand, $\theta \in \Theta_0^c$ but the test decides to accept $H_0$, a Type II Eroror has been made.</p>
 <blockquote>
-<p>The power function of a hypothesis test with rejection region R is the function of $\theta$ defined by <strong>$$\beta(\theta) = P_{\theta}(\mathbf{X} \in R)$$</strong>.</p>
+<p>The power function of a hypothesis test with rejection region R is the function of $\theta$ defined by <strong>$\beta(\theta) = P_{\theta}(\mathbf{X} \in R)$</strong>.</p>
 </blockquote>
 <p>For a fixed sample size, it is usually impossible to make both types of error probabilities arbitrarily small. In searching for a good test, it is common to restrict consideration to tests that control the Type I Error probability at a specified level. Within this class of tests we then search for tests that have Type II Error probability that is as small as possible. The following two terms are useful when discussing tests that control Type I Error probabilities.</p>
 <ul>
-<li>For $$0 \le \alpha \le 1$$, a test with power function $$\beta(\theta)$$ is a size $\alpha$ test if $$\sup_{\theta \in \Theta_0} \beta(\theta) = \alpha$$.</li>
-<li>For $$0 \le \alpha \le 1$$, a test with power function $$\beta(\theta)$$ is a level $\alpha$ test if $$\sup_{\theta \in \Theta_0} \beta(\theta) \le \alpha$$.</li>
+<li>For $0 \le \alpha \le 1$, a test with power function $\beta(\theta)$ is a size $\alpha$ test if $\sup_{\theta \in \Theta_0} \beta(\theta) = \alpha$.</li>
+<li>For $0 \le \alpha \le 1$, a test with power function $\beta(\theta)$ is a level $\alpha$ test if $\sup_{\theta \in \Theta_0} \beta(\theta) \le \alpha$.</li>
 </ul>
 <blockquote>
-<p>A test with power function $$\beta(\theta)$$ is <strong>unbiased</strong> if $$\beta(\theta’) \ge \beta(\theta’’)$$ for every $$\theta’ \in \Theta_0^c$$ and $$\theta’’ \in \Theta_0$$.</p>
+<p>A test with power function $\beta(\theta)$ is <strong>unbiased</strong> if $\beta(\theta’) \ge \beta(\theta’’)$ for every $\theta’ \in \Theta_0^c$ and $\theta’’ \in \Theta_0$.</p>
 </blockquote>
 <h3 id="Most_Powerful_Tests">Most Powerful Tests</h3><blockquote>
-<p>Let C be a class of tests for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1 : \theta \in \Theta_0^c$$. A test in class C, with power function $$\beta(\theta)$$, is a <em>uniformly most powerful</em>(<strong>UMP</strong>) class C test if $$\beta(\theta) \ge \beta’(\theta)$$ for every $$\theta \in \Theta^c_0$$ and every $$\beta’(\theta)$$ that is a power function of a test in class C.</p>
+<p>Let C be a class of tests for testing $H_0:\theta \in \Theta_0$ versus $H_1 : \theta \in \Theta_0^c$. A test in class C, with power function $\beta(\theta)$, is a <em>uniformly most powerful</em>(<strong>UMP</strong>) class C test if $\beta(\theta) \ge \beta’(\theta)$ for every $\theta \in \Theta^c_0$ and every $\beta’(\theta)$ that is a power function of a test in class C.</p>
 </blockquote>
 <p>If the class C is the class of all level $\alpha$ tests, then the test described above is called a <strong>UMP level $\alpha$ test</strong>.</p>
-<p><strong>Neyman-Pearson Lemma</strong> describes which tests are UMP level $\alpha$ tests in the situation where the null and alternative hypotheses both consist of only one probability distribution for the sample (that is, when both $$H_0$$ and $$H_1$$ are simple hypotheses).</p>
+<p><strong>Neyman-Pearson Lemma</strong> describes which tests are UMP level $\alpha$ tests in the situation where the null and alternative hypotheses both consist of only one probability distribution for the sample (that is, when both $H_0$ and $H_1$ are simple hypotheses).</p>
 <ul>
 <li><strong>Neyman-Pearson Lemma</strong></li>
 </ul>
-<p>Consider testing $$H_0:\theta = \theta_0$$ versus $$H_1:\theta = \theta_1$$, where the pdf or pmf corresponding to $\theta_i$ is $$f(\mathbf{x} \vert \theta_i)$$, $$i=0,1$$, using a test with rejection region R that satisfies</p>
-<p>$$\mathbf{x} \in R ~ if ~ f(\mathbf{x} \vert \theta_1) &gt; kf(\mathbf{x} \vert \theta_0)$$</p>
+<p>Consider testing $H_0:\theta = \theta_0$ versus $H_1:\theta = \theta_1$, where the pdf or pmf corresponding to $\theta_i$ is $f(\mathbf{x} \vert \theta_i)$, $i=0,1$, using a test with rejection region R that satisfies</p>
+<p>$\mathbf{x} \in R ~ if ~ f(\mathbf{x} \vert \theta_1) &gt; kf(\mathbf{x} \vert \theta_0)$</p>
 <p>(1) and</p>
-<p>$$\mathbf{x} \in R^c ~ if ~ f(\mathbf{x} \vert \theta_1) &lt; kf(\mathbf{x} \vert \theta_0)$$</p>
-<p>for some $$k \ge 0$$, and </p>
+<p>$\mathbf{x} \in R^c ~ if ~ f(\mathbf{x} \vert \theta_1) &lt; kf(\mathbf{x} \vert \theta_0)$</p>
+<p>for some $k \ge 0$, and </p>
 <p>(2) </p>
-<p>$$\alpha = P_{\theta_0}(\mathbf{X} \in R)$$</p>
+<p>$\alpha = P_{\theta_0}(\mathbf{X} \in R)$</p>
 <p>Then</p>
 <ol>
 <li><strong>(Sufficiency)</strong> Any test that satisfies (1) and (2) is a <strong>UMP level $\alpha$ test</strong>.</li>
-<li><strong>(Necessity)</strong> If there exists a test satisfying (1) and (2) with $$k &gt; 0$$, then every <strong>UMP level $\alpha$ test</strong> is a size $\alpha$ test (satisfies (2)) and every <strong>UMP level $\alpha$ test</strong> satisfies (1) except perhaps onon a set A satisfying $$P_{\theta<em>0}(\mathbf{X} \in A) = P</em>{\theta_1}(\mathbf{X} \in A) = 0$$.</li>
+<li><strong>(Necessity)</strong> If there exists a test satisfying (1) and (2) with $k &gt; 0$, then every <strong>UMP level $\alpha$ test</strong> is a size $\alpha$ test (satisfies (2)) and every <strong>UMP level $\alpha$ test</strong> satisfies (1) except perhaps onon a set A satisfying $P_{\theta_0}(\mathbf{X} \in A) = P_{\theta_1}(\mathbf{X} \in A) = 0$.</li>
 </ol>
 <p>Note that replace $\mathbf{x}$ by a sufficient statistic $T(\mathbf{x})$ can lead to a same conclusion(applying <strong>Factorization Theorem</strong>).</p>
-<p>Hypotheses, such as $$H_0$$ and $$H_1$$ in the <strong>Neyman-Pearson Lemma</strong>, that specify only one possible distribution for the sample $\mathbf{X}$ are called <em>simple hypotheses</em>. In most realistic problems, the hypotheses of interest specify more than one possible distribution for the sample. Such hypotheses are called <em>composite hypothese</em>. </p>
+<p>Hypotheses, such as $H_0$ and $H_1$ in the <strong>Neyman-Pearson Lemma</strong>, that specify only one possible distribution for the sample $\mathbf{X}$ are called <em>simple hypotheses</em>. In most realistic problems, the hypotheses of interest specify more than one possible distribution for the sample. Such hypotheses are called <em>composite hypothese</em>. </p>
 <ul>
-<li>$$H:\theta \ge \theta_0$$ or $$\theta &lt; \theta_0$$ is called <em>one-sided</em> hypotheses.</li>
-<li>$$H:\theta \ne \theta_0$$ is called <em>two-sided</em> hypotheses.</li>
+<li>$H:\theta \ge \theta_0$ or $\theta &lt; \theta_0$ is called <em>one-sided</em> hypotheses.</li>
+<li>$H:\theta \ne \theta_0$ is called <em>two-sided</em> hypotheses.</li>
 </ul>
 <p>A large class of problems that admit <strong>UMP level $\alpha$</strong> tests involve one-sided hypotheses and <strong>pdfs or pmfs</strong> with the <strong>monotone likelihood ratio property</strong>.</p>
 <blockquote>
-<p>A family of pdfs or pmfs $${g(t \vert \theta):\theta \in \Theta}$$ for a univariate random variable T with real-valued parameter $\theta$ has a <em>monotone likelihood ratio</em> (<strong>MLR</strong>) if, for every $$\theta_2 &gt; \theta_1$$, $$g(t \vert \theta_2)/g(t \vert \theta_1)$$ is a monotone (nonincreasing or nondecreasing) function of t on $${t:g(t \vert \theta_1)&gt;0 ~or~ g(t \vert \theta_2)&gt;0}$$. Note that c/0 is defined as $\infty$ if $c&gt;0$.</p>
+<p>A family of pdfs or pmfs ${g(t \vert \theta):\theta \in \Theta}$ for a univariate random variable T with real-valued parameter $\theta$ has a <em>monotone likelihood ratio</em> (<strong>MLR</strong>) if, for every $\theta_2 &gt; \theta_1$, $g(t \vert \theta_2)/g(t \vert \theta_1)$ is a monotone (nonincreasing or nondecreasing) function of t on ${t:g(t \vert \theta_1)&gt;0 ~or~ g(t \vert \theta_2)&gt;0}$. Note that c/0 is defined as $\infty$ if $c&gt;0$.</p>
 </blockquote>
 <ul>
 <li>Many common families of distribution have an <em>MLR</em>. For example, the normal (known variance, unknown mean). Poisson, and binomial all have an MLR. </li>
-<li><p>Any regular exponential family with $$g(t \vert \theta) = h(t)c(\theta) e^{w(\theta)t}$$ has an <em>MLR</em> if $$w(\theta)$$ is a nondecreasing function.</p>
+<li><p>Any regular exponential family with $g(t \vert \theta) = h(t)c(\theta) e^{w(\theta)t}$ has an <em>MLR</em> if $w(\theta)$ is a nondecreasing function.</p>
 </li>
 <li><p><strong>Karlin-Rubin Theorem</strong></p>
 </li>
 </ul>
-<p>Consider testing $$H_0:\theta \le \theta_0$$ versus $$H_1: \theta &gt; \theta_0$$. Suppose that T is a sufficient statistic for $\theta$ and the family of pdfs or pmfs $${g(t \vert \theta):\theta \in \Theta}$$ of T has an <em>MLR</em>. Then for any $$t_0$$, the test that rejects $$H_0$$ if and only if $$T &gt; t<em>0$$ is a <strong>UMP level $\alpha$ test</strong>, where $$\alpha = P</em>{\theta_0}(T&gt;t_0)$$.</p>
+<p>Consider testing $H_0:\theta \le \theta_0$ versus $H_1: \theta &gt; \theta_0$. Suppose that T is a sufficient statistic for $\theta$ and the family of pdfs or pmfs ${g(t \vert \theta):\theta \in \Theta}$ of T has an <em>MLR</em>. Then for any $t_0$, the test that rejects $H_0$ if and only if $T &gt; t_0$ is a <strong>UMP level $\alpha$ test</strong>, where $\alpha = P_{\theta_0}(T&gt;t_0)$.</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
@@ -371,12 +371,12 @@
 <p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
 </blockquote>
 <h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
-<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
+<li>The likelihood ratio test statistic for testing $H_0:\theta \in \Theta_0$ versus $H_1:\theta \in \Theta_0^c$ is </li>
 </ul>
-<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
-<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
+<p>$\lambda(\mathbf{x}) = \frac{\sup_{\Theta_0} L(\theta \vert \mathbf{x})}{\sup_{\Theta} L(\theta \vert \mathbf{x})}$</p>
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form ${\mathbf{x}:\lambda(\mathbf{x}) \le c}$ where c is any number satisfying $0 \le c \le 1$.</p>
 <ul>
-<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
+<li>If $T(\mathbf{X})$ is a sufficient statistic for $\theta$ and $\lambda’(t)$ and $\lambda(\mathbf{x})$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$ for every $\mathbf{x}$ in the sample space.</li>
 </ul>]]>
     
     </summary>
