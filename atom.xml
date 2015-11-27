@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Piao's Blog]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://messipiao.github.io/"/>
+  <updated>2015-11-26T09:19:27.000Z</updated>
+  <id>http://messipiao.github.io/</id>
+  
+  <author>
+    <name><![CDATA[CHEN PIAO]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://messipiao.github.io/2015/11/26/hello-world/"/>
+    <id>http://messipiao.github.io/2015/11/26/hello-world/</id>
+    <published>2015-11-26T09:19:27.000Z</published>
+    <updated>2015-11-26T09:19:27.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[IPython parallel Computing]]></title>
+    <link href="http://messipiao.github.io/2015/01/07/ipython-parallel-computing/"/>
+    <id>http://messipiao.github.io/2015/01/07/ipython-parallel-computing/</id>
+    <published>2015-01-07T08:12:00.000Z</published>
+    <updated>2015-01-07T08:22:56.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Basic_concepts">Basic concepts</h1><ul>
+<li>Clent is a lightweight handle on all the engines of a cluster.</li>
+<li>Views provide the fundamental ways of accessing the clients. There are two types of views: Direct view and      load balanced view.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython <span class="keyword">import</span> parallel</span><br><span class="line">clients = parallel.Client()</span><br><span class="line">dview = clients.direct_view()</span><br><span class="line">lview = clients.load_balanced_view()</span><br></pre></td></tr></table></figure>
+<h1 id="Direct_View">Direct View</h1><p>In a DirectView interface, we can either use Blocking (synchronous) execution, in which all results must finish computing before any results are recorded, </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">True</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_sync(some function)</span><br></pre></td></tr></table></figure>
+<p>or non-blocking (asynchronous) execution, where we receive results as they finish.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## one way</span></span><br><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some function)</span><br><span class="line"><span class="comment">## another way</span></span><br><span class="line">dview.apply_async(some function)</span><br></pre></td></tr></table></figure>
+<p>To get the result in a blocking mode (synchronous) is quite straitforward, while things get complicated in the non-blocking (asynchronous) mode. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dview.block = <span class="keyword">False</span></span><br><span class="line">dview.apply(some_function)</span><br><span class="line"><span class="comment">## the result should be &lt;AsyncResult: some_function&gt;</span></span><br><span class="line"><span class="comment">## In order to get the result res = dview.apply(some_function)</span></span><br><span class="line">res.get()</span><br><span class="line"><span class="comment">## To check whether the excutation is over or not</span></span><br><span class="line">res.ready()</span><br></pre></td></tr></table></figure>
+<p>It is noted that when you import some modules which excepected to be used in all the engines, you should put it in the function. For example, if we want to import <em>numpy</em>, we should put <em>import numpy</em> in the function. Alternatives ways can be </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.execute(<span class="string">'import numpy'</span>)</span><br></pre></td></tr></table></figure>
+<p>and </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> dview.sync_imports():</span><br><span class="line">    <span class="keyword">import</span> numpy</span><br></pre></td></tr></table></figure>
+<p>If we use the IPython notebook, there is more convinient way by using magic function <strong>%px</strong>(parallel execute) to achieve it. </p>
+<p>We have shown above that function <strong>apply()</strong> is used to excute functions in the direct view interface. There are two other useful functions, i.e., <strong>run()</strong> and <strong>excute()</strong>. <strong>run()</strong> can be used to run scripts</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dview.run(<span class="string">"myscript.py"</span>)</span><br></pre></td></tr></table></figure>
+<p>and <strong>excute()</strong> can be used to execute code directly on the engine by passing strings to the engines.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Suppose after running code, we have two variables a and b, then we can use dview['a'] to get the value of a</span></span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'a'</span>] </span><br><span class="line"><span class="keyword">print</span> dview[<span class="string">'b'</span>]</span><br><span class="line"><span class="comment">## excute code c=a+b</span></span><br><span class="line">dview.execute(<span class="string">'c=a+b'</span>)</span><br></pre></td></tr></table></figure>
+<p>We can also push or pull data by using <strong>scatter()</strong> and <strong>gather</strong>, which is useful if you had a larger computation that could be done on partitions of the data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dview.scatter(<span class="string">'a'</span>, np.arange(<span class="number">24</span>))</span><br><span class="line">dview.gather(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Load-balanced_Views">Load-balanced Views</h1><p>A load-balanced view is a fault-tolerant way to distribute tasks among the engines. While there is no direct access to individual engines, it provides a simple and powerful interface.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">lview.block = <span class="keyword">True</span></span><br><span class="line">lview.apply(some_function,par)</span><br><span class="line"><span class="comment">## We can use the map function to execute multiple inputs. We'll use block=False to make sure the results come asynchronously.</span></span><br><span class="line">lview.block = <span class="keyword">False</span></span><br><span class="line">res = lview.map(some_function,list_of_pars)</span><br><span class="line"><span class="comment">## check how many of the jobs have been completed</span></span><br><span class="line">res.progress</span><br><span class="line"><span class="comment">## get the result</span></span><br><span class="line">res.result</span><br><span class="line"><span class="comment">## another way to get the result</span></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> lview.map(sleep_and_return, range(<span class="number">10</span>)):</span><br><span class="line">    <span class="keyword">print</span> result</span><br></pre></td></tr></table></figure>
+<h1 id="Example:_Monte_Carlo_$\pi$">Example: Monte Carlo $\pi$</h1><ul>
+<li>Without parallel</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> pi</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Parallel</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mcpi</span><span class="params">(nsamples)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(nsamples):</span><br><span class="line">        x = random()</span><br><span class="line">        y = random()</span><br><span class="line">        <span class="keyword">if</span> x*x + y*y &lt;= <span class="number">1</span>:</span><br><span class="line">            s+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">4.</span>*s/nsamples</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multi_mcpi</span><span class="params">(view, nsamples)</span>:</span></span><br><span class="line">    p = len(view.targets)</span><br><span class="line">    <span class="keyword">if</span> nsamples % p:</span><br><span class="line">        <span class="comment"># ensure even divisibility</span></span><br><span class="line">        nsamples += p - (nsamples%p)</span><br><span class="line">    subsamples = nsamples/p</span><br><span class="line">    ar = view.apply_async(mcpi, subsamples)</span><br><span class="line">    <span class="keyword">return</span> sum(ar)/p</span><br></pre></td></tr></table></figure>
+<p>We test the running time and found that it is almost 4 times fast with parallel computing.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Basic_concepts">Basic concepts</h1><ul>
+<li>Clent is a lightweight handle on all the engines of a cluster.</li>
+<li>Views provide th]]>
+    </summary>
+    
+      <category term="Programming" scheme="http://messipiao.github.io/categories/Programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tips of giving a seminar presentaion]]></title>
+    <link href="http://messipiao.github.io/2014/09/15/tips-of-giving-a-seminar-presentaion/"/>
+    <id>http://messipiao.github.io/2014/09/15/tips-of-giving-a-seminar-presentaion/</id>
+    <published>2014-09-15T02:37:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapter talking about giving presentations and the author lists some ideas which may help to make a good presentation. My supervivor used to tell me such similar ideas and I record here for my future check and the readers’ information.</p>
+<ol>
+<li>Your seminar is a performance. It needs to be carefully planned and throughly rehearsed. You should especially pay attention to the time.</li>
+<li>Present yourself confidently. Act as though you are enjoying your research and your results are exciting to you.</li>
+<li>Respect your audience. They are spending an hour to hear you. They want to understand what you have to say, even if your specialty is not theirs. They do not want to be “snowed”, nor do they want to be treated as experts in a field where they really are not. Remeber never overestimate your audience. In this point, you should tell them a good story instead of listing your techniques too much.</li>
+<li>Do not waste your time with filler. Make sure each slide pushes your story forward. If your talk is a bit too short, no one will object. An except is too use large fonts so that people in the back can see your slides clearly.</li>
+</ol>
+<h2 id="Update_by_tips_given_by_Dr-_Ye_in_the_group_meeting-">Update by tips given by Dr. Ye in the group meeting.</h2><p>The boss is quite angry with the presentation by one of his students while he did give some useful tips.</p>
+<ol>
+<li><p>Before going to the details of your presentation, you should give the audiences a big picture of what you are to talk about. You should use a few sentences to summarize your work and always remember to highlight your contribution. In addtion, try to be confident as if you are the most experienced one in this work so that people are willing to listen to your content following up.</p>
+</li>
+<li><p>You should know everything about the content in the slides and get well prepared to every possible question raised by the audiences. Since we are majoy in engineering, always remind people that your work is applicable and valuable. </p>
+</li>
+<li><p>Same with what introduced in above-mentioned book, we are talking a self-contained story instead of listing techniques.</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Recently, I’ve read a book named <em>A phd is not enough</em>, which gives suggestions about how to survive in science. There is a chapte]]>
+    </summary>
+    
+      <category term="Research" scheme="http://messipiao.github.io/categories/Research/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Complete and Convergence]]></title>
+    <link href="http://messipiao.github.io/2014/09/03/complete-and-convergence/"/>
+    <id>http://messipiao.github.io/2014/09/03/complete-and-convergence/</id>
+    <published>2014-09-03T08:55:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space" target="_blank" rel="external">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence" target="_blank" rel="external">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence" target="_blank" rel="external">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+<h2 id="Complete">Complete</h2><blockquote>
+<p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
+<h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+<blockquote>
+<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
+</blockquote>
+<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
+<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+<h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
+<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
+</blockquote>
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+<blockquote>
+<p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>
+<a id="more"></a>
+<h3 id="Integration_and_passage_to_the_limit">Integration and passage to the limit</h3><blockquote>
+<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a closed interval $$a \le x \le b$$ and depending on the parameter $$t \in T$$, and let $B$ be a base in $T$. If the functions of the family are integrable on $$[a,b]$$ and $$f_t \Rightarrow f$$ on $$[a,b]$$ over the base $$B$$, then the limit function $$f:[a,b] \to C$$is also integrable on $$[a,b]$$ and </p>
+</blockquote>
+<p>$$\int<em>a^b f(x) dx = \lim</em>{B} \int_a^b f_t(x) dx.$$</p>
+<p>A useful corollary following by is</p>
+<blockquote>
+<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ consisting of integrable functions on a closed interval $$[a,b] \subset R$$ converges uniformly on that closed interval, then its sum is also integrable on $$[a,b]$$ and </p>
+</blockquote>
+<p>$$\int<em>a^b (\sum</em>{n=1}^{\infty} f<em>n(x))dx = \sum</em>{n=1}^{\infty} \int_a^b f_n(x) dx.$$</p>
+<h3 id="Differentiation_and_passage_to_the_limit">Differentiation and passage to the limit</h3><p>The condition of interchanging between differentiation and limit is more strict. In general, if the original function converges uniformly, the limit function need not be differentiable; even if it is differentiable, the derivative of the limit function need not be equal to the limit of derivatives.</p>
+<blockquote>
+<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ defined on a convex bounded set $X$ (in $R$, $C$, or any normed space) and depending on the parameter $$t \in T$$; let $B$ be a base in $T$. If the functions of the family is differentiable on $X$, and the family of derivatives $${f’_t; t\in T}$$ converges uniformly on $X$ to function $\psi:X\to C$, and the original family $${f_t;t\in T}$$ converges at even on point $$x_0 \in X$$, then it converges uniformly on the entire set $X$ to a differentiable function $$f:X\to C$$, and $$f ‘=\psi$$.  </p>
+</blockquote>
+<p>A corollary following by is</p>
+<blockquote>
+<p>If the series $$\sum_{n=1}^\infty f_n(x)$$ of functions $$f<em>t: X \to C$$ that are differentiable  on a convex bounded set $X$ (in $R$, $C$, or any normed space)  converges at even on point $$x \in X$$ and the series $$\sum</em>{n=1}^\infty f’<em>n(x)$$ converges uniformly on $X$, then $$\sum</em>{n=1}^\infty f<em>n(x)$$ $$\sum</em>{n=1}^\infty f_n(x)$$ also  converges uniformly on $X$, its sum is differentiable on $X$ and </p>
+</blockquote>
+<p>$$(\sum_{n=1}^\infty f<em>n(x))’=  \sum</em>{n=1}^\infty f’_n(x).$$ </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This post will talk about <a href="http://en.wikipedia.org/wiki/Complete_metric_space">complete</a> and convergence, including <a href="http://en.wikipedia.org/wiki/Uniform_convergence">uniform convergence</a> and <a href="http://en.wikipedia.org/wiki/Pointwise_convergence">poitwise convergence</a>. These two concepts are very important in mathimatical analysis.</p>
+<h2 id="Complete">Complete</h2><blockquote>
+<p>In mathimatics, a Cauchy sequence is a sequence whose elements become arbitrary close to each other as the sequence progresses. The definition of Cauchy sequence can regard to real numbers and a metric space. A metric space $M$ is called complete if every Cauchy sequence in $M$ converges in $M$. </p>
+</blockquote>
+<p>One main shortcoming of Riemann integration is that all $L<em>p$ space except for $$L</em> \infty$$ fail to complete. </p>
+<h2 id="Convergence">Convergence</h2><p>We first given two definitions of convergence, i.e., pointwise convergence and uniform convergence.</p>
+<blockquote>
+<p>Define a sequence of functions $${f_t; t\in T}$$ on the set $$E \subset X$$ over the base $$B$$. Introduce the quantity $$\Delta_t(x) = \mid f(x)-f_t(x) \mid $$ and $$\Delta<em>t = \sup</em>{x\in E} \Delta_t(x)$$. Then</p>
+</blockquote>
+<p>$$(f_t \to f \;on \;E) := \forall x \in E, (\Delta_t(x) \to 0 \; over \; B),$$</p>
+<p>$$(f_t \Rightarrow f \; on \;E) := (\Delta_t \to 0 \;over \;B).$$</p>
+<p>Obviously, the uniform convergence is stronger than the pointwise convergence. Also, the uniform convergence plays an very important role to the passage to limit with regard to continuity, integration and differentiation. </p>
+<h3 id="Continuity_and_passage_to_the_limit">Continuity and passage to the limit</h3><blockquote>
+<p>Let $${ f_t; t \in T}$$ be a family of functions $$f_t: X \to C$$ depending on the parameter $t$; let $$B$$ be a base in $$T$$. If $$f_t \Rightarrow f$$ on $$X$$ over the base $$B$$ and the function $$f_t$$ are continuos at $$x_0 \in X$$, then the function $$f:X \to C$$ is also continuos at that point.</p>
+</blockquote>
+<p>This theorem can result in a useful proposition, named Dini’s theorem, to prove the uniform convergence.</p>
+<blockquote>
+<p>If a sequence of continuos functions on a compact set converges monotonically to a continuous function, then the convergence is uniform. </p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="Analysis" scheme="http://messipiao.github.io/categories/Analysis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Asymptotic Evaluations]]></title>
+    <link href="http://messipiao.github.io/2014/01/14/asymptotic-evaluations/"/>
+    <id>http://messipiao.github.io/2014/01/14/asymptotic-evaluations/</id>
+    <published>2014-01-14T12:19:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+<h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+<blockquote>
+<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+<blockquote>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+<p>Recall that in the above definition, </p>
+<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>
+<a id="more"></a>
+<h2 id="Robustness">Robustness</h2><p>Robustness and Optimality are in the two sides of a coin. For example, generally sample mean is a more accurate estimator than sample mean, while not a robust estimator sometimes (think about adding a really huge number into a sample). M-estimators is used to consider a compromise between mean and median. We are not covering this topic here.</p>
+<h2 id="Hypothesis_Testing">Hypothesis Testing</h2><p>We are going to introduce 3 large-sample tests here.</p>
+<h3 id="Asymptotic_distribution_of_the_LRT">Asymptotic distribution of the LRT</h3><blockquote>
+<p>Let $$X_1,\dots,X_n$$ be a random sample from a pdf or pmf $$f(x \vert \theta)$$. Under some regularity conditions, if $$\theta \in \Theta_0$$, then the distribution of the statistic $$-2\log \lambda(\mathbf{X})$$ converges to a chi squared distribution as the sample size $$n \to \infty$$. The degrees of freedom of the limiting distribution is the difference between the number of free parameters specified by $$\theta \in \Theta_0$$ and the number of free parameters specified by $$\theta \in \Theta$$.</p>
+</blockquote>
+<h3 id="Wald_test">Wald test</h3><p>In general, a Wald test is a test based on a satistic of the form</p>
+<p>$$ Z_n = \dfrac{W_n-\theta_0}{S_n} $$ </p>
+<p>where $\theta_0$ is a hypothesized value of the parameter $\theta$, $W_n$ is an estimator of $\theta$, and $$S_n$$ is a standard error for $W_n$, an estimate of the standard deviation of $W_n$. If $W_n$ is the MLE of $\theta$, then, $$1/\sqrt{I_n(W_n)}$$ is a reasonable standard error for $W_n$. Alternatively, $$1/\sqrt{\hat{I}_n(W_n)}$$, where</p>
+<p>$$\hat{I}_n(W<em>n) = -\frac{\partial^2}{\partial \theta^2} \log L(\theta \vert \mathbf{X}) \mid</em>{\theta = W_n}$$</p>
+<p>is the observed information number, is often used. </p>
+<h3 id="Score_test">Score test</h3><p>The <em>score statistics</em> is defined to be</p>
+<p>$$ S(\theta) = \frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta) = \frac{\partial}{\partial \theta} \log L(\theta \vert \mathbf{X}) $$</p>
+<p>We can obtain the result that for all $\theta$, $$E_\theta S(\theta) = 0 $$. In particular, if we are testing $$H_0: \theta=\theta_0$$ and if $H_0$ is true, then $$S(\theta_0)$$ has mean 0. Then we have</p>
+<p>$$Var_\theta S(\theta) = I_n(\theta)$$</p>
+<p>The test statistic for the score test is</p>
+<p>$$Z_S = S(\theta_0)/\sqrt{I_n(\theta_0)}$$</p>
+<p>It follows that $Z_S$ converges to a standard normal random variable.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>All of the criteria we have considered thus far has been finite-sample criteria. In contrast, we may consider situations when the sample size becomes infinite.</p>
+<h2 id="Point_Estimation">Point Estimation</h2><p>The property of consistency is a quite fundamental one of asymptotic properties, which is concerned with the asymptotic accuracy of an estimator. However, we may also consider the asymptotic variance of an estimator, called efficiency.</p>
+<blockquote>
+<p>For an estimator $$T<em>n$$, if $$lim</em>{n \to \infty} k_n VarT_n = \tau^2 &lt; \infty$$, where $${k_n}$$ is a sequence of constants, then $$\tau^2$$ is called the <em>limiting variance</em> or <em>limit of the variances</em>.</p>
+<p>For an estimator $$T_n$$, suppose that $$k_n(T_n-\tau(\theta)) \to n(0,\sigma^2)$$ in distribution. The parameter $$\sigma^2$$ is called the <em>asymptotic variance</em> or <em>variance of the limit distribution of $T_n$</em>.</p>
+</blockquote>
+<p>It is always the case that the asymptotic variance is smaller than the limiting variance, though have the same values when calculating variances of sample means and other types of average.</p>
+<blockquote>
+<p>A sequence of estimators $W_n$ is asymptotically efficient for a parameter $$\tau(\theta)$$ if $$ \sqrt{n} [W_n-\tau(\theta)] \to n[0,v(\theta)]$$ in distribution and $$v(\theta)$$ achieves the <strong>Cramer-Rao Lower Bound</strong>.</p>
+</blockquote>
+<p>Recall that in the above definition, </p>
+<p>$$v(\theta) = \dfrac{[\tau’(\theta)]^2}{E_{\theta}((\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2)}$$</p>
+<p>In general, we can consider MLEs to be consistent and asymptotically efficient. As a result, we can calculate the variance of MLEs approximately.</p>
+<p><em>Remarks: Bootstrap is another popular way to calculate standard erors.</em></p>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Random Effect]]></title>
+    <link href="http://messipiao.github.io/2013/12/19/random-effect/"/>
+    <id>http://messipiao.github.io/2013/12/19/random-effect/</id>
+    <published>2013-12-19T13:38:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
+<p>Two commonly used distributions estimating lifetime are as follows.</p>
+<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$$ X \sim IG(\mu,\lambda) $$, where $$X \in (0,\infty)$$. $$\mu$$ and $$\lambda$$ are called mean and shape parameter respectively.</p>
+<ol>
+<li><em>PDF:</em> $$(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$$</li>
+<li><em>CDF:</em> $$\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$$</li>
+<li><em>Expectation and Variance:</em> $$E(X)=\mu$$, $$V(X)=\frac{\mu^3}{\lambda}$$</li>
+</ol>
+<h3 id="Gamma_distribution">Gamma distribution</h3><p>$$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\beta$$ are called shape and rate parameter respectively.</p>
+<ol>
+<li><em>PDF:</em> $$\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$$</li>
+<li><em>Gamma function:</em> $$\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$$</li>
+<li><em>Useful equation:</em> $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$</li>
+<li><em>Expectation and Variance:</em> $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$</li>
+</ol>
+<a id="more"></a>
+<h2 id="Consider_IG_processes_with_Random_Effects">Consider IG processes with Random Effects</h2><p>Consider a Wiener process $$W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$$ with the induced IG process $$Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $$\mu^{-1}$$ vary randomly across units. Assume $$\mu^{-1}$$ foolows a truncated normal distribution $$TN(w,k^{-2})$$, $$k&gt;0$$ with PDF</p>
+<p>$$g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}$$</p>
+<p>the joint PDF of $$\mathbf{Y}_i = [Y<em>i(t</em>{i1}),Y<em>i(t</em>{i2}),\cdots,Y<em>i(t</em>{in_i})]$$ can be computed first conditioning on the random drift parameter $$\mu_i$$ and then marginalizing it</p>
+<p>$$</p>
+<p>\begin{align}<br>f(\mathbf{Y}<em>i) &amp; = \int</em>{0}^{\infty} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2 \pi y<em>{ij}^3}} exp{ \frac{-\eta(y</em>{ij}-\mu \lambda<em>{ij})^2}{2y</em>{ij}}} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2\pi y<em>{ij}^3}} \int</em>{0}^{\infty} \prod_{j=1}^{n<em>i} exp {\frac{-\eta (y</em>{ij}z-\lambda<em>{ij})^2}{2y</em>{ij}}} \frac{1}{\sqrt{2\pi}} exp{-\frac{k^2(z-w)^2}{2}} dz \<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2\pi y<em>{ij}^3}} exp{-\eta \sum</em>{j=1}^{n<em>i} \frac{\lambda</em>{ij}^2}{2y<em>{ij}}} \int</em>{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp {-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}} dz \<br>&amp; = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}<em>i} \prod</em>{j=1}^{n<em>i} \sqrt{\dfrac{\eta \lambda</em>{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}<em>i^2-k^2w^2}{2}-\eta \sum</em>{j=1}^{n<em>i} \frac{\lambda</em>{ij}^2}{2y_{ij}}]<br>\end{align}</p>
+<p>$$</p>
+<p>where $$y_{ij} = Y<em>i(t</em>{ij})-Y<em>i(t</em>{i,j-1})$$ is the observed increment, $$\lambda<em>{ij} = \Lambda(t</em>{ij})-\Lambda(t_{i,j-1})$$, $$\tilde{k}_i = \sqrt{\eta Y<em>i(t</em>{i,n_i})+k^2}$$ and $$\tilde{w}<em>i = (\eta \Lambda(t</em>{i,n_i})+wk^2)/{\tilde{k}_i^2}$$. </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
+<p>Two commonly used distributions estimating lifetime are as follows.</p>
+<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$$ X \sim IG(\mu,\lambda) $$, where $$X \in (0,\infty)$$. $$\mu$$ and $$\lambda$$ are called mean and shape parameter respectively.</p>
+<ol>
+<li><em>PDF:</em> $$(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$$</li>
+<li><em>CDF:</em> $$\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$$</li>
+<li><em>Expectation and Variance:</em> $$E(X)=\mu$$, $$V(X)=\frac{\mu^3}{\lambda}$$</li>
+</ol>
+<h3 id="Gamma_distribution">Gamma distribution</h3><p>$$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\beta$$ are called shape and rate parameter respectively.</p>
+<ol>
+<li><em>PDF:</em> $$\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$$</li>
+<li><em>Gamma function:</em> $$\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$$</li>
+<li><em>Useful equation:</em> $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$</li>
+<li><em>Expectation and Variance:</em> $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hypothesis Testing]]></title>
+    <link href="http://messipiao.github.io/2013/11/24/hypothesis-testing/"/>
+    <id>http://messipiao.github.io/2013/11/24/hypothesis-testing/</id>
+    <published>2013-11-24T02:47:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
+<blockquote>
+<p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
+</blockquote>
+<h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
+<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
+</ul>
+<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
+<ul>
+<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
+</ul>
+<a id="more"></a>
+<h3 id="Bayesian_Tests">Bayesian Tests</h3><p>In a hypothesis testing problem, the posterior distribution may be used to calculate the probabilities that $H_0$ and $H_1$ are true. Remember, $$\pi(\theta \vert \mathbf{x})$$ is probability distribution for a random variable. Hence, the posterior probabilities $$P(\theta \in \Theta_0 \vert \mathbf{x}) = P(H_0 \text{is true} \vert \mathbf{x})$$ and $$P(\theta \in \Theta^c_0 \vert \mathbf{x}) = P(H_1 \text{is true} \vert \mathbf{x})$$ may be computed. </p>
+<p>One way a Bayesian hypothesis tester may choose to use the posterior distribution is to decide to accept $$H_0$$ as true if $$P(\theta \in \Theta_0 \vert \mathbf{X}) \ge P(\theta \in \Theta^c_0 \vert \mathbf{X})$$ and to reject $$H_0$$ otherwise. Another way is to reject $$H_0$$ only if $$P(\theta \in \Theta_0^c \vert \mathbf{X})$$ is greater thatn some large number, 0.99 for example.</p>
+<h3 id="Union-Intersection_and_Intersection-Union_Tests">Union-Intersection and Intersection-Union Tests</h3><ul>
+<li><strong>Union-Intersection method</strong></li>
+</ul>
+<p>$$H<em>0: \theta \in \bigcap</em>{\gamma \in \Gamma} \Theta_{\gamma}$$</p>
+<p>Then the rejection region for the union-intersection test is</p>
+<p>$$\bigcup<em>{\gamma \in \Gamma} {\mathbf{x}:T</em>{\gamma}(\mathbf{x}) \in R_{\gamma}}$$</p>
+<ul>
+<li><strong>Intersection-Union method</strong></li>
+</ul>
+<p>$$H<em>0: \theta \in \bigcup</em>{\gamma \in \Gamma} \Theta_{\gamma}$$</p>
+<p>Then the rejection region for the intersection-union test is</p>
+<p>$$\bigcap<em>{\gamma \in \Gamma} {\mathbf{x}:T</em>{\gamma}(\mathbf{x}) \in R_{\gamma}}$$</p>
+<h2 id="Methods_of_Evaluating_Tests">Methods of Evaluating Tests</h2><h3 id="Power_Function">Power Function</h3><p>A hypothesis test might make one of two types of errors, namely Type I Error and Type II Error. If $$\theta \in \Theta_0$$ but the hypothesis test incorrectly decides to reject $$H_0$$, then the test has made a Type I Error. If, on the other hand, $$\theta \in \Theta_0^c$$ but the test decides to accept $$H_0$$, a Type II Eroror has been made.</p>
+<blockquote>
+<p>The power function of a hypothesis test with rejection region R is the function of $\theta$ defined by <strong>$$\beta(\theta) = P_{\theta}(\mathbf{X} \in R)$$</strong>.</p>
+</blockquote>
+<p>For a fixed sample size, it is usually impossible to make both types of error probabilities arbitrarily small. In searching for a good test, it is common to restrict consideration to tests that control the Type I Error probability at a specified level. Within this class of tests we then search for tests that have Type II Error probability that is as small as possible. The following two terms are useful when discussing tests that control Type I Error probabilities.</p>
+<ul>
+<li>For $$0 \le \alpha \le 1$$, a test with power function $$\beta(\theta)$$ is a size $\alpha$ test if $$\sup_{\theta \in \Theta_0} \beta(\theta) = \alpha$$.</li>
+<li>For $$0 \le \alpha \le 1$$, a test with power function $$\beta(\theta)$$ is a level $\alpha$ test if $$\sup_{\theta \in \Theta_0} \beta(\theta) \le \alpha$$.</li>
+</ul>
+<blockquote>
+<p>A test with power function $$\beta(\theta)$$ is <strong>unbiased</strong> if $$\beta(\theta’) \ge \beta(\theta’’)$$ for every $$\theta’ \in \Theta_0^c$$ and $$\theta’’ \in \Theta_0$$.</p>
+</blockquote>
+<h3 id="Most_Powerful_Tests">Most Powerful Tests</h3><blockquote>
+<p>Let C be a class of tests for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1 : \theta \in \Theta_0^c$$. A test in class C, with power function $$\beta(\theta)$$, is a <em>uniformly most powerful</em>(<strong>UMP</strong>) class C test if $$\beta(\theta) \ge \beta’(\theta)$$ for every $$\theta \in \Theta^c_0$$ and every $$\beta’(\theta)$$ that is a power function of a test in class C.</p>
+</blockquote>
+<p>If the class C is the class of all level $\alpha$ tests, then the test described above is called a <strong>UMP level $\alpha$ test</strong>.</p>
+<p><strong>Neyman-Pearson Lemma</strong> describes which tests are UMP level $\alpha$ tests in the situation where the null and alternative hypotheses both consist of only one probability distribution for the sample (that is, when both $$H_0$$ and $$H_1$$ are simple hypotheses).</p>
+<ul>
+<li><strong>Neyman-Pearson Lemma</strong></li>
+</ul>
+<p>Consider testing $$H_0:\theta = \theta_0$$ versus $$H_1:\theta = \theta_1$$, where the pdf or pmf corresponding to $\theta_i$ is $$f(\mathbf{x} \vert \theta_i)$$, $$i=0,1$$, using a test with rejection region R that satisfies</p>
+<p>$$\mathbf{x} \in R ~ if ~ f(\mathbf{x} \vert \theta_1) &gt; kf(\mathbf{x} \vert \theta_0)$$</p>
+<p>(1) and</p>
+<p>$$\mathbf{x} \in R^c ~ if ~ f(\mathbf{x} \vert \theta_1) &lt; kf(\mathbf{x} \vert \theta_0)$$</p>
+<p>for some $$k \ge 0$$, and </p>
+<p>(2) </p>
+<p>$$\alpha = P_{\theta_0}(\mathbf{X} \in R)$$</p>
+<p>Then</p>
+<ol>
+<li><strong>(Sufficiency)</strong> Any test that satisfies (1) and (2) is a <strong>UMP level $\alpha$ test</strong>.</li>
+<li><strong>(Necessity)</strong> If there exists a test satisfying (1) and (2) with $$k &gt; 0$$, then every <strong>UMP level $\alpha$ test</strong> is a size $\alpha$ test (satisfies (2)) and every <strong>UMP level $\alpha$ test</strong> satisfies (1) except perhaps onon a set A satisfying $$P_{\theta<em>0}(\mathbf{X} \in A) = P</em>{\theta_1}(\mathbf{X} \in A) = 0$$.</li>
+</ol>
+<p>Note that replace $\mathbf{x}$ by a sufficient statistic $T(\mathbf{x})$ can lead to a same conclusion(applying <strong>Factorization Theorem</strong>).</p>
+<p>Hypotheses, such as $$H_0$$ and $$H_1$$ in the <strong>Neyman-Pearson Lemma</strong>, that specify only one possible distribution for the sample $\mathbf{X}$ are called <em>simple hypotheses</em>. In most realistic problems, the hypotheses of interest specify more than one possible distribution for the sample. Such hypotheses are called <em>composite hypothese</em>. </p>
+<ul>
+<li>$$H:\theta \ge \theta_0$$ or $$\theta &lt; \theta_0$$ is called <em>one-sided</em> hypotheses.</li>
+<li>$$H:\theta \ne \theta_0$$ is called <em>two-sided</em> hypotheses.</li>
+</ul>
+<p>A large class of problems that admit <strong>UMP level $\alpha$</strong> tests involve one-sided hypotheses and <strong>pdfs or pmfs</strong> with the <strong>monotone likelihood ratio property</strong>.</p>
+<blockquote>
+<p>A family of pdfs or pmfs $${g(t \vert \theta):\theta \in \Theta}$$ for a univariate random variable T with real-valued parameter $\theta$ has a <em>monotone likelihood ratio</em> (<strong>MLR</strong>) if, for every $$\theta_2 &gt; \theta_1$$, $$g(t \vert \theta_2)/g(t \vert \theta_1)$$ is a monotone (nonincreasing or nondecreasing) function of t on $${t:g(t \vert \theta_1)&gt;0 ~or~ g(t \vert \theta_2)&gt;0}$$. Note that c/0 is defined as $\infty$ if $c&gt;0$.</p>
+</blockquote>
+<ul>
+<li>Many common families of distribution have an <em>MLR</em>. For example, the normal (known variance, unknown mean). Poisson, and binomial all have an MLR. </li>
+<li><p>Any regular exponential family with $$g(t \vert \theta) = h(t)c(\theta) e^{w(\theta)t}$$ has an <em>MLR</em> if $$w(\theta)$$ is a nondecreasing function.</p>
+</li>
+<li><p><strong>Karlin-Rubin Theorem</strong></p>
+</li>
+</ul>
+<p>Consider testing $$H_0:\theta \le \theta_0$$ versus $$H_1: \theta &gt; \theta_0$$. Suppose that T is a sufficient statistic for $\theta$ and the family of pdfs or pmfs $${g(t \vert \theta):\theta \in \Theta}$$ of T has an <em>MLR</em>. Then for any $$t_0$$, the test that rejects $$H_0$$ if and only if $$T &gt; t<em>0$$ is a <strong>UMP level $\alpha$ test</strong>, where $$\alpha = P</em>{\theta_0}(T&gt;t_0)$$.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
+<blockquote>
+<p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
+</blockquote>
+<h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
+<li>The likelihood ratio test statistic for testing $$H_0:\theta \in \Theta_0$$ versus $$H_1:\theta \in \Theta_0^c$$ is </li>
+</ul>
+<p>$$\lambda(\mathbf{x}) = \frac{\sup_{\Theta<em>0} L(\theta \vert \mathbf{x})}{\sup</em>{\Theta} L(\theta \vert \mathbf{x})}$$</p>
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form $${\mathbf{x}:\lambda(\mathbf{x}) \le c}$$ where c is any number satisfying $$0 \le c \le 1$$.</p>
+<ul>
+<li>If $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ and $$\lambda’(t)$$ and $$\lambda(\mathbf{x})$$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $$\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$$ for every $\mathbf{x}$ in the sample space.</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Point Estimation]]></title>
+    <link href="http://messipiao.github.io/2013/11/22/point-estimation/"/>
+    <id>http://messipiao.github.io/2013/11/22/point-estimation/</id>
+    <published>2013-11-22T11:31:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>When sampling is from a population described by a pdf or pmf $$f(x \vert \theta)$$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
+<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $$X_1,\dots,X_n$$ be a sample from a population with pdf or pmf $$f(x \vert \theta_1,\dots,\theta_k)$$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
+<p>$$m<em>k = \frac{1}{n} \sum</em>{i=1}^{n}X_i^k = \mu’_k = EX^k$$</p>
+<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
+<p>$$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$$</p>
+<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
+<p>MLE has the following properties.</p>
+<ul>
+<li><strong>(Invariance property of MLEs)</strong> </li>
+</ul>
+<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
+<ul>
+<li><strong>(Asymptotic Normality)</strong> </li>
+</ul>
+<p>Under appropriate regularity conditions,</p>
+<p>$$\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
+<p>In addition</p>
+<p>$$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
+<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
+<p>$$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$$</p>
+<p>Fisher information has following properties.</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)\</li>
+<li>&amp; I_n(\theta) = n I(\theta) \<br>\end{align}<br>$$</li>
+</ol>
+<a id="more"></a>
+<h3 id="The_EM_Algorithm">The EM Algorithm</h3><p>The EM algorithm is used to find <strong>MLEs</strong>, which is guaranteed to converge to the MLE. It is particularly suited to “missing data” problems, as the very fact that there are missing data can sometimes make calculations cumbersome.</p>
+<p>If $$\mathbf{Y} = (Y_1,\dots,Y_N)$$ are the incomplete data, and $$\mathbf{X} = (X_1,\dots,X_m)$$ are the augmented data (missing data), making $$(\mathbf{Y},\mathbf{X})$$ the complete data. The densities $g(\cdot \vert \theta)$ of $\mathbf{Y}$ and $f(\cdot \vert \theta)$ of $\mathbf{Y},\mathbf{X}$ have the relationship</p>
+<p>$$g(\mathbf{y} \vert \theta) = \int f(\mathbf{y},\mathbf{x} \vert \theta) dx$$</p>
+<p>If we turn these into the likelihoods, $$L(\theta \vert \mathbf{y}) = g(\mathbf{y} \vert \theta)$$ is the incomplete-data likelihood and $$L(\theta \vert \mathbf{y},\mathbf{x}) = f(\mathbf{y},\mathbf{x} \vert \theta)$$ is the complete-data likelihood.i</p>
+<p>Define</p>
+<p>$$k(\mathbf{x} \vert \theta,\mathbf{y}) = \frac{f(\mathbf{y},\mathbf{x} \vert \theta)}{g(\mathbf{y} \vert \theta)} = \frac{L(\theta \vert \mathbf{y},\mathbf{x})}{L(\theta \vert \mathbf{y})}$$</p>
+<p>Then we have</p>
+<p>$$\log L(\theta \vert \mathbf{y}) = \log L(\theta \vert \mathbf{y},\mathbf{x}) - \log k(\mathbf{x} \vert \theta,\mathbf{y})$$</p>
+<p>replace the right side with its expectation under $k(\mathbf{x} \vert \theta’,\mathbf{y})$, we have</p>
+<p>$$\log L(\theta \vert \mathbf{y}) = E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta’,\mathbf{y}] - E[\log k(\mathbf{x} \vert \theta,\mathbf{y}) \vert \theta’,\mathbf{y}]$$</p>
+<p>Now we start the algorithm: From an initial value $$\theta^{(0)}$$ we create a sequence $$\theta^{(r)}$$ according to</p>
+<p>$$\theta^{(r+1)} = \max_{\theta} E[\log L(\theta \vert \mathbf{y},\mathbf{x}) \vert \theta^{(r)},\mathbf{y}] $$</p>
+<h3 id="Bayes_Estimators">Bayes Estimators</h3><p>In Bayes approach $\theta$ is considered to be a quantity whose variation can be described by a probability distribution (called the prior distribution). This is a subjective distribution, based on the experimenter’s belief, and is formulated before the data are seen (hence the name prior distribution). A sample is then taken from a population indexed by $\theta$ and the prior distribution is updated with this sample information. The updated prior is called the posterior distribution. </p>
+<p>If we denote the prior distribution by $\pi(\theta)$ and the sampling distribution by $$f(x \vert \theta)$$, then the posterior distribution, the conditional distribution of $\theta$ given the sample, $$\mathbf{x}$$, </p>
+<p>$$\pi(\theta \vert \mathbf{x}) = f(\mathbf{x} \vert \theta) \pi(\theta)/m(\mathbf{x})$$</p>
+<p>where $m(\mathbf{x})$ is the marginal distribution of $\mathbf{X}$, that is,</p>
+<p>$$m(\mathbf{x}) = \int f(\mathbf{x} \vert \theta) \pi(\theta) d \theta$$</p>
+<h2 id="Methods_of_Evaluating_Estimators">Methods of Evaluating Estimators</h2><h3 id="Mean_Squared_Error">Mean Squared Error</h3><blockquote>
+<p>The mean square error (MSE) of an estimator W of a parameter $\theta$ is the function of $\theta$ defined by $E_{\theta}(W-\theta)^2$.</p>
+</blockquote>
+<p>Define</p>
+<p>$$Bias<em>{\theta}W = E</em>{\theta}W-\theta$$</p>
+<p>Then</p>
+<p>$$E<em>{\theta}(W-\theta)^2 = Var</em>{\theta}W+(E<em>{\theta}W-\theta)^2 = Var</em>{\theta}W+(Bias_{\theta}W)^2$$</p>
+<h3 id="Best_Unbiased_Estimators">Best Unbiased Estimators</h3><blockquote>
+<p>An estimator W’ is a <em>best unbiased estimator of $\tau(\theta)$</em> if it satisfies $$E<em>{\theta}W’ = \tau(\theta)$$ for all $\theta$ and, for any other estimator W with $$E</em>{\theta}W = \tau(\theta)$$, we have $$Var<em>{\theta}W’ \le Var</em>{\theta}W$$ for all $\theta$. W’ is also called a <em>uniform minimum variance unbiased estimator</em> (<strong>UMVUE</strong>) of $\tau(\theta)$.</p>
+</blockquote>
+<ul>
+<li><strong>Cramer-Rao Inequality</strong></li>
+</ul>
+<p>Let $$X_1,\dots,X_n$$ be a sample with pdf $f(x \vert \theta)$, and let $$W(\mathbf{X}) = W(X_1,\dots,X_n)$$ be <em>any estimator satisfying</em></p>
+<p>$$\frac{d}{d\theta} E_{\theta}W(\mathbf{X}) = \int \frac{\partial}{\partial \theta}[W(\mathbf{x})f(x \vert \theta)] dx$$</p>
+<p>and</p>
+<p>$$Var_{\theta}W(\mathbf{X}) &lt; \infty$$</p>
+<p>Then</p>
+<p>$$Var<em>{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E</em>{\theta}W(\mathbf{X}))^2}{E<em>{\theta}[(\frac{\partial}{\partial \theta} \log f(\mathbf{X} \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E</em>{\theta}W(\mathbf{X}))^2}{I_n(\theta)}$$</p>
+<p>when $$X_1,\dots,X_n$$ are <em>iid</em>, based on the property of <em>Fisher Information</em>, we have</p>
+<p>$$Var<em>{\theta}(W(\mathbf{X})) \ge \frac{(\frac{d}{d\theta}E</em>{\theta}W(\mathbf{X}))^2}{nE<em>{\theta}[(\frac{\partial}{\partial \theta} \log f(X \vert \theta))^2]} = \frac{(\frac{d}{d\theta}E</em>{\theta}W(\mathbf{X}))^2}{nI(\theta)}$$</p>
+<p>We need to verify whether the <strong>Cramer-Rao Lower Bound</strong> is attainable.</p>
+<ul>
+<li>Let $$X_1,\dots,X<em>n$$ be <em>iid</em> $f(x \vert \theta)$, which satisfies the conditions of the <em>Cramer-Rao Theorem</em>. Let $$L(\theta \vert \mathbf{x}) = \prod</em>{i=1}^{n} f(x_i \vert \theta)$$ denote the likelihood function. If $$<br>W(\mathbf{X})=W(X_1,\dots,X_n) $$ is any unbiased estimator of $\tau(\theta)$, then $W(\mathbf{X})$ attains the Cramer-Rao Lower Bound if and only if </li>
+</ul>
+<p>$$a(\theta)[W(\mathbf{x})-\tau(\theta)] = \frac{\partial}{\partial \theta}\log L(\theta \vert \mathbf{x})$$</p>
+<p>for some function $a(\theta)$.</p>
+<p>Two theorems are used to find the <strong>UMVUE</strong>.</p>
+<ul>
+<li><strong>Rao-Blackwell Theorem</strong> </li>
+</ul>
+<p>Let W be any unbiased estimator of $\tau(\theta)$, and let T be a sufficient statistic for $\theta$. Then $E(W \vert T)$ is a UMVUE.</p>
+<ul>
+<li><strong>Lehmann Scheffe Theorem</strong></li>
+</ul>
+<p>Suppose there exists a sufficient and complete statistic T for $\theta$. If there exisits unbiased estimator of $\tau(\theta)$, then the UMVUE takes the form of h(T), where h is a Borel function.</p>
+<p>It is also noted that UMVUE is <strong>unique</strong>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>When sampling is from a population described by a pdf or pmf $$f(x \vert \theta)$$, knowledge of $\theta$ yields knowledge of the entire population. Hence, it is natural to seek a method of finding a good estimator of the point $\theta$, that is, a good point estimator. Note that an estimator is a function of the sample while an estimate is the realized value of an estimator (that is, a number) that is obtained when a sample is actually taken.</p>
+<h2 id="Methods_of_Finding_Estimators">Methods of Finding Estimators</h2><h3 id="Method_of_Moments">Method of Moments</h3><p>Let $$X_1,\dots,X_n$$ be a sample from a population with pdf or pmf $$f(x \vert \theta_1,\dots,\theta_k)$$. Method of moments estimators are found by equating the first k sample moments to the corresponding k population moments.</p>
+<p>$$m<em>k = \frac{1}{n} \sum</em>{i=1}^{n}X_i^k = \mu’_k = EX^k$$</p>
+<h3 id="Maximum_Likelihood_Estimators">Maximum Likelihood Estimators</h3><p>The likelihood function is defined by</p>
+<p>$$L(\mathbf{\theta} \vert \mathbf{x}) = L(\theta_1,\dots,\theta_k \vert x_1,\dots,x<em>n) = \prod</em>{i=1}^{n} f(x_i \vert \theta_1,\dots,\theta_k)$$</p>
+<p>Basicly, we can solve the first derivative of <em>log likelihood function</em> to get the MLEs. If the likelihood function cannot be maximized analytically, it may be possible to use a computer and maximize the likelihood function numerically.</p>
+<p>MLE has the following properties.</p>
+<ul>
+<li><strong>(Invariance property of MLEs)</strong> </li>
+</ul>
+<p>If $\hat{\theta}$ is the MLE of $\theta$, then for any function $f(\theta)$, the MLE of $f(\theta)$ is $f(\hat{\theta})$.</p>
+<ul>
+<li><strong>(Asymptotic Normality)</strong> </li>
+</ul>
+<p>Under appropriate regularity conditions,</p>
+<p>$$\sqrt{I_n(\theta_0)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
+<p>In addition</p>
+<p>$$\sqrt{I_n(\hat{\theta}_n)} (\hat{\theta}_n-\theta_0) \sim N(0,1)$$</p>
+<p>where $I(\theta)$ is called the information number or <em>Fisher information</em> of the sample.</p>
+<p>$$ I(\theta) = E[(\frac{\partial}{\partial \theta} \log f(X;\theta))^2] = -E[\frac{\partial^2}{\partial \theta^2} \log f(X;\theta)]$$</p>
+<p>Fisher information has following properties.</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; I_{X,Y}(\theta) = I_X(\theta)+I_Y(\theta)\</li>
+<li>&amp; I_n(\theta) = n I(\theta) \<br>\end{align}<br>$$</li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Data Reduction]]></title>
+    <link href="http://messipiao.github.io/2013/11/22/data-reduction/"/>
+    <id>http://messipiao.github.io/2013/11/22/data-reduction/</id>
+    <published>2013-11-22T08:23:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
+<h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
+<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+</blockquote>
+<p>A sufficient statistic captures all the infromation about $\theta$.</p>
+<blockquote>
+<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
+</blockquote>
+<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
+<ul>
+<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+</ul>
+<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
+<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
+<ul>
+<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+</ul>
+<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
+<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
+<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
+<p>is a sufficient statistic for $$\theta$$.</p>
+<a id="more"></a>
+<h2 id="Minimal_Sufficient_Statistics">Minimal Sufficient Statistics</h2><p>A minimal sufficient statistic achieves the most data reduction while still retaining all the information about $\theta$.</p>
+<blockquote>
+<p>A sufficient statistic $$T(\mathbf{X})$$ is called a minimal sufficient statistic if, for any other sufficient statistic $$T’(\mathbf{X})$$, $$T(\mathbf{X})$$ is a function of $$T’(\mathbf{X})$$.</p>
+</blockquote>
+<p>We have an easier way to find a minimal sufficient statistic.</p>
+<ul>
+<li>Let $$f(\mathbf{x}\vert \theta)$$ be the pmf or pdf of a sample $\mathbf{X}$. Suppose there exists a function $$T(\mathbf{x})$$ such that, for every two sample points <strong>x</strong> and <strong>y</strong>, the ratio $$f(\mathbf{x} \vert \theta)/f(\mathbf{y} \vert \theta)$$ is constant as a function of $\theta$ if and only if $$T(\mathbf{x}) = T(\mathbf{y})$$. Then $$T(\mathbf{X})$$ is a minimal sufficient statistic for $\theta$.</li>
+</ul>
+<p>Note that a minimal sufficient statistic is not unique. Any <strong>one-to-one</strong> function of a minimal sufficient statistic is also a minimal sufficient statistic.</p>
+<h2 id="Ancillary_Statistics">Ancillary Statistics</h2><blockquote>
+<p>A stastistic $$S(\mathbf{X})$$ whose distribution does not depend on the parameter $\theta$ is called an ancillary statistic.</p>
+</blockquote>
+<p><strong>Alone</strong>, an ancillary statistic contains no information about $\theta$.</p>
+<ul>
+<li>Location family ancillary statistic: Let $$X_1,\dots,X<em>n$$ be <em>iid</em> observations from a location parameter family with cdf $F(x-\theta)$, $$-\infty &lt; \theta &lt; \infty$$. $$R = X</em>{(n)}-X_{(1)}$$ is an ancillary statistic.</li>
+<li>Scale family ancillary statistic: Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a scale parameter family with cdf $F(x/\sigma)$, $\sigma &gt;0$. Then any statistic that depends on the sample only through the $n-1$ values $$X_1/X<em>n,\dots,X</em>{n-1}/X_n$$ is an ancillary statistic.</li>
+</ul>
+<p>The knowlede of ancillary statistics alone give us no information about $\theta$, while it may increse our knowledge about $\theta$ (can be a part of a sufficient statistic). For many important situations, our intuition that a minimal sufficient statistic is independent of any ancillary statistic is correct. </p>
+<h2 id="Complete_Statistics">Complete Statistics</h2><blockquote>
+<p>Let $$f(t \vert \theta)$$ be a family of pdfs or pmfs for a statistic $$T(\mathbf{X})$$. The family of probability distributions is called complete if $$E<em>{\theta}g(T) = 0$$ for all $\theta$ implies $$P</em>{\theta}(g(T)=0) = 1$$ for all $\theta$. Equivalently, $$T(\mathbf{X})$$ is called a complete statistic.</p>
+</blockquote>
+<p>Informally, a statistic $T(\mathbf{X})$ is complete if two different parameters $\theta$ of the distribution of $\mathbf{X}$, cannot give rise to the same distribution for $T\mathbf{X}$.</p>
+<p>We can get the complete statistics in the exponential family.</p>
+<ul>
+<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+</ul>
+<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
+<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
+<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
+<p>is complete if $${(w_1(\theta),\dots,w_k(\theta)):\theta \in \Theta}$$ contains an open set in $R^k$.</p>
+<p>We use completeness to state a condition under which a minimal sufficient statistic is independent of every ancillary statistic.</p>
+<ul>
+<li><strong>(Basu’s Theorem)</strong> If $$T(\mathbf{X})$$ is complete and minimal sufficient statistic, then $T(\mathbf{X})$ is independent of every ancillary statistic. </li>
+</ul>
+<p>It is noted that the theorem is also true if we omit the minimality constraint, as we have</p>
+<ul>
+<li><em>If a minimal sufficient statistic exists, then any complete statistic is also a minimal sufficient statistc.</em> </li>
+</ul>
+<h2 id="Applications_and_Special_distributions">Applications and Special distributions</h2><ul>
+<li><strong>The Bernoulli Distribution</strong></li>
+</ul>
+<p>$Y=\sum X_i$ is minimal sufficient and complete for $p$.</p>
+<ul>
+<li><strong>Poisson Distribution</strong></li>
+</ul>
+<p>$Y = \sum X_i$ is minimal sufficient and complete for $\theta$.</p>
+<ul>
+<li><strong>The Uniform Distribution</strong></li>
+</ul>
+<ol>
+<li>interval $[0,\theta]$, $X_{(n)}$ is sufficient for $\theta$;</li>
+<li>interval $$[\theta,\theta+1]$$, $$(X<em>{(1)},X</em>{(n)})$$ is minimal sufficient for $\theta$.</li>
+</ol>
+<ul>
+<li><strong>Normal Distribution</strong></li>
+</ul>
+<ol>
+<li>$$(\sum X_i,\sum X^2_i)$$ is sufficient for $$(\mu,\sigma^2)$$;</li>
+<li>$$(\bar{X},S^2)$$ is sufficient for $$(\mu,\sigma^2)$$.</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Any statistic, T(<strong>X</strong>), defines a form of data reduction or data summay. </p>
+<h2 id="Sufficient_Statistics">Sufficient Statistics</h2><blockquote>
+<p>A statistic T(<strong>X</strong>) is a sufficient statistic for $$\theta$$ if the conditional distribution of the samle <strong>X</strong> given the value of T(<strong>X</strong>) does not depend on $\theta$.</p>
+</blockquote>
+<p>A sufficient statistic captures all the infromation about $\theta$.</p>
+<blockquote>
+<p>If $$p( \mathbf{x} \vert \theta)$$ is the joint pdf or pmf of $$\mathbf{X}$$ and $$q(t \vert \theta)$$ is the pdf or pmf of $$T(\mathbf{X})$$, then $$T(\mathbf{X})$$ is a sufficient statistic for $\theta$ if, for every x in the sample space, the ration $$p(\mathbf{x} \vert \theta)/q(T(\mathbf{x}) \vert \theta)$$ is constant as a function of $\theta$.</p>
+</blockquote>
+<p>To use the definition, we must guess a statistic $T(\mathbf{X})$ to be sufficient, find the pmf of pdf of $T(\mathbf{X})$, and check that the ratio of pdfs or pmfs does not depend on $\theta$. <strong>Factorization Theorem</strong> provides us another way to find a sufficient statistic.</p>
+<ul>
+<li>Lef $$f(\mathbf{x}\vert \theta)$$ denote the joint pdf or pmf of a sample $$\mathbf{X}$$. A statistic $T(\mathbf{X})$ is a sufficient statistic for $\theta$ if and only if there exist functions $$g(t \vert \theta)$$ and $$h(\mathbf{x})$$ such that, for all sample points $\mathbf{x}$ and all parameter points $\theta$,</li>
+</ul>
+<p>$$f(\mathbf{x} \vert \theta) = g(T(\mathbf{x}) \vert \theta)h(\mathbf{x})$$</p>
+<p>It is easy to find a sufficient statistic for an exponential family of ditributions using the <strong>Factorizaion Theorem</strong>.</p>
+<ul>
+<li>Let $$X_1,\dots,X_n$$ be <em>iid</em> observations from a pdf or pfm $$f(x \vert \mathbf{\theta})$$ that belongs to an exponential family given by</li>
+</ul>
+<p>$$f(x \vert \mathbf{\theta}) = h(x)c(\mathbf{\theta})exp(\sum_{i=1}^{k}w_i(\mathbf{\theta})t_i(x)))$$</p>
+<p>where $$\mathbf{\theta} = (\theta_1,\dots,\theta_d)$$, $$d \le k$$. Then</p>
+<p>$$T(\mathbf{X}) = (\sum_{j=1}^{n}t_1(X<em>j),\dots,\sum</em>{j=1}^{n}t_k(X_j)))$$</p>
+<p>is a sufficient statistic for $$\theta$$.</p>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Random Sample]]></title>
+    <link href="http://messipiao.github.io/2013/11/20/random-sample/"/>
+    <id>http://messipiao.github.io/2013/11/20/random-sample/</id>
+    <published>2013-11-20T07:03:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
+<p>The random variables $$X_1,\dots,X_n$$ are called a random sample of size n from the population $$f(x)$$ if $$X_1,\dots,X_n$$ are mutually independent random variables and the marginal pdf or pmf of each $$X_i$$ is the same function $$f(x)$$. Alternatively, $$X_1,\dots,X_n$$ are called independent and identically distributed random variables with pdf or pmf $$f(x)$$. This is commonly abbreviated to iid random variables. </p>
+</blockquote>
+<p>The joint pdf of pmf of $$X_1,\dots,X_n$$ is given by </p>
+<p>$$f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x<em>n) = \prod</em>{i=1}^{n}f(x_i)$$</p>
+<p> Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable $$X_1,\dots,X_n$$ are independent as the process of choosing any $$X_i$$ keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of $$X_i$$, where $$j &gt; i$$. For example, considering $$X_1$$ and $$X_2$$, we have</p>
+<p>$$P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1$$</p>
+<p>It is noted that $$X_i$$ has the same marginal distribution.</p>
+<p>$$P(X<em>2=x) = \sum</em>{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$</p>
+<p>When $N$ is larger, there is not too difference between the conditional distribution of $$X_i$$ given $$ X<em>1, \dots,X</em>{i-1} $$ and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>
+<a id="more"></a>
+<h2 id="Convergence">Convergence</h2><h3 id="Types_of_convergence">Types of convergence</h3><ul>
+<li><strong>Convergence in Probability</strong></li>
+</ul>
+<p>A sequence of random variables, $$X_1,X_2,\dots$$, converges in probability to a random variable $X$ if, for every $$\epsilon &gt; 0$$,</p>
+<p>$$\lim_{n \to \infty} P(\mid X_n-X \mid \ge \epsilon (\text{or} ~~ &lt; \epsilon)) = 0 (\text{or} ~~ 1)$$</p>
+<ul>
+<li><strong>Convergence in almost sure</strong></li>
+</ul>
+<p>A sequence of random variables, $$X_1,X_2,\dots$$, converges in probability to a random variable $X$ if, for every $$\epsilon &gt; 0$$,</p>
+<p>$$P(\lim_{n \to \infty} \mid X_n-X \mid &lt; \epsilon ) = 1$$</p>
+<p>The above definition is much stronger than that of convergence in probability.</p>
+<ul>
+<li><strong>Convergence in Distribution</strong></li>
+</ul>
+<p>A sequence of random variables, $$X_1,X_2,\cdots$$ , converge in distribution to a random variable $X$<br>If</p>
+<p>$$\lim<em>{n \to \infty} F</em>{X_n}(x) = F_X(x)$$</p>
+<p>at all points x there $$F_X(x)$$ is continuous.</p>
+<h3 id="Related_Theorem_or_Method">Related Theorem or Method</h3><ul>
+<li><strong>Continuous mapping Theorem</strong></li>
+</ul>
+<p>If $X_n$ converges in probability or almost sure or distribution to a random variable $X$, and $$g(x)$$ is a continuous function, then $$g(X_n)$$ converges in corresponding form to $$g(X)$$.</p>
+<ul>
+<li><strong>Slutsky’s Theorem</strong></li>
+</ul>
+<p>If $$X_n \to X$$ in distribution and $$Y_n \to a$$, a costant, in probability then</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; Y_nX_n \to aX ~ \text{in distribution} \</li>
+<li>&amp; X_n+Y_n \to X+a ~ \text{in distribution} \<br>\end{align}<br>$$</li>
+</ol>
+<ul>
+<li><strong>Weak Law of Large Numbers</strong></li>
+</ul>
+<p>If $X_n$ are i.i.d distributed with $$E\mid X_n \mid &lt; \infty$$, $$\mu = EX_n$$,then</p>
+<p>$$\bar{X} \to \mu \quad \text{in probability}$$</p>
+<ul>
+<li><strong>Strong Law of Large Numbers</strong></li>
+</ul>
+<p>If $X_n$ are i.i.d distributed with $$E\mid X_n \mid &lt; \infty$$, $$\mu = EX_n$$,then</p>
+<p>$$\bar{X} \to \mu \quad \text{in almost sure}$$</p>
+<ul>
+<li><strong>Central Limit Theorem</strong></li>
+</ul>
+<p>If $$X_n, n=1,2,\dots,$$ are i.i.d, and $$\mu = EX_n$$, $$\sigma^2 = var(X_n)$$, and $$0 &lt; \sigma^2 &lt; \infty$$, then</p>
+<p>$$\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma} \sim N(0,1)$$</p>
+<ul>
+<li><strong>Delta Method</strong></li>
+</ul>
+<p>Let $Y_n$ be a sequence of random variables that satisfies $$\sqrt{n}(Y_n-\theta) \sim N(0,\sigma^2)$$<br>. For a given function $g$ and a specific value of $\theta$, suppose that $$g’(\theta)$$ exists and is not 0. Then</p>
+<p>$$\sqrt{n} [g(Y_n)-g(\theta)] \sim N(0,\sigma^2[g’(\theta)]^2)$$</p>
+<h2 id="Sample_mean_and_Sample_variance">Sample mean and Sample variance</h2><p>The sample mean is the arithmetic average of the values in a random sample. It is usually denoted by</p>
+<p>$$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$$</p>
+<p>The sample variance is the statistic defined by</p>
+<p>$$S^2 = \frac{1}{n-1} \sum_{i=1}^{n}(X_i-\bar{X})^2$$</p>
+<p>Let $$X_1,\dots,X_n$$ be a random sample from a population with mean $$\mu$$ and variance $$\sigma^2 &lt; \infty$$. Then</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; E\bar{X} = \mu \</li>
+<li>&amp; Var \bar{X} = \frac{\sigma^2}{n} \</li>
+<li>&amp; ES^2 = \sigma^2 \<br>\end{align}<br>$$</li>
+</ol>
+<h3 id="Normal_Case">Normal Case</h3><p>If $X_n$ are independently and normally distributed $$N(\mu,\sigma^2)$$, then</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; \bar{X}_n \sim N(\mu,\sigma^2/n) \</li>
+<li>&amp; (n-1)S<em>n^2 / \sigma^2 \sim \chi</em>{n-1}^2 \</li>
+<li>&amp; \bar{X}_n ~ \text{and} ~ S^2_n ~ \text{are independent} \<br>\end{align}<br>$$</li>
+</ol>
+<h3 id="Non-normal_Case">Non-normal Case</h3><p>When $X_i$ are not normal, the statistic is still commonly used because</p>
+<ul>
+<li>Central Limit Theorem</li>
+</ul>
+<p>$$\bar{X}_n \sim N(\mu,\sigma^2/n)$$</p>
+<ul>
+<li>Law of Large Numbers</li>
+</ul>
+<p>$$S_n^2 \to \sigma^2$$</p>
+<ul>
+<li>Slusky’s Theorem</li>
+</ul>
+<p>$$\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}} = \frac{\sigma}{S_n} \cdot \frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}} \to N(0,1)$$</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Basic_Concepts_of_Random_Samples">Basic Concepts of Random Samples</h2><blockquote>
+<p>The random variables $$X_1,\dots,X_n$$ are called a random sample of size n from the population $$f(x)$$ if $$X_1,\dots,X_n$$ are mutually independent random variables and the marginal pdf or pmf of each $$X_i$$ is the same function $$f(x)$$. Alternatively, $$X_1,\dots,X_n$$ are called independent and identically distributed random variables with pdf or pmf $$f(x)$$. This is commonly abbreviated to iid random variables. </p>
+</blockquote>
+<p>The joint pdf of pmf of $$X_1,\dots,X_n$$ is given by </p>
+<p>$$f(x_1,\dots,x_n) = f(x_1)f(x_2)\cdots f(x<em>n) = \prod</em>{i=1}^{n}f(x_i)$$</p>
+<p> Two methods, sampling with and without replacement for drawing a random sample are considered here. When sampling is from a infinite population, both methods make the equation hold, as removing any sample will not change the population. However, when sampling is from a finite population, sampling with replacement still makes the equation holds while sampling without replacement not. This is because the former method will not change the population, so the random variable $$X_1,\dots,X_n$$ are independent as the process of choosing any $$X_i$$ keep the same. As for method of sampling without replacement, the probability distribution for $X_j$ depneds on the value of $$X_i$$, where $$j &gt; i$$. For example, considering $$X_1$$ and $$X_2$$, we have</p>
+<p>$$P(X_2 = x_1 \mid X_1=x_1) = 0  ~ \text{and} ~P(X_2=x \mid X_1=x_1) = \dfrac{1}{N-1} ~ \text{for} ~ x \ne x_1$$</p>
+<p>It is noted that $$X_i$$ has the same marginal distribution.</p>
+<p>$$P(X<em>2=x) = \sum</em>{i=1}^{N} P(X_2=x \mid X_1=x_i)P(X_1=x_i) = \frac{1}{N}$$</p>
+<p>When $N$ is larger, there is not too difference between the conditional distribution of $$X_i$$ given $$ X<em>1, \dots,X</em>{i-1} $$ and the marginal distribution. We say the random variables are <em>nearly independent</em>. </p>]]>
+    
+    </summary>
+    
+      <category term="Statistics" scheme="http://messipiao.github.io/categories/Statistics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Basics of Martingales]]></title>
+    <link href="http://messipiao.github.io/2013/11/18/basics-of-martingales/"/>
+    <id>http://messipiao.github.io/2013/11/18/basics-of-martingales/</id>
+    <published>2013-11-18T08:16:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
+<h3 id="Martingales">Martingales</h3><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
+<p>Taking expectations of both sides gives</p>
+<p>$$E[Z_{n+1}]=E[Z_n]$$</p>
+<p>When </p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&gt;Z_n $$ </p>
+<p>it is a sub-martingale and when </p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&lt;Z_n $$ </p>
+<p>it is a super-martingale.</p>
+<ul>
+<li>Let $$X,Y_1,Y_2,\dots$$ be arbitary random variables such that<br>$$ E[|X|] &lt; \infty $$,<br>and let</li>
+</ul>
+<p>$$Z_n = E[X \mid Y_1,\dots,Y_n]$$</p>
+<p>It then follows that $${Z_n,n \ge 1}$$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
+<a id="more"></a>
+<ul>
+<li>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</li>
+</ul>
+<p>$$ Z<em>n = \sum</em>{i=1}^n {X_i - E[X_i \mid X<em>1,\dots,X</em>{i-1}]}$$</p>
+<ul>
+<li>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead $$Z_1, \dots, Z_n$$.<br>Actually, we can prove this results. Let $$Z = g(Y)$$ then</li>
+</ul>
+<p>$$E(X \mid Z) = E(E(X \mid Z,Y) \mid Z) = E(E(X \mid Y) \mid Z) = E(X\mid Y)$$</p>
+<h2 id="Stopping_Times">Stopping Times</h2><h3 id="Definition">Definition</h3><p>The positive interger-value, possibly infinite, random variable $N$ is said to be a random time for the process $${Z_n,n \ge 1}$$ if the event {N=n} is determined by the randon variables $$Z_1,\dots,Z_n$$. That is, knowing $Z_1,\dots,Z_n$ tells us whether or not $$N=n$$. If $$P(N &lt; \infty)$$, then the random time $N$ is said to be a <strong>stopping time</strong>.</p>
+<h3 id="The_Martingale_Stopping_Theorem">The Martingale Stopping Theorem</h3><p>If either:</p>
+<ol>
+<li>$$Z_{n \land N}$$ is bounde, or;</li>
+<li>$$N$$ is bounded, or;</li>
+<li>$$E[N] &lt; \infty$$, and there is an $$M&lt;\infty$$ such that</li>
+</ol>
+<p>$$E[\mid Z_{n+1}-Z_n \mid \mid Z_1,\dots,Z_n] &lt; M$$</p>
+<p>then </p>
+<p>$$E[Z_N] = E[Z_1]$$</p>
+<p>NOTE that boundedness is important. Take $X_0=0$ and</p>
+<p>$$X_n = \xi_1+\xi_2+\cdots+\xi_n$$</p>
+<p>where $\xi_i$ are independent identically distributed random variables taking the value $$\pm \dfrac{1}{2}$$. Let $$T = inf{n:X_n=1}$$. Then T is a stopping time, $$P[T&lt;\infty] = 1$$, but T is not bounded. $$X_T=1$$ with probability 1 and trivially $$E[X_T]=1 \neq 0$$.</p>
+<p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
+<h2 id="Azuma’s_Inequality">Azuma’s Inequality</h2><p>Let $$Z_n, n \ge 1$$ be a martingale with mean $$\mu = E[Z_n]$$. Let $Z_0 = \mu$ and suppose that for nonegative constants $$\alpha_i,\beta_i,i\ge 1$$,</p>
+<p>$$-\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i$$</p>
+<p>Then for any $$n \ge 0, a &gt; 0$$:</p>
+<p>$$<br>\begin{align}</p>
+<ol>
+<li>&amp; P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} \</li>
+<li>&amp; P{Z_n-\mu \le -a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} \<br>\end{align}<br>$$</li>
+</ol>
+<h2 id="The_Martingale_Convergence_Theorem">The Martingale Convergence Theorem</h2><p>If $${Z_n,n \ge 1}$$ is a martingale such that for some $$M&lt; \infty$$</p>
+<p>$$E[\mid Z_n \mid] \le M, \text{for all n}$$</p>
+<p>then, with probability 1, $$\lim_{n \rightarrow \infty} Z_n$$ exists and is finite.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
+<h3 id="Martingales">Martingales</h3><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
+<p>Taking expectations of both sides gives</p>
+<p>$$E[Z_{n+1}]=E[Z_n]$$</p>
+<p>When </p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&gt;Z_n $$ </p>
+<p>it is a sub-martingale and when </p>
+<p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&lt;Z_n $$ </p>
+<p>it is a super-martingale.</p>
+<ul>
+<li>Let $$X,Y_1,Y_2,\dots$$ be arbitary random variables such that<br>$$ E[|X|] &lt; \infty $$,<br>and let</li>
+</ul>
+<p>$$Z_n = E[X \mid Y_1,\dots,Y_n]$$</p>
+<p>It then follows that $${Z_n,n \ge 1}$$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>]]>
+    
+    </summary>
+    
+      <category term="Probability" scheme="http://messipiao.github.io/categories/Probability/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://messipiao.github.io/2013/10/30/hello-world/"/>
+    <id>http://messipiao.github.io/2013/10/30/hello-world/</id>
+    <published>2013-10-30T05:10:00.000Z</published>
+    <updated>2014-12-29T05:14:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Hello world, it’s Piao’s first post from his own lab.</p>
+<p>I want to have my own blog for a long time and I have tried some blogs in China, like 163 blog or blogbus. However, neither of them satisfied me as there are some restrictions from the websites and they are not as neat as what I thought blogs should be. Luckily, with recommendations and help from Super P, I finally have this amazing blog! I will share what I’ve learned and felt here, as a record of my study and life in NUS.</p>
+<p>I’ve been in NUS for 3 months. Actually, Sinapore is very much like China, no matter in food taste or language (you can just say Chinese in your normal life), so I feel like only from one city to another while less feeling of being abroad.</p>
+<p>What makes happy is that I met my GF here. She is beautiful and kind and I am really grateful that I can have her with me here. Another thing is that I have a place in the lab, which I have dreamed for a long time. In the lab, I can concentrate on the study like a nut! It’s a great feeling.</p>
+<p>Talk less and do more. I should work harder to have a bright future, for myself, my family and especially for my GF.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Hello world, it’s Piao’s first post from his own lab.</p>
+<p>I want to have my own blog for a long time and I have tried some blogs in Ch]]>
+    </summary>
+    
+      <category term="Life" scheme="http://messipiao.github.io/categories/Life/"/>
+    
+  </entry>
+  
+</feed>
