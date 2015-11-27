@@ -61,7 +61,7 @@ MartingalesA stochastic process ${Z_n,n \ge 1}$ is said to be a martingale proce
 <meta property="og:site_name" content="Piao's Blog">
 <meta property="og:description" content="Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. 
 MartingalesA stochastic process ${Z_n,n \ge 1}$ is said to be a martingale proces">
-<meta property="og:updated_time" content="2015-11-27T02:28:12.000Z">
+<meta property="og:updated_time" content="2015-11-27T02:32:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Basics of Martingales">
 <meta name="twitter:description" content="Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. 
@@ -327,12 +327,11 @@ MartingalesA stochastic process ${Z_n,n \ge 1}$ is said to be a martingale proce
 <p>where $\xi_i$ are independent identically distributed random variables taking the value $\pm 1/2$. Let $T = \inf {n:X_n=1}$. Then T is a stopping time, $P[T&lt;\infty] = 1$, but T is not bounded. $X_T=1$ with probability 1 and trivially $E[X_T]=1 \neq 0$.</p>
 <p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
 <h2 id="Azuma’s_Inequality">Azuma’s Inequality</h2><p>Let $Z_n, n \ge 1$ be a martingale with mean $\mu = E[Z_n]$. Let $Z_0 = \mu$ and suppose that for nonegative constants $\alpha_i,\beta_i,i\ge 1$,</p>
-<p>$$ -\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i $$</p>
+<p>$$-\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i$$</p>
 <p>Then for any $n \ge 0, a &gt; 0$:</p>
-<p>$$</p>
 <ol>
-<li>P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} </li>
-<li>P{Z_n-\mu \le -a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}}<br>$$</li>
+<li>$ P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} $ </li>
+<li>$ P{Z_n-\mu \le -a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} $</li>
 </ol>
 <h2 id="The_Martingale_Convergence_Theorem">The Martingale Convergence Theorem</h2><p>If ${Z_n,n \ge 1}$ is a martingale such that for some $M&lt; \infty$</p>
 <p>$$E[\mid Z_n \mid] \le M, \text{for all n}$$</p>
