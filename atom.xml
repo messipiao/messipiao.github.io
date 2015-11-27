@@ -747,7 +747,7 @@
     <link href="http://messipiao.github.io/2013/11/18/basics-of-martingales/"/>
     <id>http://messipiao.github.io/2013/11/18/basics-of-martingales/</id>
     <published>2013-11-18T08:16:00.000Z</published>
-    <updated>2015-11-27T02:48:21.000Z</updated>
+    <updated>2015-11-27T02:50:02.000Z</updated>
     <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
 <h2 id="Martingales">Martingales</h2><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
@@ -776,7 +776,7 @@
 <p>where $\xi_i$ are independent identically distributed random variables taking the value $\pm 1/2$. Let $T = \inf {n:X_n=1}$. Then T is a stopping time, $P[T&lt;\infty] = 1$, but T is not bounded. $X_T=1$ with probability 1 and trivially $E[X_T]=1 \neq 0$.</p>
 <p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
 <h2 id="Azuma’s_Inequality">Azuma’s Inequality</h2><p>Let $Z_n, n \ge 1$ be a martingale with mean $\mu = E[Z_n]$. Let $Z_0 = \mu$ and suppose that for nonegative constants $\alpha_i,\beta_i,i\ge 1$,</p>
-<p>$$<br>-\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i<br>$$</p>
+<p>$$<br>-\alpha_i \le Z_i-Z_{i-1} \le \beta_i<br>$$</p>
 <p>Then for any $n \ge 0, a &gt; 0$:</p>
 <ol>
 <li>$ P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} $ </li>
