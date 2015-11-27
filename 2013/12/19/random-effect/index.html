@@ -55,20 +55,20 @@
 
 <meta name="description" content="Random effects models are often needed to account for unexplained heterogeneous situation.
 Two commonly used distributions estimating lifetime are as follows.
-Inversed Guassian distribution$$ X \sim I">
+Inversed Guassian distribution$ X \sim IG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Random Effect">
 <meta property="og:url" content="http://messipiao.github.io/2013/12/19/random-effect/index.html">
 <meta property="og:site_name" content="Piao's Blog">
 <meta property="og:description" content="Random effects models are often needed to account for unexplained heterogeneous situation.
 Two commonly used distributions estimating lifetime are as follows.
-Inversed Guassian distribution$$ X \sim I">
-<meta property="og:updated_time" content="2014-12-29T05:14:56.000Z">
+Inversed Guassian distribution$ X \sim IG">
+<meta property="og:updated_time" content="2015-11-27T03:53:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Random Effect">
 <meta name="twitter:description" content="Random effects models are often needed to account for unexplained heterogeneous situation.
 Two commonly used distributions estimating lifetime are as follows.
-Inversed Guassian distribution$$ X \sim I">
+Inversed Guassian distribution$ X \sim IG">
 
 
 
@@ -302,27 +302,25 @@ Inversed Guassian distribution$$ X \sim I">
       
         <span itemprop="articleBody"><p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
 <p>Two commonly used distributions estimating lifetime are as follows.</p>
-<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$$ X \sim IG(\mu,\lambda) $$, where $$X \in (0,\infty)$$. $$\mu$$ and $$\lambda$$ are called mean and shape parameter respectively.</p>
+<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$ X \sim IG(\mu,\lambda) $, where $X \in (0,\infty)$. $\mu$ and $\lambda$ are called mean and shape parameter respectively.</p>
 <ol>
-<li><em>PDF:</em> $$(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$$</li>
-<li><em>CDF:</em> $$\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\mu$$, $$V(X)=\frac{\mu^3}{\lambda}$$</li>
+<li><em>PDF:</em> $(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$</li>
+<li><em>CDF:</em> $\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$</li>
+<li><em>Expectation and Variance:</em> $E(X)=\mu$, $V(X)=\frac{\mu^3}{\lambda}$</li>
 </ol>
-<h3 id="Gamma_distribution">Gamma distribution</h3><p>$$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\beta$$ are called shape and rate parameter respectively.</p>
+<h3 id="Gamma_distribution">Gamma distribution</h3><p>$X \sim gamma(\alpha,\beta)$, where $X \in (0,\infty)$. $\alpha$ and $\beta$ are called shape and rate parameter respectively.</p>
 <ol>
-<li><em>PDF:</em> $$\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$$</li>
-<li><em>Gamma function:</em> $$\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$$</li>
-<li><em>Useful equation:</em> $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$</li>
+<li><em>PDF:</em> $\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$</li>
+<li><em>Gamma function:</em> $\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$</li>
+<li><em>Useful equation:</em> $\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$</li>
+<li><em>Expectation and Variance:</em> $E(X)=\frac{\alpha}{\beta}$, $V(X)=\frac{\alpha}{\beta^2}$</li>
 </ol>
 <a id="more"></a>
-<h2 id="Consider_IG_processes_with_Random_Effects">Consider IG processes with Random Effects</h2><p>Consider a Wiener process $$W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$$ with the induced IG process $$Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $$\mu^{-1}$$ vary randomly across units. Assume $$\mu^{-1}$$ foolows a truncated normal distribution $$TN(w,k^{-2})$$, $$k&gt;0$$ with PDF</p>
-<p>$$g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}$$</p>
-<p>the joint PDF of $$\mathbf{Y}_i = [Y<em>i(t</em>{i1}),Y<em>i(t</em>{i2}),\cdots,Y<em>i(t</em>{in_i})]$$ can be computed first conditioning on the random drift parameter $$\mu_i$$ and then marginalizing it</p>
-<p>$$</p>
-<p>\begin{align}<br>f(\mathbf{Y}<em>i) &amp; = \int</em>{0}^{\infty} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2 \pi y<em>{ij}^3}} exp{ \frac{-\eta(y</em>{ij}-\mu \lambda<em>{ij})^2}{2y</em>{ij}}} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2\pi y<em>{ij}^3}} \int</em>{0}^{\infty} \prod_{j=1}^{n<em>i} exp {\frac{-\eta (y</em>{ij}z-\lambda<em>{ij})^2}{2y</em>{ij}}} \frac{1}{\sqrt{2\pi}} exp{-\frac{k^2(z-w)^2}{2}} dz \<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n<em>i} \sqrt{\frac{\eta \lambda</em>{ij}^2}{2\pi y<em>{ij}^3}} exp{-\eta \sum</em>{j=1}^{n<em>i} \frac{\lambda</em>{ij}^2}{2y<em>{ij}}} \int</em>{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp {-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}} dz \<br>&amp; = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}<em>i} \prod</em>{j=1}^{n<em>i} \sqrt{\dfrac{\eta \lambda</em>{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}<em>i^2-k^2w^2}{2}-\eta \sum</em>{j=1}^{n<em>i} \frac{\lambda</em>{ij}^2}{2y_{ij}}]<br>\end{align}</p>
-<p>$$</p>
-<p>where $$y_{ij} = Y<em>i(t</em>{ij})-Y<em>i(t</em>{i,j-1})$$ is the observed increment, $$\lambda<em>{ij} = \Lambda(t</em>{ij})-\Lambda(t_{i,j-1})$$, $$\tilde{k}_i = \sqrt{\eta Y<em>i(t</em>{i,n_i})+k^2}$$ and $$\tilde{w}<em>i = (\eta \Lambda(t</em>{i,n_i})+wk^2)/{\tilde{k}_i^2}$$. </p>
+<h2 id="Consider_IG_processes_with_Random_Effects">Consider IG processes with Random Effects</h2><p>Consider a Wiener process $W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$ with the induced IG process $Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $\mu^{-1}$ vary randomly across units. Assume $\mu^{-1}$ foolows a truncated normal distribution $TN(w,k^{-2})$, $k&gt;0$ with PDF</p>
+<p>$g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}$</p>
+<p>the joint PDF of $\mathbf{Y}_i = [Y_i(t_{i1}),Y_i(t_{i2}),\cdots,Y_i(t_{in_i})]$ can be computed first conditioning on the random drift parameter $\mu_i$ and then marginalizing it</p>
+<p>\begin{align*}<br>f(\mathbf{Y}_i) &amp; = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2 \pi y_{ij}^3}} exp{ \frac{-\eta(y_{ij}-\mu \lambda_{ij})^2}{2y_{ij}}} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \\<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} \int_{0}^{\infty} \prod_{j=1}^{n_i} exp {\frac{-\eta (y_{ij}z-\lambda_{ij})^2}{2y_{ij}}} \frac{1}{\sqrt{2\pi}} exp{-\frac{k^2(z-w)^2}{2}} dz \\<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp{-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}} \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp {-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}} dz \\<br>&amp; = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}_i} \prod_{j=1}^{n_i} \sqrt{\dfrac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}_i^2-k^2w^2}{2}-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}]<br>\end{align*}</p>
+<p>where $y_{ij} = Y_i(t_{ij})-Y_i(t_{i,j-1})$ is the observed increment, $\lambda_{ij} = \Lambda(t_{ij})-\Lambda(t_{i,j-1})$, $\tilde{k}_i = \sqrt{\eta Y_i(t_{i,n_i})+k^2}$ and $\tilde{w}_i = (\eta \Lambda(t_{i,n_i})+wk^2)/{\tilde{k}_i^2}$. </p>
 </span>
       
     </div>

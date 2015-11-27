@@ -746,8 +746,8 @@
             
               
                 
-                <a class="post-title-link" href="/2013/12/19/random-effect/" itemprop="url">
-                  Random Effect
+                <a class="post-title-link" href="/2013/11/24/hypothesis-testing/" itemprop="url">
+                  Hypothesis Testing
                 </a>
               
             
@@ -757,8 +757,8 @@
         <div class="post-meta">
           <span class="post-time">
             Posted on
-            <time itemprop="dateCreated" datetime="2013-12-19T21:38:00+08:00" content="2013-12-19">
-              2013-12-19
+            <time itemprop="dateCreated" datetime="2013-11-24T10:47:00+08:00" content="2013-11-24">
+              2013-11-24
             </time>
           </span>
 
@@ -783,8 +783,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2013/12/19/random-effect/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/12/19/random-effect/" itemprop="commentsCount"></span>
+              <a href="/2013/11/24/hypothesis-testing/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/11/24/hypothesis-testing/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -804,23 +804,20 @@
 
       
         
-          <p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
-<p>Two commonly used distributions estimating lifetime are as follows.</p>
-<h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$$ X \sim IG(\mu,\lambda) $$, where $$X \in (0,\infty)$$. $$\mu$$ and $$\lambda$$ are called mean and shape parameter respectively.</p>
-<ol>
-<li><em>PDF:</em> $$(\frac{\lambda}{2\pi x^3})^{1/2}exp(\frac{-\lambda(x-\mu)^2}{2\mu^2 x})$$</li>
-<li><em>CDF:</em> $$\Phi(\sqrt{\frac{\lambda}{x}}(\frac{x}{\mu}-1))+exp(\frac{2\lambda}{\mu})\Phi(-\sqrt{\lambda}{x}(\frac{x}{\mu}+1))$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\mu$$, $$V(X)=\frac{\mu^3}{\lambda}$$</li>
-</ol>
-<h3 id="Gamma_distribution">Gamma distribution</h3><p>$$X \sim gamma(\alpha,\beta)$$, where $$X \in (0,\infty)$$. $$\alpha$$ and $$\beta$$ are called shape and rate parameter respectively.</p>
-<ol>
-<li><em>PDF:</em> $$\frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}$$</li>
-<li><em>Gamma function:</em> $$\Gamma(t) = \int_{0}^{\infty} x^{t-1} e^{-x} dx$$</li>
-<li><em>Useful equation:</em> $$\frac{\Gamma(b+1)}{a^{b+1}} = \int_{0}^{\infty} t^b e^{-at}dt$$</li>
-<li><em>Expectation and Variance:</em> $$E(X)=\frac{\alpha}{\beta}$$, $$V(X)=\frac{\alpha}{\beta^2}$$</li>
-</ol>
+          <p>Hypothesis testing is another inference method comparing to point estimator. It is a statement about a population parameter. </p>
+<blockquote>
+<p>The two complementaty hypotheses in a hypothesis testing problem are called the <em>null hypothesis</em> and the <em>alternative hypothesis</em>. They are denoted by <em>$H_0$</em> and <em>$H_1$</em>, respectively.</p>
+</blockquote>
+<h2 id="Methods_of_Finding_Tests">Methods of Finding Tests</h2><h3 id="Likelihood_Ratio_Tests">Likelihood Ratio Tests</h3><ul>
+<li>The likelihood ratio test statistic for testing $H_0:\theta \in \Theta_0$ versus $H_1:\theta \in \Theta_0^c$ is </li>
+</ul>
+<p>$\lambda(\mathbf{x}) = \frac{\sup_{\Theta_0} L(\theta \vert \mathbf{x})}{\sup_{\Theta} L(\theta \vert \mathbf{x})}$</p>
+<p>A likelihood ratio test (<strong>LRT</strong>) is any test that has a rejection region of the form ${\mathbf{x}:\lambda(\mathbf{x}) \le c}$ where c is any number satisfying $0 \le c \le 1$.</p>
+<ul>
+<li>If $T(\mathbf{X})$ is a sufficient statistic for $\theta$ and $\lambda’(t)$ and $\lambda(\mathbf{x})$ are the LRT statistics based on $T$ and $\mathbf{X}$, respectively, then $\lambda’(T(\mathbf{X})) = \lambda(\mathbf{x})$ for every $\mathbf{x}$ in the sample space.</li>
+</ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/19/random-effect/#more" rel="contents">
+            <a class="btn" href="/2013/11/24/hypothesis-testing/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
