@@ -254,7 +254,7 @@
     <link href="http://messipiao.github.io/2013/12/19/random-effect/"/>
     <id>http://messipiao.github.io/2013/12/19/random-effect/</id>
     <published>2013-12-19T13:38:00.000Z</published>
-    <updated>2015-11-27T03:53:11.000Z</updated>
+    <updated>2015-11-27T04:07:17.000Z</updated>
     <content type="html"><![CDATA[<p>Random effects models are often needed to account for unexplained heterogeneous situation.</p>
 <p>Two commonly used distributions estimating lifetime are as follows.</p>
 <h3 id="Inversed_Guassian_distribution">Inversed Guassian distribution</h3><p>$ X \sim IG(\mu,\lambda) $, where $X \in (0,\infty)$. $\mu$ and $\lambda$ are called mean and shape parameter respectively.</p>
@@ -271,7 +271,7 @@
 <li><em>Expectation and Variance:</em> $E(X)=\frac{\alpha}{\beta}$, $V(X)=\frac{\alpha}{\beta^2}$</li>
 </ol>
 <a id="more"></a>
-<h2 id="Consider_IG_processes_with_Random_Effects">Consider IG processes with Random Effects</h2><p>Consider a Wiener process $W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$ with the induced IG process $Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $\mu^{-1}$ vary randomly across units. Assume $\mu^{-1}$ foolows a truncated normal distribution $TN(w,k^{-2})$, $k&gt;0$ with PDF</p>
+<h3 id="IG_processes_with_Random_Effects">IG processes with Random Effects</h3><p>Consider a Wiener process $W(x) = \mu^{-1}x+\eta^{-1/2}B(x)$ with the induced IG process $Y(t) \sim IG(\mu \Lambda(t),\eta \Lambda^2(t))$. A common practice to incorporate random effects in the Wiener process is to let the drift parameter $\mu^{-1}$ vary randomly across units. Assume $\mu^{-1}$ foolows a truncated normal distribution $TN(w,k^{-2})$, $k&gt;0$ with PDF</p>
 <p>$g(\mu^{-1}) = \frac{k \phi[k(\mu^{-1}-w)]}{1-\Phi(-kw)}$</p>
 <p>the joint PDF of $\mathbf{Y}_i = [Y_i(t_{i1}),Y_i(t_{i2}),\cdots,Y_i(t_{in_i})]$ can be computed first conditioning on the random drift parameter $\mu_i$ and then marginalizing it</p>
 <p>\begin{align*}<br>f(\mathbf{Y}_i) &amp; = \int_{0}^{\infty} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2 \pi y_{ij}^3}} exp{ \frac{-\eta(y_{ij}-\mu \lambda_{ij})^2}{2y_{ij}}} \frac{k\phi[k(z-w)]}{1-\Phi(-kw)} dz \\<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} \int_{0}^{\infty} \prod_{j=1}^{n_i} exp {\frac{-\eta (y_{ij}z-\lambda_{ij})^2}{2y_{ij}}} \frac{1}{\sqrt{2\pi}} exp{-\frac{k^2(z-w)^2}{2}} dz \\<br>&amp; = \frac{k}{1-\Phi(-kw)} \prod_{j=1}^{n_i} \sqrt{\frac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp{-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}} \int_{0}^{\infty} \frac{1}{\sqrt{2\pi}} exp {-\frac{\eta}{2}Y_iz^2 + \eta \Lambda_iz-\frac{k^2(z-w)^2}{2}} dz \\<br>&amp; = \frac{1-\Phi(-\tilde{k}_i \tilde{w}_i)}{1-\Phi(-kw)} \frac{k}{\tilde{k}_i} \prod_{j=1}^{n_i} \sqrt{\dfrac{\eta \lambda_{ij}^2}{2\pi y_{ij}^3}} exp[\frac{\tilde{k}_i^2\tilde{w}_i^2-k^2w^2}{2}-\eta \sum_{j=1}^{n_i} \frac{\lambda_{ij}^2}{2y_{ij}}]<br>\end{align*}</p>
