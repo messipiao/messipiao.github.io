@@ -747,7 +747,7 @@
     <link href="http://messipiao.github.io/2013/11/18/basics-of-martingales/"/>
     <id>http://messipiao.github.io/2013/11/18/basics-of-martingales/</id>
     <published>2013-11-18T08:16:00.000Z</published>
-    <updated>2015-11-27T02:19:32.000Z</updated>
+    <updated>2015-11-27T02:26:29.000Z</updated>
     <content type="html"><![CDATA[<p>Here martingale, a type of stochastic process, whose definition formalizes the concept of a fair game, is considered. </p>
 <h2 id="Martingales">Martingales</h2><p>A stochastic process ${Z_n,n \ge 1}$ is said to be a martingale process if<br>$$<br>E[|Z_n|] &lt; \infty \quad \text{for all n}<br>$$<br>and</p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n] = Z_n. $$</p>
@@ -758,33 +758,32 @@
 <p>it is a sub-martingale and when </p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&lt;Z_n $$ </p>
 <p>it is a super-martingale.</p>
-<p>Let $X,Y_1,Y_2,\dots$ be arbitary random variables such that<br>$ E[|X|] &lt; \infty $,<br>and let<br>$Z_n = E[X \mid Y_1,\dots,Y_n]$.<br>It then follows that $${Z_n,n \ge 1}$$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
+<p>Let $X,Y_1,Y_2,\dots$ be arbitary random variables such that $E[|X|] &lt; \infty$,<br>and let $Z_n = E[X \mid Y_1,\dots,Y_n]$. It then follows that ${Z_n,n \ge 1}$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>
 <a id="more"></a>
 <p>The parial sums of independent random variables having mean 0 is a martingale. The simplest example:</p>
-<p>$$ Z<em>n = \sum</em>{i=1}^n {X_i - E[X_i \mid X<em>1,\dots,X</em>{i-1}]}$$</p>
-<p>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead $Z_1, \dots, Z_n$.<br>Actually, we can prove this results. Let $Z = g(Y)$ then</p>
+<p>$$ Z<em>n = \sum</em>{i=1}^n {X_i - E[X_i \mid X<em>1,\dots,X</em>{i-1}]}. $$</p>
+<p>Note that when compute the conditional expectation of $Z_{n+1}$, we often use more informative random variables instead $Z_1, \dots, Z_n$. Actually, we can prove this results. Let $Z = g(Y)$ then</p>
 <p>$$E(X \mid Z) = E(E(X \mid Z,Y) \mid Z) = E(E(X \mid Y) \mid Z) = E(X\mid Y)$$</p>
 <h2 id="Stopping_Times">Stopping Times</h2><h3 id="Definition">Definition</h3><p>The positive interger-value, possibly infinite, random variable $N$ is said to be a random time for the process ${Z_n,n \ge 1}$ if the event {N=n} is determined by the randon variables $Z_1,\dots,Z_n$. That is, knowing $Z_1,\dots,Z_n$ tells us whether or not $N=n$. If $P(N &lt; \infty)$, then the random time $N$ is said to be a <strong>stopping time</strong>.</p>
 <h3 id="The_Martingale_Stopping_Theorem">The Martingale Stopping Theorem</h3><p>If either:</p>
 <ol>
 <li>$Z_{n \land N}$ is bounde, or;</li>
 <li>$N$ is bounded, or;</li>
-<li>$E[N] &lt; \infty$, and there is an $M&lt;\infty$ such that</li>
+<li>$E[N] &lt; \infty$, and there is an $M&lt;\infty$ such that<br>$$E[\mid Z_{n+1}-Z_n \mid \mid Z_1,\dots,Z_n] &lt; M$$</li>
 </ol>
-<p>$$E[\mid Z_{n+1}-Z_n \mid \mid Z_1,\dots,Z_n] &lt; M$$</p>
 <p>then </p>
 <p>$$E[Z_N] = E[Z_1]$$</p>
 <p>NOTE that boundedness is important. Take $X_0=0$ and</p>
 <p>$$X_n = \xi_1+\xi_2+\cdots+\xi_n$$</p>
-<p>where $\xi_i$ are independent identically distributed random variables taking the value $\pm \dfrac{1}{2}$. Let $T = inf{n:X_n=1}$. Then T is a stopping time, $P[T&lt;\infty] = 1$, but T is not bounded. $X_T=1$ with probability 1 and trivially $E[X_T]=1 \neq 0$.</p>
+<p>where $\xi_i$ are independent identically distributed random variables taking the value $\pm 1/2$. Let $T = \inf {n:X_n=1}$. Then T is a stopping time, $P[T&lt;\infty] = 1$, but T is not bounded. $X_T=1$ with probability 1 and trivially $E[X_T]=1 \neq 0$.</p>
 <p>This theorem can be applied to prove the <strong>Wald’s Equation</strong> and analyze cards and gambling problems, which will be summarized in my future posts. </p>
 <h2 id="Azuma’s_Inequality">Azuma’s Inequality</h2><p>Let $Z_n, n \ge 1$ be a martingale with mean $\mu = E[Z_n]$. Let $Z_0 = \mu$ and suppose that for nonegative constants $\alpha_i,\beta_i,i\ge 1$,</p>
-<p>$$-\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i$$</p>
+<p>$$ -\alpha_i \le Z<em>i-Z</em>{i-1} \le \beta_i $$</p>
 <p>Then for any $n \ge 0, a &gt; 0$:</p>
-<p>$$<br>\begin{align}</p>
+<p>$$</p>
 <ol>
-<li>&amp; P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} \</li>
-<li>&amp; P{Z_n-\mu \le -a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} \<br>\end{align}<br>$$</li>
+<li>P{Z_n-\mu \ge a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}} </li>
+<li>P{Z_n-\mu \le -a} \le exp{-2a^2/\sum{(\alpha_i+\beta_i)^2}}<br>$$</li>
 </ol>
 <h2 id="The_Martingale_Convergence_Theorem">The Martingale Convergence Theorem</h2><p>If ${Z_n,n \ge 1}$ is a martingale such that for some $M&lt; \infty$</p>
 <p>$$E[\mid Z_n \mid] \le M, \text{for all n}$$</p>
@@ -801,7 +800,7 @@
 <p>it is a sub-martingale and when </p>
 <p>$$ E[Z_{n+1} \mid Z_1,Z_2,\dots,Z_n]&lt;Z_n $$ </p>
 <p>it is a super-martingale.</p>
-<p>Let $X,Y_1,Y_2,\dots$ be arbitary random variables such that<br>$ E[|X|] &lt; \infty $,<br>and let<br>$Z_n = E[X \mid Y_1,\dots,Y_n]$.<br>It then follows that $${Z_n,n \ge 1}$$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>]]>
+<p>Let $X,Y_1,Y_2,\dots$ be arbitary random variables such that $E[|X|] &lt; \infty$,<br>and let $Z_n = E[X \mid Y_1,\dots,Y_n]$. It then follows that ${Z_n,n \ge 1}$ is a martingale, which is called a <strong>Doob type martingale</strong>.</p>]]>
     
     </summary>
     
