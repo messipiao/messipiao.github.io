@@ -34,7 +34,7 @@ var Instagram = (function(){
 		setTimeout(function(){
 			preLoad(data);
 		},3000);
-		
+
 		$("a[rel=example_group]").fancybox();
 	}
 
@@ -99,9 +99,9 @@ var Instagram = (function(){
 			}
 		});
 	}
-	
 
-	var changeSize = function(){	
+
+	var changeSize = function(){
 		if($(document).width() <= 600){
 			$(".img-box").css({"width":"auto", "height":"auto"});
 		}else{
@@ -119,7 +119,7 @@ var Instagram = (function(){
 
 	return {
 		init:function(){
-			//getList("https://api.instagram.com/v1/users/438522285/media/recent/?access_token=438522285.2082eef.ead70f432f444a2e8b1b341617637bf6&count=100");
+			getList("https://api.instagram.com/v1/users/1387452788/media/recent/?access_token=1387452788.e642ee5.50692db4377e4c77855629b135089a80&count=100");
 			var insid = $(".instagram").attr("data-client-id");
             var userId = $(".instagram").attr("data-user-id");
 
