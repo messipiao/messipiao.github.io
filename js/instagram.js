@@ -83,8 +83,8 @@ var Instagram = (function(){
 			url: url,
 			type:"GET",
 			dataType:"jsonp",
-			success:function(re){
-				if(re.meta.code == 200){
+			//success:function(re){
+			//	if(re.meta.code == 200){
 					_collection = _collection.concat(re.data);
 					var next = re.pagination.next_url;
 					if(next){
@@ -93,10 +93,10 @@ var Instagram = (function(){
 						$(".open-ins").html("图片来自instagram，点此访问");
 						ctrler(_collection);
 					}
-				}else{
-					alert("access_token timeout!");
-				}
-			}
+			//	}else{
+			//		alert("access_token timeout!");
+			//	}
+			//}
 		});
 	}
 
