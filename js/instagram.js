@@ -83,7 +83,7 @@ var Instagram = (function(){
 			url: url,
 			type:"GET",
 			dataType:"jsonp",
-			//success:function(re){
+			success:function(re){
 			//	if(re.meta.code == 200){
 					_collection = _collection.concat(re.data);
 					var next = re.pagination.next_url;
@@ -96,7 +96,7 @@ var Instagram = (function(){
 			//	}else{
 			//		alert("access_token timeout!");
 			//	}
-			//}
+			}
 		});
 	}
 
