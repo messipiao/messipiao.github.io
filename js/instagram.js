@@ -119,16 +119,17 @@ var Instagram = (function(){
 
 	return {
 		init:function(){
-			getList("https://api.instagram.com/v1/users/1387452788/media/recent/?access_token=1387452788.e642ee5.50692db4377e4c77855629b135089a80&count=100");
-			var insid = $(".instagram").attr("data-client-id");
-            var userId = $(".instagram").attr("data-user-id");
+			//getList("https://api.instagram.com/v1/users/1387452788/media/recent/?access_token=1387452788.e642ee5.50692db4377e4c77855629b135089a80&count=100");
+			//var insid = $(".instagram").attr("data-client-id");
+      //      var userId = $(".instagram").attr("data-user-id");
 
-			if(!insid){
-				alert("Didn't set your instagram client_id.\nPlease see the info on the console of your brower.");
-				console.log("Please open 'http://instagram.com/developer/clients/manage/' to get your client-id.");
-				return;
+			//if(!insid){
+			//	alert("Didn't set your instagram client_id.\nPlease see the info on the console of your brower.");
+			//	console.log("Please open 'http://instagram.com/developer/clients/manage/' to get your client-id.");
+			//	return;
 			}
-			getList("https://api.instagram.com/v1/users/"+ userId +"/media/recent/?client_id="+insid+"&count=100");
+			getList("https://api.instagram.com/v1/users/1387452788/media/recent/?access_token=1387452788.e642ee5.50692db4377e4c77855629b135089a80&count=100");
+			//getList("https://api.instagram.com/v1/users/"+ userId +"/media/recent/?client_id="+insid+"&count=100");
 			bind();
 		}
 	}
